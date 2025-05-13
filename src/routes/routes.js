@@ -1,11 +1,15 @@
 import express from "express";
+import { handleSearch } from "../controllers/search-controller.js";
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.render("index", {
+router.get("/", handleSearch);
+
+router.get("/test", (req, res) => {
+  res.render("pages/test", {
     layout: "layout/layout",
-    title: "Ronalds BOK",
+    title: "Test",
+    className: "test",
   });
 });
 

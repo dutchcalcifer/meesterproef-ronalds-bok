@@ -21,7 +21,7 @@ app.use((req, res) => {
   res.status(404).render("pages/errors/404.ejs", {
     layout: "layout/layout",
     title: "404",
-    currentPath: req.path,
+    className: "404",
   });
 });
 
@@ -29,7 +29,7 @@ app.use((err, req, res, next) => {
   res.status(500).render("pages/errors/500.ejs", {
     layout: "layout/layout",
     title: "500",
-    currentPath: req.path,
+    className: "500",
   });
 });
 

@@ -37,8 +37,10 @@ npm start
 .
 ├── server.js           # Entry point
 ├── src/views/          # EJS templates
+├── src/routes/         # Route definitions
+├── src/controllers/    # Controller definitions
+├── src/data/           # Static data
 ├── public/             # Static assets (CSS, JS, images)
-├── src/routes/         # Route definitions (if applicable)
 └── README.md           # This file
 ```
 
@@ -49,6 +51,7 @@ npm start
 - **EJS** for templating
 - **Nodemon** for dev auto-reloads
 - **express-ejs-layouts** for layout support
+- **Fuse.js** for fuzzy search
 
 ## 👥 Authors
 
