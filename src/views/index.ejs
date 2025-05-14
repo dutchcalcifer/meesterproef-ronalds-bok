@@ -8,10 +8,15 @@
 
 <% if (results.length > 0) { %>
 <ul>
-  <% results.forEach(function(page) { %>
-  <li><a href="<%= page.slug %>"><%= page.title %></a></li>
+  <% results.forEach(result => { %>
+  <li>
+    <a href="/item/<%= result.id %>"><%= result.Naam %></a>
+    <!-- Link to item detail page -->
+    <p><%= result.Ondertitel %></p>
+  </li>
   <% }) %>
 </ul>
+
 <% } else if (query) { %>
 <p>Geen resultaten gevonden voor "<%= query %>"</p>
 <% } %>

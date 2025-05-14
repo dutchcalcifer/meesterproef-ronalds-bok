@@ -1,18 +1,25 @@
 import Fuse from "fuse.js";
-import searchData from "../data/search-data.js";
 
-const fuse = new Fuse(searchData, {
-  keys: ["title", "content"],
+const fuse = new Fuse([], {
+  keys: ["Naam", "Ondertitel"],
   includeScore: true,
   threshold: 0.3,
 });
 
-export const handleSearch = (req, res) => {
+export const handleSearch = async (req, res) => {
   try {
     const query = req.query.q || "";
     let results = [];
 
+    const response = await fetch(process.env.API_URL);
+    const apiData = await response.json();
+
     if (query.trim() !== "") {
+      const fuse = new Fuse(apiData.data, {
+        keys: ["Naam", "Ondertitel"],
+        includeScore: true,
+        threshold: 0.3,
+      });
       results = fuse.search(query).map((result) => result.item);
     }
 
