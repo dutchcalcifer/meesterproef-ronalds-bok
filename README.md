@@ -57,8 +57,8 @@ npm start
 
 - Dante Piekart
 - Vivanne Hoogendam
-- Lorenzo Horde
-- Annika Mekkelhold
+- Lorenzo Horden
+- Annika Mekkelholt
 
 ## 🐛 Issues
 
