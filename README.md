@@ -1,6 +1,6 @@
-# Meesterproef - Ronalds BOK
+# Meesterproef - Ronald’s BOK
 
-This is the Node.js project for the **Meesterproef** assignment: _Ronalds BOK_.
+This is the Node.js project for the **Meesterproef** assignment: _Ronald’s BOK_.
 
 ## 🚀 Project Setup
 
@@ -49,9 +49,67 @@ npm start
 - **Node.js**
 - **Express 5**
 - **EJS** for templating
-- **Nodemon** for dev auto-reloads
+- **Nodemon** for development auto-reloads
 - **express-ejs-layouts** for layout support
 - **Fuse.js** for fuzzy search
+
+## 👩‍💻 Code Conventions
+
+We follow these code conventions to ensure consistency and readability across the codebase:
+
+### General
+
+- Use meaningful names for classes, IDs, variables, and functions.
+- Always use **English** for code naming.
+- Be consistent in naming practices.
+- Avoid abbreviations; write out names fully. Minifiers handle size optimizations.
+
+### Naming Styles
+
+- **kebab-case** for CSS classes, CSS variables, and IDs in HTML/CSS.
+- **camelCase** for JavaScript variables and functions.
+
+### Examples
+
+**CSS**
+
+```css
+/* ✅ Descriptive class name and CSS variable */
+.header-trigger {
+  --primary-color: hotpink;
+}
+
+/* ❌ Non-descriptive names and not in English */
+.btn-1 {
+  --color-1: hotpink;
+  --kleur-2: hotpink;
+}
+```
+
+**HTML**
+
+```html
+<!-- ✅ Use kebab-case and descriptive names -->
+<form id="contact-form" class="contact-form"></form>
+
+<!-- ❌ Avoid camelCase and unclear names -->
+<form id="contactForm" class="myForm"></form>
+
+<!-- ❌ Keep naming consistent (.button-primary vs .button--secondary) -->
+<button class="button-primary">Submit</button>
+<button class="button--secondary">Submit</button>
+```
+
+**JavaScript**
+
+```javascript
+// ✅ Modern function notation, camelCase, descriptive name
+const initHeader = () => {};
+
+// ❌ Avoid PascalCase for functions and use const/let instead of var
+function MyFunction() {}
+var initHeader = () => {};
+```
 
 ## 👥 Authors
 
