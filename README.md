@@ -52,6 +52,7 @@ npm start
 - **Nodemon** for dev auto-reloads
 - **express-ejs-layouts** for layout support
 - **Fuse.js** for fuzzy search
+- **dotenv** for environment variables
 
 ## 👥 Authors
 

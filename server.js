@@ -1,8 +1,11 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
+import dotenv from "dotenv";
 import projectRoutes from "./src/routes/routes.js";
 import expressEjsLayouts from "express-ejs-layouts";
+
+dotenv.config();
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
