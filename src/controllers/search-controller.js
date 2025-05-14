@@ -1,18 +1,12 @@
 import Fuse from "fuse.js";
-
-const fuse = new Fuse([], {
-  keys: ["Naam", "Ondertitel"],
-  includeScore: true,
-  threshold: 0.3,
-});
+import { fetchApiData } from "./api-controller.js";
 
 export const handleSearch = async (req, res) => {
   try {
     const query = req.query.q || "";
     let results = [];
 
-    const response = await fetch(process.env.API_URL);
-    const apiData = await response.json();
+    const apiData = await fetchApiData();
 
     if (query.trim() !== "") {
       const fuse = new Fuse(apiData.data, {

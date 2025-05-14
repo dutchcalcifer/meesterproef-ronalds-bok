@@ -1,16 +1,9 @@
+import { fetchItemById } from "./api-controller.js";
+
 export const handleItemDetail = async (req, res) => {
   try {
     const { id } = req.params;
-    const apiUrl = `${process.env.API_URL}&filter[id]=${id}`;
-
-    const response = await fetch(apiUrl);
-    if (!response.ok) {
-      throw new Error(`API request failed with status ${response.status}`);
-    }
-
-    const result = await response.json();
-
-    const item = result.data[0];
+    const item = await fetchItemById(id);
 
     res.render("pages/details", {
       layout: "layout/layout",
