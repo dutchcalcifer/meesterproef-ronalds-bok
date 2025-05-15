@@ -24,7 +24,7 @@ app.use((req, res) => {
   res.status(404).render("pages/errors/404.ejs", {
     layout: "layout/layout",
     title: "404",
-    className: "404",
+    className: "error",
   });
 });
 
@@ -32,7 +32,7 @@ app.use((err, req, res, next) => {
   res.status(500).render("pages/errors/500.ejs", {
     layout: "layout/layout",
     title: "500",
-    className: "500",
+    className: "error",
   });
 });
 
