@@ -1,0 +1,221 @@
+/* variables */
+html {
+    --color-green-primary: #25533F;
+    --color-green-secundary: #AACC96;
+    --color-pink-primary: #6D1F42;
+    --color-pink-secundary: #FF7BAC;
+    --color-yellow-primary: #EF6F3C;
+    --color-yellow-secundary: #EFCE7B;
+    --color-blue-primary: #25533F;
+    --color-blue-secundary: #B8CEE8;
+    --color-purple-primary: #D3B6D3;
+    --color-purple-secundary: #6D1F42;
+
+}
+
+* {
+    font-family: 'Open Sans';
+    margin: 0;
+}
+
+/* give cards different colors based on class */
+.principle {
+    --color-background: var(--color-pink-secundary);
+    --color: var(--color-pink-primary);
+}
+
+.jobtask {
+    --color-background: var(--color-green-secundary);
+    --color: var(--color-green-primary);
+}
+
+.method {
+    --color-background: var(--color-yellow-secundary);
+    --color: var(--color-yellow-primary);
+}
+
+
+
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 4em;
+}
+
+#search {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+
+    h2 {
+        text-align: center;
+        font-size: 2em;
+    }
+
+    div {
+        position: relative;
+    }
+
+    input[type=text] {
+        background-color: #ddd;
+        height: calc((5/3)*1em);
+        font-size: 1.5em;
+        border: none;
+        transition: .2s;
+        padding: .5em 1em;
+        border-radius: calc((5/3)*1em);
+        width: calc(100% - 2em);
+    
+        &:focus, &:hover {
+            outline: none;
+            box-shadow: 0 0 4px #ddd;
+        }
+    }
+    
+    button[type=submit] {
+        font-size: 2em;
+        padding: 0;
+        border: none;
+        height: 2em;
+        width: 2em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-radius: 50%;
+        background-color: #ddd;
+    
+        transition: .2s;
+    
+        svg {
+            height: 60%;
+            width: 60%;
+        }
+    
+        &:hover {
+            background-color: #444;
+            cursor: pointer;
+    
+            svg {
+                filter: invert(1);
+            }
+        }
+    }
+}
+
+#multiple-choice {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+    
+    h2 {
+        text-align: center;
+        font-family: 'Open Sans';
+    }
+    
+    #questions {
+        display: grid;
+        gap: 1em;
+        width: 100%;
+    
+        input {
+            display: none;
+        }
+    
+        label {
+            display: block;
+            height: 5em;
+            color: var(--color);
+            font-weight: bold;
+            background: var(--color-background);
+            grid-row: 1/2;
+            border-radius: .5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+    
+            &:has(:checked) {
+                /* box-shadow: inset 1px 1px .25em var(--color); */
+                border: 2px solid var(--color);
+            }
+        }
+    }
+
+    button {
+        font-size: 1.5em;
+        padding: .5em 1em;
+    }
+    
+    /* show submit button when option is selected */
+    &:not(:has(input:checked)) button{
+        opacity: 0;
+    }
+}
+
+
+
+
+/* ------------------- */
+/* --- result page --- */
+/* ------------------- */
+#results {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2em;
+
+
+    /* cards in grid with short explaination */
+    .result {
+        background-color: white;
+        color: var(--color);
+        text-decoration: none;
+        padding: .5em;
+        transition: .5s;
+        border: .25em solid var(--color);
+        box-shadow: 0 0 0 .25em white,
+        0 0 1em grey;
+        border-radius: .5em;
+
+        .header {
+            text-align: center;
+            background-color: var(--color-background);
+            padding: 1em;
+
+            h3 {
+                margin: 0;
+            }
+        }
+
+        .content {
+            padding: 1em;
+
+            p:first-of-type {
+                padding-bottom: 1em;
+            }
+
+            .small {
+                font-weight: 300;
+            }
+        }
+
+        &:hover {
+            scale: 1.05;
+        }
+    }
+}
