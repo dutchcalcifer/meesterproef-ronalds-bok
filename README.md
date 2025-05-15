@@ -1,6 +1,6 @@
-# Meesterproef - Ronald’s BOK
+# Meesterproef - Ronald’s BOK - CMD Base
 
-This is the Node.js project for the **Meesterproef** assignment: _Ronald’s BOK_.
+This is the Node.js project for the **Meesterproef** assignment: _Ronald’s BOK - CMD Base_.
 
 ## 🚀 Project Setup
 
@@ -34,20 +34,21 @@ npm start
 ## 📁 Project Structure
 
 ```
-.
+meesterproef-ronalds-bok/
+├── .env                # Environment variables
+├── package.json        # Project metadata
+├── README.md           # Project description
 ├── server.js           # Entry point
 ├── src/views/          # EJS templates
 ├── src/routes/         # Route definitions
 ├── src/controllers/    # Controller definitions
-├── src/data/           # Static data
-├── public/             # Static assets (CSS, JS, images)
-└── README.md           # This file
+└── public/             # Static assets (CSS, JS, images)
 ```
 
 ## 🧰 Tech Stack
 
-- **Node.js**
-- **Express 5**
+- **Node.js** Skeleton of the project
+- **Express 5** For the backend
 - **EJS** for templating
 - **Nodemon** for development auto-reloads
 - **express-ejs-layouts** for layout support
@@ -63,7 +64,7 @@ We follow these code conventions to ensure consistency and readability across th
 - Use meaningful names for classes, IDs, variables, and functions.
 - Always use **English** for code naming.
 - Be consistent in naming practices.
-- Avoid abbreviations; write out names fully. Minifiers handle size optimizations.
+- Avoid abbreviations; write out names fully.
 
 ### Naming Styles
 
