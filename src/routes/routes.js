@@ -29,7 +29,7 @@ router.get("/item/:id", async (req, res, next) => {
 
     res.render("pages/details", {
       layout: "layout/layout",
-      title: `${item.Naam}`,
+      title: `${item.naam}`,
       className: "details",
       item,
     });

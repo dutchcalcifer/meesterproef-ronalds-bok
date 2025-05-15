@@ -10,13 +10,11 @@
 <ul>
   <% results.forEach(result => { %>
   <li>
-    <a href="/item/<%= result.id %>"><%= result.Naam %></a>
-    <!-- Link to item detail page -->
-    <p><%= result.Ondertitel %></p>
+    <a href="/item/<%= result.id %>"><%= result.naam %></a>
+    <p><%= result.ondertitel %></p>
   </li>
   <% }) %>
 </ul>
-
 <% } else if (query) { %>
 <p>Geen resultaten gevonden voor "<%= query %>"</p>
 <% } %>
