@@ -13,7 +13,7 @@ router.get("/", async (req, res, next) => {
     res.render("index", {
       layout: "layout/layout",
       title: "Ronalds BOK",
-      className: "index",
+      className: "home",
       query,
       results,
     });
@@ -41,7 +41,14 @@ router.get("/item/:id", async (req, res, next) => {
 router.get("/index", async (req, res, next) => {
   try {
     const data = await fetchApiData();
-    res.json(data);
+
+    res.render("pages/index", {
+      layout: "layout/layout",
+      title: "Ronalds BOK",
+      className: "index",
+      query: "",
+      results: data.data,
+    });
   } catch (error) {
     next(error);
   }
