@@ -1,6 +1,6 @@
 import express from "express";
 import { getSearchResults } from "../controllers/search-controller.js";
-import { getItemDetail } from "../controllers/item-controller.js";
+import { fetchItemById } from "../controllers/api-controller.js";
 import { fetchApiData } from "../controllers/api-controller.js";
 
 const router = express.Router();
@@ -25,7 +25,7 @@ router.get("/", async (req, res, next) => {
 router.get("/item/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    const item = await getItemDetail(id);
+    const item = await fetchItemById(id);
 
     res.render("pages/details", {
       layout: "layout/layout",
