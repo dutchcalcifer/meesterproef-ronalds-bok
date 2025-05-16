@@ -1,7 +1,7 @@
 import express from "express";
 import { getSearchResults } from "../controllers/search-controller.js";
-import { fetchItemById } from "../controllers/api-controller.js";
-import { fetchApiData } from "../controllers/api-controller.js";
+import { fetchItemById, fetchApiData } from "../controllers/api-controller.js";
+import openai from "../../server.js";
 
 const router = express.Router();
 
@@ -50,6 +50,25 @@ router.get("/index", async (req, res, next) => {
       results: data.data,
     });
   } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/chat", async (req, res, next) => {
+  try {
+    const { message } = req.body;
+    if (!message || message.trim() === "") {
+      return res.status(400).json({ error: "Message is required" });
+    }
+
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [{ role: "user", content: message }],
+    });
+
+    res.json({ reply: completion.choices[0].message.content });
+  } catch (error) {
+    console.error("OpenAI API error:", error);
     next(error);
   }
 });
