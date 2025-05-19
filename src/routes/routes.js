@@ -1,7 +1,7 @@
 import express from "express";
 import { getSearchResults } from "../controllers/search-controller.js";
 import { fetchItemById, fetchApiData } from "../controllers/api-controller.js";
-import openai from "../../server.js";
+import { gpt } from "../controllers/gpt-controller.js";
 
 const router = express.Router();
 
@@ -54,19 +54,32 @@ router.get("/index", async (req, res, next) => {
   }
 });
 
+router.get("/chat", async (req, res, next) => {
+  try {
+    const { query, results } = req.query;
+    res.render("pages/chat", {
+      layout: "layout/layout",
+      title: "Ronalds BOK",
+      className: "chat",
+      query: query || "",
+      results: results || [],
+    });
+  } catch (error) {
+    console.error("Error rendering chat view:", error);
+    next(error);
+  }
+});
+
 router.post("/chat", async (req, res, next) => {
   try {
-    const { message } = req.body;
-    if (!message || message.trim() === "") {
-      return res.status(400).json({ error: "Message is required" });
+    const { conversation } = req.body;
+    const result = await gpt(conversation);
+
+    if (result.type === "final_query") {
+      return res.json({ final: true, query: result.query });
     }
 
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
-      messages: [{ role: "user", content: message }],
-    });
-
-    res.json({ reply: completion.choices[0].message.content });
+    res.json({ final: false, message: result.message });
   } catch (error) {
     console.error("OpenAI API error:", error);
     next(error);
