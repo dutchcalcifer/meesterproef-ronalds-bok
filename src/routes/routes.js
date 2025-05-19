@@ -46,7 +46,6 @@ router.get("/index", async (req, res, next) => {
       layout: "layout/layout",
       title: "Ronalds BOK",
       className: "index",
-      query: "",
       results: data.data,
     });
   } catch (error) {
@@ -61,8 +60,6 @@ router.get("/chat", async (req, res, next) => {
       layout: "layout/layout",
       title: "Ronalds BOK",
       className: "chat",
-      query: query || "",
-      results: results || [],
     });
   } catch (error) {
     console.error("Error rendering chat view:", error);

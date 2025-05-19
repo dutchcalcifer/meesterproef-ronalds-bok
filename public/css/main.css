@@ -1,8 +1,5 @@
 main {
   flex-grow: 1;
-}
-
-main.home {
   display: flex;
   flex-direction: column;
   align-items: center;
