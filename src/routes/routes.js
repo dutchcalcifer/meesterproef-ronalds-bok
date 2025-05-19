@@ -55,14 +55,12 @@ router.get("/index", async (req, res, next) => {
 
 router.get("/chat", async (req, res, next) => {
   try {
-    const { query, results } = req.query;
     res.render("pages/chat", {
       layout: "layout/layout",
       title: "Ronalds BOK",
       className: "chat",
     });
   } catch (error) {
-    console.error("Error rendering chat view:", error);
     next(error);
   }
 });
@@ -78,7 +76,6 @@ router.post("/chat", async (req, res, next) => {
 
     res.json({ final: false, message: result.message });
   } catch (error) {
-    console.error("OpenAI API error:", error);
     next(error);
   }
 });
