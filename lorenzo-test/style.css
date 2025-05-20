@@ -168,6 +168,16 @@ main {
     }
 }
 
+/* ------------------- */
+/* --- BACK BUTTON --- */
+/* ------------------- */
+#back-button {
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    width: 3em;
+    height: 3em;
+}
 
 
 
