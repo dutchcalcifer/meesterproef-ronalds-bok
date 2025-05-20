@@ -2,6 +2,7 @@ import openai from "../../server.js";
 import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
+import { searchSimilarConcepts } from "../utils/vector-search.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -31,8 +32,13 @@ export async function gpt(conversation) {
   const text = response.choices[0].message.content.trim();
 
   if (text.startsWith("FINAL_QUERY:")) {
-    const query = text.replace(/^FINAL_QUERY:\s*/i, "");
-    return { type: "final_query", query };
+    const rawQuery = text.replace(/^FINAL_QUERY:\s*/i, "");
+
+    const matches = await searchSimilarConcepts(rawQuery, 3);
+
+    const bestMatch = matches.length > 0 ? matches[0].naam : rawQuery;
+
+    return { type: "final_query", query: bestMatch };
   }
 
   return { type: "message", message: text };

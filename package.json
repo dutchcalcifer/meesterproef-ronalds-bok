@@ -5,6 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
+    "generate-embeddings": "node src/scripts/generate-embeddings.js",
     "dev": "nodemon server.js",
     "start": "node server.js"
   },
@@ -22,6 +23,7 @@
   },
   "homepage": "https://github.com/dutchcalcifer/meesterproef-ronalds-bok#readme",
   "dependencies": {
+    "compute-cosine-similarity": "^1.1.0",
     "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
