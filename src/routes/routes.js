@@ -1,7 +1,7 @@
 import express from "express";
 import { getSearchResults } from "../controllers/search-controller.js";
-import { fetchItemById } from "../controllers/api-controller.js";
-import { fetchApiData } from "../controllers/api-controller.js";
+import { fetchItemById, fetchApiData } from "../controllers/api-controller.js";
+import { gpt } from "../controllers/gpt-controller.js";
 
 const router = express.Router();
 
@@ -46,9 +46,35 @@ router.get("/index", async (req, res, next) => {
       layout: "layout/layout",
       title: "Ronalds BOK",
       className: "index",
-      query: "",
       results: data.data,
     });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get("/chat", async (req, res, next) => {
+  try {
+    res.render("pages/chat", {
+      layout: "layout/layout",
+      title: "Ronalds BOK",
+      className: "chat",
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/chat", async (req, res, next) => {
+  try {
+    const { conversation } = req.body;
+    const result = await gpt(conversation);
+
+    if (result.type === "final_query") {
+      return res.json({ final: true, query: result.query });
+    }
+
+    res.json({ final: false, message: result.message });
   } catch (error) {
     next(error);
   }

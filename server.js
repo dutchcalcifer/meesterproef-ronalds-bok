@@ -4,12 +4,21 @@ import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 import projectRoutes from "./src/routes/routes.js";
 import expressEjsLayouts from "express-ejs-layouts";
+import OpenAI from "openai";
 
 dotenv.config();
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+export default openai;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
+
+app.use(express.json());
 
 app.use(express.static(path.join(__dirname, "public")));
 
