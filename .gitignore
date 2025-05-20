@@ -137,3 +137,6 @@ dist
 
 # Mac stuff
 .DS_Store
+
+# vectors
+/src/data/embeddings.json

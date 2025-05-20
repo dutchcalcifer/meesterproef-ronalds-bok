@@ -5,7 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "generate-embeddings": "node src/scripts/generate-embeddings.js",
+    "predev": "node src/scripts/generate-embeddings.js",
     "dev": "nodemon server.js",
     "start": "node server.js"
   },
