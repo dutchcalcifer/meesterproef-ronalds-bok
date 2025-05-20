@@ -35,14 +35,19 @@ npm start
 
 ```
 meesterproef-ronalds-bok/
-├── .env                # Environment variables
-├── package.json        # Project metadata
-├── README.md           # Project description
-├── server.js           # Entry point
-├── src/views/          # EJS templates
-├── src/routes/         # Route definitions
-├── src/controllers/    # Controller definitions
-└── public/             # Static assets (CSS, JS, images)
+├── public            # Static files
+├── src               # Source code
+│   ├── controllers   # Controllers
+│   ├── data          # Data files
+│   ├── routes        # Routes
+│   ├── scripts       # Scripts
+│   ├── utils         # Utility functions
+│   └── views         # Views
+├── .env              # Environment variables
+├── .gitignore        # Git ignore file
+├── . package.json    # Package.json
+├── README.md         # Readme file
+└── server.js         # Entry point
 ```
 
 ## 🧰 Tech Stack
@@ -54,6 +59,8 @@ meesterproef-ronalds-bok/
 - **express-ejs-layouts** for layout support
 - **Fuse.js** for fuzzy search
 - **dotenv** for environment variables
+- **compute-cosine-similarity** for cosine similarity
+- **openai** for OpenAI API integration
 
 ## 👩‍💻 Code Conventions
 
