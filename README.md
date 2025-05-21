@@ -57,7 +57,7 @@ meesterproef-ronalds-bok/
 │   └── views         # Views
 ├── .env              # Environment variables
 ├── .gitignore        # Git ignore file
-├── . package.json    # Package.json
+├── .package.json     # Package.json
 ├── README.md         # Readme file
 └── server.js         # Entry point
 ```
