@@ -21,9 +21,9 @@ npm install
 npm update
 ```
 
-### 3. Run vectore embeddings
+### 3. Run vector generation
 
-#### create embeddings
+#### create vectors
 
 ```bash
 npm run predev
@@ -48,11 +48,11 @@ npm start
 ```
 meesterproef-ronalds-bok/
 ├── public            # Static files
+├── scripts           # Scripts
 ├── src               # Source code
 │   ├── controllers   # Controllers
 │   ├── data          # Data files
 │   ├── routes        # Routes
-│   ├── scripts       # Scripts
 │   ├── utils         # Utility functions
 │   └── views         # Views
 ├── .env              # Environment variables

@@ -139,4 +139,4 @@ dist
 .DS_Store
 
 # vectors
-/src/data/embeddings.json
+/src/data/vectors.json
