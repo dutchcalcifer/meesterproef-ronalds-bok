@@ -21,15 +21,19 @@ npm install
 npm update
 ```
 
-### 3. Run vector generation
+### 3. Configure Environment Variables
 
-#### create vectors
+```bash
+cp .env.example .env
+```
+
+### 4. Run vector generation
 
 ```bash
 npm run predev
 ```
 
-### 4. Run the Project
+### 5. Run the Project
 
 #### Development Mode (with auto-restart via nodemon)
 
