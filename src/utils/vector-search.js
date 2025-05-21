@@ -1,39 +1,46 @@
-import cosineSimilarity from "compute-cosine-similarity";
 import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
+import computeCosineSimilarity from "compute-cosine-similarity";
 import openai from "../../server.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const embeddingsPath = path.join(__dirname, "../data/embeddings.json");
 
-let embeddings = [];
+const vectorsPath = path.join(__dirname, "../data/vectors.json");
 
-export async function loadEmbeddings() {
-  if (embeddings.length > 0) return embeddings;
-  const raw = await fs.readFile(embeddingsPath, "utf-8");
-  embeddings = JSON.parse(raw);
-  return embeddings;
+let vectorData = [];
+
+export async function loadVectors() {
+  try {
+    const data = await fs.readFile(vectorsPath, "utf-8");
+    vectorData = JSON.parse(data);
+  } catch (err) {
+    console.error("Failed to load vectors:", err);
+  }
 }
 
-export async function searchSimilarConcepts(query, topK = 3) {
-  const queryEmbedding = await openai.embeddings.create({
+async function embedQuery(text) {
+  const res = await openai.embeddings.create({
     model: "text-embedding-3-small",
-    input: query,
+    input: text,
+  });
+  return res.data[0].embedding;
+}
+
+export async function searchSimilarConcepts(query, limit = 5) {
+  if (!vectorData.length) await loadVectors();
+
+  const queryVector = await embedQuery(query);
+
+  const similarities = vectorData.map((item) => {
+    return {
+      ...item,
+      score: computeCosineSimilarity(queryVector, item.vector),
+    };
   });
 
-  const queryVector = queryEmbedding.data[0].embedding;
+  similarities.sort((a, b) => b.score - a.score);
 
-  const concepts = await loadEmbeddings();
-
-  const scored = concepts.map((concept) => ({
-    ...concept,
-    score: cosineSimilarity(queryVector, concept.vector),
-  }));
-
-  // Sort descending (higher score = more similar)
-  scored.sort((a, b) => b.score - a.score);
-
-  return scored.slice(0, topK);
+  return similarities.slice(0, limit);
 }

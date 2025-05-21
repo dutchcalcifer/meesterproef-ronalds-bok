@@ -17,7 +17,19 @@ cd meesterproef-ronalds-bok
 npm install
 ```
 
-### 3. Run the Project
+```bash
+npm update
+```
+
+### 3. Run vector generation
+
+#### create vectors
+
+```bash
+npm run predev
+```
+
+### 4. Run the Project
 
 #### Development Mode (with auto-restart via nodemon)
 
@@ -36,11 +48,11 @@ npm start
 ```
 meesterproef-ronalds-bok/
 ├── public            # Static files
+├── scripts           # Scripts
 ├── src               # Source code
 │   ├── controllers   # Controllers
 │   ├── data          # Data files
 │   ├── routes        # Routes
-│   ├── scripts       # Scripts
 │   ├── utils         # Utility functions
 │   └── views         # Views
 ├── .env              # Environment variables
