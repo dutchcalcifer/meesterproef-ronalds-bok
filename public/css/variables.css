@@ -1,2 +1,63 @@
 :root {
+    /* colors */
+    --color-light: #fff;
+    --color-dark: #353535;
+    --color-darker: #000;
+
+    --color-orange-light: #EFCE7B;
+    --color-orange-dark: #EF6F3C;
+
+    --color-purple-light: #D3B6D3;
+    --color-purple-dark: #6D1F42;
+
+    --color-green-light: #D3B6D3;
+    --color-green-dark: #25533F;
+
+    --color-pink-light: #FFBCD5;
+    --color-pink-dark: #C50049;
+
+    --color-blue-light: #B8CEE8;
+    --color-blue-dark: #0D3C74;
+
+    /* if user has darkmode */
+    @media (prefers-color-scheme: dark) {
+        --color-main: var(--color-dark);
+        --color-secondary: var(--color-light);
+
+        --orange-main: var(--color-orange-dark);
+        --orange-secondary: var(--color-orange-light);
+
+        --purple-main: var(--color-purple-dark);
+        --purple-secondary: var(--color-purple-light);
+
+        --green-main: var(--color-green-dark);
+        --green-secondary: var(--color-green-light);
+
+        --pink-main: var(--color-pink-dark);
+        --pink-secondary: var(--color-pink-light);
+
+        --blue-main: var(--color-blue-dark);
+        --blue-secondary: var(--color-blue-light);
+    }
+
+    /* if user has darkmode */
+    @media (prefers-color-scheme: light) {
+        --color-main: var(--color-light);
+        --color-secondary: var(--color-dark);
+
+        --orange-main: var(--color-orange-light);
+        --orange-secondary: var(--color-orange-dark);
+
+        --purple-main: var(--color-purple-light);
+        --purple-secondary: var(--color-purple-dark);
+
+        --green-main: var(--color-green-light);
+        --green-secondary: var(--color-green-dark);
+
+        --pink-main: var(--color-pink-light);
+        --pink-secondary: var(--color-pink-dark);
+
+        --blue-main: var(--color-blue-light);
+        --blue-secondary: var(--color-blue-dark);
+    }
 }
