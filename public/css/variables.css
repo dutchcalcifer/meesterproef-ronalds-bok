@@ -40,6 +40,16 @@
     --blue-secondary: light-dark(var(--color-blue-dark), var(--color-blue-light));
 
 
+    /* light/dark mode logic */
+    :has([value=theme]:checked) {
+        color-scheme: dark;
+    }
+
+    :has([value=theme]:not(:checked)) {
+        color-scheme: light;
+    }
+
+
     /* fonts */
     * {
         font-family: 'DM Sans', sans-serif;
