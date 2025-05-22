@@ -19,45 +19,43 @@
     --color-blue-light: #B8CEE8;
     --color-blue-dark: #0D3C74;
 
-    /* if user has darkmode */
-    @media (prefers-color-scheme: dark) {
-        --color-main: var(--color-dark);
-        --color-secondary: var(--color-light);
 
-        --orange-main: var(--color-orange-dark);
-        --orange-secondary: var(--color-orange-light);
+    /* light-dark colors */
+    --color-main: light-dark(var(--color-light), var(--color-dark));
+    --color-secondary: light-dark(var(--color-dark), var(--color-light));
 
-        --purple-main: var(--color-purple-dark);
-        --purple-secondary: var(--color-purple-light);
+    --orange-main: light-dark(var(--color-orange-light), var(--color-orange-dark));
+    --orange-secondary: light-dark(var(--color-orange-dark), var(--color-orange-light));
 
-        --green-main: var(--color-green-dark);
-        --green-secondary: var(--color-green-light);
+    --purple-main: light-dark(var(--color-purple-light), var(--color-purple-dark));
+    --purple-secondary: light-dark(var(--color-purple-dark), var(--color-purple-light));
 
-        --pink-main: var(--color-pink-dark);
-        --pink-secondary: var(--color-pink-light);
+    --green-main: light-dark(var(--color-green-light), var(--color-green-dark));
+    --green-secondary: light-dark(var(--color-green-dark), var(--color-green-light));
 
-        --blue-main: var(--color-blue-dark);
-        --blue-secondary: var(--color-blue-light);
+    --pink-main: light-dark(var(--color-pink-light), var(--color-pink-dark));
+    --pink-secondary: light-dark(var(--color-pink-dark), var(--color-pink-light));
+
+    --blue-main: light-dark(var(--color-blue-light), var(--color-blue-dark));
+    --blue-secondary: light-dark(var(--color-blue-dark), var(--color-blue-light));
+
+
+    /* light/dark mode logic */
+    :has([value=theme]:checked) {
+        color-scheme: dark;
     }
 
-    /* if user has darkmode */
-    @media (prefers-color-scheme: light) {
-        --color-main: var(--color-light);
-        --color-secondary: var(--color-dark);
-
-        --orange-main: var(--color-orange-light);
-        --orange-secondary: var(--color-orange-dark);
-
-        --purple-main: var(--color-purple-light);
-        --purple-secondary: var(--color-purple-dark);
-
-        --green-main: var(--color-green-light);
-        --green-secondary: var(--color-green-dark);
-
-        --pink-main: var(--color-pink-light);
-        --pink-secondary: var(--color-pink-dark);
-
-        --blue-main: var(--color-blue-light);
-        --blue-secondary: var(--color-blue-dark);
+    :has([value=theme]:not(:checked)) {
+        color-scheme: light;
     }
+
+
+    /* fonts */
+    * {
+        font-family: 'DM Sans', sans-serif;
+    }
+    --font-xl: ;
+    --font-l: ;
+    --font-m: clamp();
+    --font-s: ;
 }
