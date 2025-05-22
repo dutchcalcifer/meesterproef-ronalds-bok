@@ -1,0 +1,350 @@
+<h1>CMD Kaartenoverzicht</h1>
+
+<form method="GET" action="/overzicht">
+
+    <fieldset>
+        <legend>Soort</legend>
+        <label>
+            <input type="checkbox" name="soort" value="Principe" <%=(Array.isArray(query.soort) ?
+                query.soort.includes("Principe") : query.soort==="Principe" ) ? "checked" : "" %> />
+            Principe
+        </label>
+        <label>
+            <input type="checkbox" name="soort" value="Methode" <%=(Array.isArray(query.soort) ?
+                query.soort.includes("Methode") : query.soort==="Methode" ) ? "checked" : "" %> />
+            Methode
+        </label>
+    </fieldset>
+
+    <fieldset>
+        <legend>Expertise (rel_cmd_expertise)</legend>
+        <label>
+            <input type="checkbox" name="rel_cmd_expertise" value="Visual Design"
+                <%=(Array.isArray(query.rel_cmd_expertise) ? query.rel_cmd_expertise.includes("Visual Design") :
+                query.rel_cmd_expertise==="Visual Design" ) ? "checked" : "" %> />
+            Visual Design
+        </label>
+        <label>
+            <input type="checkbox" name="rel_cmd_expertise" value="Interaction Design"
+                <%=(Array.isArray(query.rel_cmd_expertise) ? query.rel_cmd_expertise.includes("Interaction Design") :
+                query.rel_cmd_expertise==="Interaction Design" ) ? "checked" : "" %> />
+            Interaction Design
+        </label>
+        <!-- Voeg hier meer expertises toe indien gewenst -->
+    </fieldset>
+
+    <fieldset>
+        <legend>Vakken (rel_vak)</legend>
+        <label>
+            <input type="checkbox" name="rel_vak" value="Vormgeving" <%=(Array.isArray(query.rel_vak) ?
+                query.rel_vak.includes("Vormgeving") : query.rel_vak==="Vormgeving" ) ? "checked" : "" %> />
+            Vormgeving
+        </label>
+        <label>
+            <input type="checkbox" name="rel_vak" value="User Experience Design" <%=(Array.isArray(query.rel_vak) ?
+                query.rel_vak.includes("User Experience Design") : query.rel_vak==="User Experience Design" )
+                ? "checked" : "" %> />
+            User Experience Design
+        </label>
+        <label>
+            <input type="checkbox" name="rel_vak" value="Visual Design" <%=(Array.isArray(query.rel_vak) ?
+                query.rel_vak.includes("User Experience Design") : query.rel_vak==="Visual Design" ) ? "checked" : "" %>
+            />
+            Visual Design
+        </label>
+        <label>
+            <input type="checkbox" name="rel_vak" value="Interaction Design" <%=(Array.isArray(query.rel_vak) ?
+                query.rel_vak.includes("Interaction Design") : query.rel_vak==="Interaction Design" ) ? "checked" : ""
+                %>
+            />
+            Interaction Design
+        </label>
+        <label>
+            <input type="checkbox" name="rel_vak" value="Visual Interface Design" <%=(Array.isArray(query.rel_vak) ?
+                query.rel_vak.includes("Visual Interface Design") : query.rel_vak==="Visual Interface Design" )
+                ? "checked" : "" %>
+            />
+            Visual Interface Design
+        </label>
+        <label>
+            <input type="checkbox" name="rel_vak" value="Product Design" <%=(Array.isArray(query.rel_vak) ?
+                query.rel_vak.includes("Product Design") : query.rel_vak==="Product Design" ) ? "checked" : "" %>
+            />
+            Product Design
+        </label>
+
+    </fieldset>
+
+    <fieldset>
+        <legend>Moeilijkheid</legend>
+        <label>
+            <input type="checkbox" name="moeilijkheid" value="*" <%=(Array.isArray(query.moeilijkheid) ?
+                query.moeilijkheid.includes("*") : query.moeilijkheid==="*" ) ? "checked" : "" %> />
+            ⭐️
+        </label>
+        <label>
+            <input type="checkbox" name="moeilijkheid" value="**" <%=(Array.isArray(query.moeilijkheid) ?
+                query.moeilijkheid.includes("**") : query.moeilijkheid==="**" ) ? "checked" : "" %> />
+            ⭐️⭐️
+        </label>
+        <label>
+            <input type="checkbox" name="moeilijkheid" value="***" <%=(Array.isArray(query.moeilijkheid) ?
+                query.moeilijkheid.includes("***") : query.moeilijkheid==="***" ) ? "checked" : "" %> />
+            ⭐️⭐️⭐️
+        </label>
+    </fieldset>
+
+    <fieldset>
+        <legend>Jaar (rel_jaar)</legend>
+        <label>
+            <input type="checkbox" name="rel_jaar" value="Jaar 1" <%=(Array.isArray(query.rel_jaar) ?
+                query.rel_jaar.includes("Jaar 1") : query.rel_jaar==="Jaar 1" ) ? "checked" : "" %> />
+            Jaar 1
+        </label>
+        <label>
+            <input type="checkbox" name="rel_jaar" value="Jaar 2" <%=(Array.isArray(query.rel_jaar) ?
+                query.rel_jaar.includes("Jaar 2") : query.rel_jaar==="Jaar 2" ) ? "checked" : "" %> />
+            Jaar 2
+        </label>
+        <label>
+            <input type="checkbox" name="rel_jaar" value="Jaar 3" <%=(Array.isArray(query.rel_jaar) ?
+                query.rel_jaar.includes("Jaar 3") : query.rel_jaar==="Jaar 3" ) ? "checked" : "" %> />
+            Jaar 3
+        </label>
+    </fieldset>
+
+    <fieldset>
+        <legend>Competenties (rel_competentie)</legend>
+        <label>
+            <input type="checkbox" name="rel_competentie" value="Uitwerken" <%=(Array.isArray(query.rel_competentie) ?
+                query.rel_competentie.includes("Uitwerken") : query.rel_competentie==="Uitwerken" ) ? "checked" : "" %>
+            />
+            Uitwerken
+        </label>
+        <label>
+            <input type="checkbox" name="rel_competentie" value="Verbeelden & Conceptualiseren" <%=(
+                Array.isArray(query.rel_competentie) ? query.rel_competentie.includes("Verbeelden & Conceptualiseren") :
+                query.rel_competentie==="Verbeelden & Conceptualiseren" ) ? "checked" : "" %>
+            />
+            Verbeelden & Conceptualiseren
+        </label>
+
+    </fieldset>
+
+    <fieldset>
+        <legend>Beroepstaken (rel_beroepstaak)</legend>
+        <label>
+            <input type="checkbox" name="rel_beroepstaak" value="Schermontwerp" <%=(Array.isArray(query.rel_beroepstaak)
+                ? query.rel_beroepstaak.includes("Schermontwerp") : query.rel_beroepstaak==="Schermontwerp" )
+                ? "checked" : "" %> />
+            Schermontwerp
+        </label>
+        <label>
+            <input type="checkbox" name="rel_beroepstaak" value="Screen flowchart"
+                <%=(Array.isArray(query.rel_beroepstaak) ? query.rel_beroepstaak.includes("Screen flowchart") :
+                query.rel_beroepstaak==="Screen flowchart" ) ? "checked" : "" %> />
+            Screen flowchart
+        </label>
+        <label>
+            <input type="checkbox" name="rel_beroepstaak" value="Customer journey"
+                <%=(Array.isArray(query.rel_beroepstaak) ? query.rel_beroepstaak.includes("Customer journey") :
+                query.rel_beroepstaak==="Customer journey" ) ? "checked" : "" %> />
+            Customer journey
+        </label>
+        <label>
+            <input type="checkbox" name="rel_beroepstaak" value="Product ontwerp"
+                <%=(Array.isArray(query.rel_beroepstaak) ? query.rel_beroepstaak.includes("Product ontwerp") :
+                query.rel_beroepstaak==="Product ontwerp" ) ? "checked" : "" %> />
+            Product ontwerp
+        </label>
+        <label>
+            <input type="checkbox" name="rel_beroepstaak" value="Feedback analyseren"
+                <%=(Array.isArray(query.rel_beroepstaak) ? query.rel_beroepstaak.includes("Feedback analyseren") :
+                query.rel_beroepstaak==="Feedback analyseren" ) ? "checked" : "" %> />
+            Feedback analyseren
+        </label>
+        <label>
+            <% const isChecked=(field, value)=> (Array.isArray(field) ? field.includes(value) : field === value) ?
+                "checked" : ""; %>
+                <input type="checkbox" name="rel_beroepstaak" value="Onderzoeksresultaten interpreteren"
+                    <%=isChecked(query.rel_beroepstaak, "Onderzoeksresultaten interpreteren" ) %> />
+
+                Onderzoeksresultaten interpreteren
+        </label>
+        <label>
+            <input type="checkbox" name="rel_beroepstaak" value="Visual Design" <%=(Array.isArray(query.rel_beroepstaak)
+                ? query.rel_beroepstaak.includes("Visual Design") : query.rel_beroepstaak==="Visual Design" )
+                ? "checked" : "" %> />
+            Visual Design
+        </label>
+        <label>
+            <input type="checkbox" name="rel_beroepstaak" value="Prototype testen"
+                <%=(Array.isArray(query.rel_beroepstaak) ? query.rel_beroepstaak.includes("Prototype testen") :
+                query.rel_beroepstaak==="Prototype testen" ) ? "checked" : "" %> />
+            Prototype testen
+        </label>
+        <label>
+            <input type="checkbox" name="rel_beroepstaak" value="Gebruiksonderzoek doen"
+                <%=(Array.isArray(query.rel_beroepstaak) ? query.rel_beroepstaak.includes("Gebruiksonderzoek doen") :
+                query.rel_beroepstaak==="Gebruiksonderzoek doen" ) ? "checked" : "" %> />
+            Gebruiksonderzoek doen
+        </label>
+
+    </fieldset>
+
+    <fieldset>
+        <legend>Schrijvers of bronnen (schrijver_of_bron)</legend>
+        <label>
+            <input type="checkbox" name="schrijver_of_bron" value="Max Wertheimer"
+                <%=(Array.isArray(query.schrijver_of_bron) ? query.schrijver_of_bron.includes("Max Wertheimer") :
+                query.schrijver_of_bron==="Max Wertheimer" ) ? "checked" : "" %>
+            />
+            Max Wertheimer
+        </label>
+        <label>
+            <input type="checkbox" name="schrijver_of_bron" value="British Design Council"
+                <%=(Array.isArray(query.schrijver_of_bron) ? query.schrijver_of_bron.includes("British Design Council")
+                : query.schrijver_of_bron==="British Design Council" ) ? "checked" : "" %>
+            />
+            British Design Council
+        </label>
+        <label>
+            <input type="checkbox" name="schrijver_of_bron" value="Joshua Porter"
+                <%=(Array.isArray(query.schrijver_of_bron) ? query.schrijver_of_bron.includes("Joshua Porter") :
+                query.schrijver_of_bron==="Joshua Porter" ) ? "checked" : "" %>
+            />
+            Joshua Porter
+        </label>
+        <label>
+            <input type="checkbox" name="schrijver_of_bron" value="Steven Bradley"
+                <%=(Array.isArray(query.schrijver_of_bron) ? query.schrijver_of_bron.includes("Steven Bradley") :
+                query.schrijver_of_bron==="Steven Bradley" ) ? "checked" : "" %>
+            />
+            Steven Bradley
+        </label>
+    </fieldset>
+
+    <fieldset>
+        <legend>Alternatieve namen (alternatieve_naam)</legend>
+        <label>
+            <input type="checkbox" name="alternatieve_naam" value="De wet van gelijkheid"
+                <%=(Array.isArray(query.alternatieve_naam) ? query.alternatieve_naam.includes("De wet van gelijkheid") :
+                query.alternatieve_naam==="De wet van gelijkheid" ) ? "checked" : "" %> />
+            De wet van gelijkheid
+        </label>
+        <label>
+            <input type="checkbox" name="alternatieve_naam" value="De wet van nabijheid"
+                <%=(Array.isArray(query.alternatieve_naam) ? query.alternatieve_naam.includes("De wet van nabijheid") :
+                query.alternatieve_naam==="De wet van nabijheid" ) ? "checked" : "" %> />
+            De wet van nabijheid
+        </label>
+        <label>
+            <input type="checkbox" name="alternatieve_naam" value="De wet van geslotenheid"
+                <%=(Array.isArray(query.alternatieve_naam) ? query.alternatieve_naam.includes("De wet van geslotenheid")
+                : query.alternatieve_naam==="De wet van geslotenheid" ) ? "checked" : "" %> />
+            De wet van geslotenheid
+        </label>
+        <label>
+            <input type="checkbox" name="alternatieve_naam" value="De wet van continuïteit"
+                <%=(Array.isArray(query.alternatieve_naam) ? query.alternatieve_naam.includes("De wet van continuïteit")
+                : query.alternatieve_naam==="De wet van continuïteit" ) ? "checked" : "" %> />
+            De wet van continuïteit
+        </label>
+    </fieldset>
+
+    <fieldset>
+        <legend>Zoekterm</legend>
+        <input type="text" name="q" value="<%= query.q ? query.q : "" %>" placeholder="Typ hier om te zoeken..." />
+    </fieldset>
+
+    <button type="submit">Filter</button>
+</form>
+
+
+<section class="kaarten-container">
+    <% results.forEach((kaart)=> { %>
+        <article class="kaart">
+            <header>
+                <h2>
+                    <%= kaart.naam %>
+                </h2>
+                <% if (kaart.ondertitel) { %>
+                    <h3>
+                        <%= kaart.ondertitel %>
+                    </h3>
+                    <% } %>
+            </header>
+
+            <% if (kaart.korte_beschrijving) { %>
+                <p><strong>Beschrijving:</strong>
+                    <%= kaart.korte_beschrijving %>
+                </p>
+                <% } %>
+
+                    <% if (kaart.soort) { %>
+                        <p><strong>Soort:</strong>
+                            <%= kaart.soort %>
+                        </p>
+                        <% } %>
+
+                            <% if (kaart.moeilijkheid) { %>
+                                <p><strong>Moeilijkheid:</strong>
+                                    <%= kaart.moeilijkheid %>
+                                </p>
+                                <% } %>
+
+                                    <% if (kaart.rel_jaar) { %>
+                                        <p><strong>Jaar:</strong>
+                                            <%= kaart.rel_jaar %>
+                                        </p>
+                                        <% } %>
+
+                                            <% if (kaart.rel_cmd_expertise) { %>
+                                                <p><strong>CMD Expertise:</strong>
+                                                    <%= kaart.rel_cmd_expertise %>
+                                                </p>
+                                                <% } %>
+
+                                                    <% if (kaart.rel_beroepstaak) { %>
+                                                        <p><strong>Beroepstaak:</strong>
+                                                            <%= kaart.rel_beroepstaak %>
+                                                        </p>
+                                                        <% } %>
+
+                                                            <% if (kaart.rel_competentie) { %>
+                                                                <p><strong>Competenties:</strong>
+                                                                    <%= kaart.rel_competentie.replace(/\n/g, ", " ) %>
+                                                                </p>
+                                                                <% } %>
+
+                                                                    <% if (kaart.rel_vak) { %>
+                                                                        <p><strong>Vakken:</strong>
+                                                                            <%= kaart.rel_vak.replace(/\n/g, ", " ) %>
+                                                                        </p>
+                                                                        <% } %>
+
+                                                                            <% if (kaart.alternatieve_naam) { %>
+                                                                                <p><strong>Alternatieve namen:</strong>
+                                                                                    <%= kaart.alternatieve_naam.replace(/\n/g, ", "
+                                                                                        ) %>
+                                                                                </p>
+                                                                                <% } %>
+
+                                                                                    <% if (kaart.schrijver_of_bron) { %>
+                                                                                        <p><strong>Schrijver of
+                                                                                                bron:</strong>
+                                                                                            <%= kaart.schrijver_of_bron.replace(/\n/g, ", "
+                                                                                                ) %>
+                                                                                        </p>
+                                                                                        <% } %>
+
+                                                                                            <% if (kaart.meer_op_web) {
+                                                                                                %>
+                                                                                                <p><a href="<%= kaart.meer_op_web %>"
+                                                                                                        target="_blank"
+                                                                                                        rel="noopener">Meer
+                                                                                                        op web</a></p>
+                                                                                                <% } %>
+        </article>
+        <% }) %>
+</section>

@@ -2,6 +2,7 @@ import express from "express";
 import { getSearchResults } from "../controllers/search-controller.js";
 import { fetchItemById } from "../controllers/api-controller.js";
 import { fetchApiData } from "../controllers/api-controller.js";
+import { getOverzichtData } from "../controllers/filter-controller.js";
 
 const router = express.Router();
 
@@ -51,6 +52,22 @@ router.get("/index", async (req, res, next) => {
     });
   } catch (error) {
     next(error);
+  }
+});
+
+router.get("/overzicht", async (req, res, next) => {
+  try {
+    const resultaten = await getOverzichtData(req.query);
+
+    res.render("pages/overzicht", {
+      layout: "layout/layout",
+      title: "Overzicht CMD-kaarten",
+      className: "index",
+      query: req.query,
+      results: resultaten,
+    });
+  } catch (err) {
+    next(err);
   }
 });
 
