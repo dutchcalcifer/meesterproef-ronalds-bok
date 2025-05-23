@@ -57,7 +57,7 @@ router.get("/chat", async (req, res, next) => {
   try {
     res.render("pages/chat", {
       layout: "layout/layout",
-      title: "Ronalds BOK",
+      title: "Knowledge AI",
       className: "chat",
     });
   } catch (error) {
