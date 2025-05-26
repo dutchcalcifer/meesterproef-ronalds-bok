@@ -1,27 +1,2 @@
 <h1>Naam: <%= item.naam %></h1>
 <p>Ondertitel: <%= item.ondertitel %></p>
-<p>Alternatieve naam: <%= item.alternatieve_naam %></p>
-<p>Soort: <%= item.soort %></p>
-<p>Schrijver of bron: <%= item.schrijver_of_bron %></p>
-<p>Moeilijkheid: <%= item.moeilijkheid %></p>
-<p>Relatie principe: <%= item.rel_principe || '—' %></p>
-<p>Relatie vak: <%= item.rel_vak %></p>
-<p>Relatie competentie: <%= item.rel_competentie %></p>
-<p>Meer bij personen: <%= item.meer_bij_personen %></p>
-<p>Meer bij vak: <%= item.meer_bij_vak %></p>
-<p>
-  Meer op web:<br />
-  <% item.meer_op_web.split('\n').forEach(function(link) { %>
-  <a href="<%= link %>" target="_blank"><%= link %></a><br />
-  <% }); %>
-</p>
-<p>Toepassing: <%= item.toepassing.replace(/\n/g, '<br />') %></p>
-<p>Relatie vakgebied: <%= item.rel_vakgebied %></p>
-<p>Relatie thema: <%= item.rel_thema || '—' %></p>
-<p>Strekking: <%= item.strekking %></p>
-<p>Relatie CMD expertise: <%= item.rel_cmd_expertise %></p>
-<p>Relatie jaar: <%= item.rel_jaar %></p>
-<p>Korte beschrijving: <%= item.korte_beschrijving %></p>
-<p>Relatie methode: <%= item.rel_methode || '—' %></p>
-<p>Relatie beroepstaak: <%= item.rel_beroepstaak %></p>
-<a href="javascript:history.back()">Terug</a>

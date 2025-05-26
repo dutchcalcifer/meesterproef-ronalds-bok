@@ -1,22 +1,29 @@
-<div class="search-box">
-  <h1>CMData</h1>
-  <form method="get" action="/">
-    <input type="text" name="q" placeholder="Zoeken..." value="<%= query %>" />
-    <button type="submit">Zoeken</button>
+<h1>CMData</h1>
+<section class="search">
+  <form id="search-form">
+    <input
+      id="search-input"
+      autocomplete="off"
+      placeholder="Wat is je vraag?"
+    />
+    <button type="submit">Verstuur</button>
   </form>
-</div>
-
-<% if (results.length > 0) { %>
-<ul>
-  <% results.forEach(result => { %>
-  <li>
-    <a href="/item/<%= result.id %>"><%= result.naam %></a>
-    <p><%= result.ondertitel %></p>
-  </li>
-  <% }) %>
-</ul>
-<% } else if (query) { %>
-<p>Geen resultaten gevonden voor "<%= query %>"</p>
-<% } %>
-<a href="/index">Index</a>
-<a href="/chat">Chat</a>
+  <ul id="messages">
+    <li class="assistant">Waarmee kan ik je helpen?</li>
+  </ul>
+</section>
+<section class="filters"></section>
+<section class="card-box">
+  <% if (results.length > 0) { %>
+  <ul>
+    <% results.forEach(result => { %>
+    <li>
+      <a href="/item/<%= result.id %>"><%= result.naam %></a>
+      <p><%= result.ondertitel %></p>
+    </li>
+    <% }) %>
+  </ul>
+  <% } else if (query) { %>
+  <p>Geen resultaten gevonden.</p>
+  <% } %>
+</section>

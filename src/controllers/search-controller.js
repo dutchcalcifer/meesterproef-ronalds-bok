@@ -4,7 +4,7 @@ import { fetchApiData } from "./api-controller.js";
 export const getSearchResults = async (query) => {
   const apiData = await fetchApiData();
 
-  if (query.trim() === "") return [];
+  if (query.trim() === "") return apiData.data;
 
   const fuse = new Fuse(apiData.data, {
     keys: ["naam", "ondertitel"],
