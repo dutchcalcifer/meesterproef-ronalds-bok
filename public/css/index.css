@@ -45,6 +45,7 @@
   
   .search-box{
     display: flex;
+    flex-direction: column;
     gap: 2em;
     width:70% ;
     height: 3.5em;
@@ -58,6 +59,17 @@
     font-weight: 600;
     font-size: 1.4em;
     border-radius:.5em ;
+  }
+  .search-box ul {
+    display: grid;
+    list-style: none;
+  
+  }
+
+  .search-box ul li{
+    background-color: var(--color-dark);
+    margin: 2em;
+    padding: 1em;
   }
   .home form{
     display: flex;
