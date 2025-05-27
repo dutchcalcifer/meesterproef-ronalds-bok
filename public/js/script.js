@@ -1,6 +1,6 @@
 (() => {
-  const form = document.getElementById("chat-form");
-  const input = document.getElementById("input");
+  const form = document.getElementById("search-form");
+  const input = document.getElementById("search-input");
   const messages = document.getElementById("messages");
   let conversation = [];
 
@@ -22,7 +22,7 @@
     }
 
     try {
-      const res = await fetch("/chat", {
+      const res = await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ conversation }),
@@ -31,8 +31,7 @@
       const data = await res.json();
 
       if (data.final) {
-        const params = new URLSearchParams({ q: data.query }).toString();
-        window.location.href = `/?${params}`;
+        window.location.href = `/?${data.query}`;
       } else {
         messages.children[placeholderIndex].textContent = data.message;
         conversation.push({ role: "assistant", content: data.message });

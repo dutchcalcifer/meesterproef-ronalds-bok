@@ -32,11 +32,26 @@ fs.readFile(vectorPath, "utf-8")
   });
 
 export async function gpt(conversation) {
-  const contextSnippets = vectorData.slice(0, 25).map((item) => {
-    return `Term: ${item.naam}\nBeschrijving: ${item.korte_beschrijving}\nStrekking: ${item.strekking}`;
+  const contextSnippets = vectorData.map((item) => {
+    const fields = [
+      "rel_jaar",
+      "rel_vak",
+      "rel_cmd_expertise",
+      "rel_beroepstaak",
+      "rel_vakgebied",
+      "moeilijkheid",
+      "soort",
+    ];
+
+    const filterData = fields
+      .map((key) => (item[key] ? `${key}: ${item[key]}` : null))
+      .filter(Boolean)
+      .join("\n");
+
+    return `Term: ${item.naam}\n${filterData}`;
   });
 
-  const contextPrompt = `Je kent de volgende termen uit de CMD-database:\n\n${contextSnippets.join(
+  const contextPrompt = `Je kent de volgende CMD-termen en bijbehorende filtervelden:\n\n${contextSnippets.join(
     "\n\n"
   )}`;
 
@@ -55,9 +70,7 @@ export async function gpt(conversation) {
 
   if (text.startsWith("FINAL_QUERY:")) {
     const rawQuery = text.replace(/^FINAL_QUERY:\s*/i, "");
-    const matches = await searchSimilarConcepts(rawQuery, 3);
-    const bestMatch = matches.length > 0 ? matches[0].naam : rawQuery;
-    return { type: "final_query", query: bestMatch };
+    return { type: "final_query", query: rawQuery };
   }
 
   return { type: "message", message: text };
