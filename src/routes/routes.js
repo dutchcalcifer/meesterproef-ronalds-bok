@@ -2,19 +2,26 @@ import express from "express";
 import { getSearchResults } from "../controllers/search-controller.js";
 import { fetchItemById, fetchApiData } from "../controllers/api-controller.js";
 import { gpt } from "../controllers/gpt-controller.js";
+import { getFilters, parseFiltersFromQuery } from '../controllers/filter-controller.js';
+
 
 const router = express.Router();
 
 router.get("/", async (req, res, next) => {
   try {
-    const query = req.query.q || "";
-    const results = await getSearchResults(query);
+    const { q = "", ...filterQuery } = req.query;
+    const activeFilters = parseFiltersFromQuery(filterQuery);
+
+    const results = await getSearchResults(q, activeFilters);
+    const allFilters = await getFilters();
 
     res.render("index", {
       layout: "layout/layout",
       title: "Ronalds BOK",
       className: "index",
       results,
+      filters: allFilters,
+      query: req.query
     });
   } catch (error) {
     next(error);
