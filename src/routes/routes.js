@@ -2,8 +2,10 @@ import express from "express";
 import { getSearchResults } from "../controllers/search-controller.js";
 import { fetchItemById, fetchApiData } from "../controllers/api-controller.js";
 import { gpt } from "../controllers/gpt-controller.js";
-import { getFilters, parseFiltersFromQuery } from '../controllers/filter-controller.js';
-
+import {
+  getFilters,
+  parseFiltersFromQuery,
+} from "../controllers/filter-controller.js";
 
 const router = express.Router();
 
@@ -21,7 +23,7 @@ router.get("/", async (req, res, next) => {
       className: "index",
       results,
       filters: allFilters,
-      query: req.query
+      query: req.query,
     });
   } catch (error) {
     next(error);

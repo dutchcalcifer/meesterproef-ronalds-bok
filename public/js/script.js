@@ -31,8 +31,7 @@
       const data = await res.json();
 
       if (data.final) {
-        const params = new URLSearchParams({ q: data.query }).toString();
-        window.location.href = `/?${params}`;
+        window.location.href = `/?${data.query}`;
       } else {
         messages.children[placeholderIndex].textContent = data.message;
         conversation.push({ role: "assistant", content: data.message });
