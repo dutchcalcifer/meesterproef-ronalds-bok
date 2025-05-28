@@ -17,7 +17,23 @@ cd meesterproef-ronalds-bok
 npm install
 ```
 
-### 3. Run the Project
+```bash
+npm update
+```
+
+### 3. Configure Environment Variables
+
+```bash
+cp .env.example .env
+```
+
+### 4. Run vector generation
+
+```bash
+npm run predev
+```
+
+### 5. Run the Project
 
 #### Development Mode (with auto-restart via nodemon)
 
@@ -36,16 +52,16 @@ npm start
 ```
 meesterproef-ronalds-bok/
 ├── public            # Static files
+├── scripts           # Scripts
 ├── src               # Source code
 │   ├── controllers   # Controllers
 │   ├── data          # Data files
 │   ├── routes        # Routes
-│   ├── scripts       # Scripts
 │   ├── utils         # Utility functions
 │   └── views         # Views
 ├── .env              # Environment variables
 ├── .gitignore        # Git ignore file
-├── . package.json    # Package.json
+├── .package.json     # Package.json
 ├── README.md         # Readme file
 └── server.js         # Entry point
 ```

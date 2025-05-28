@@ -1,16 +1,57 @@
 import Fuse from "fuse.js";
 import { fetchApiData } from "./api-controller.js";
 
-export const getSearchResults = async (query) => {
+// Perform a fuzzy search on data using Fuse.js, combined with filters
+export const getSearchResults = async (q, filters = {}) => {
   const apiData = await fetchApiData();
+  const data = apiData.data;
 
-  if (query.trim() === "") return [];
-
-  const fuse = new Fuse(apiData.data, {
-    keys: ["naam", "ondertitel"],
-    includeScore: true,
-    threshold: 0.3,
+  // Initialize Fuse.js with specific fields to search through
+  const fuse = new Fuse(data, {
+    keys: [
+      "naam",
+      "ondertitel",
+      "rel_jaar",
+      "rel_vak",
+      "rel_cmd_expertise",
+      "rel_beroepstaak",
+      "rel_vakgebied",
+      "moeilijkheid",
+      "soort",
+    ],
+    threshold: 0.3, // Sensitivity of the search
   });
 
-  return fuse.search(query).map((result) => result.item);
+  // If there's no query and no filters, return everything
+  if ((!q || q.trim() === "") && Object.keys(filters).length === 0) {
+    return data;
+  }
+
+  const logicalQueries = [];
+
+  // If there's a search term, match either title or subtitle
+  if (q && q.trim() !== "") {
+    logicalQueries.push({
+      $or: [
+        { naam: q },
+        { ondertitel: q },
+      ],
+    });
+  }
+
+  // Add filters (multiple selected values per field are handled as OR conditions)
+  for (const field in filters) {
+    if (filters[field] && filters[field].length > 0) {
+      const orConditions = filters[field].map((value) => ({
+        [field]: value,
+      }));
+      logicalQueries.push({ $or: orConditions });
+    }
+  }
+
+  // All filter conditions and query must apply
+  const fuseQuery = { $and: logicalQueries };
+
+  // Perform the Fuse.js search with the combined query
+  return fuse.search(fuseQuery).map((result) => result.item);
 };
