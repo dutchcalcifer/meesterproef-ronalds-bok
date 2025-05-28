@@ -7,6 +7,7 @@ import {
   getFilters,
   parseFiltersFromQuery,
 } from "../controllers/filter-controller.js";
+import { addExpertiseClassToData, addExpertiseClassToItem } from "../controllers/class-controller.js";
 
 // Create a new router instance
 const router = express.Router();
@@ -20,7 +21,12 @@ router.get("/", async (req, res, next) => {
 
     // Fetch search results and available filters
     const results = await getSearchResults(q, activeFilters);
+    
+    // Voeg classes toe aan elk resultaat
+    results = addExpertiseClassToData(results);
+
     const allFilters = await getFilters();
+    // console.log(results.map(r => r.class));
 
     // Render the index view with data
     res.render("index", {
@@ -58,7 +64,11 @@ router.post("/", async (req, res, next) => {
 router.get("/item/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    const item = await fetchItemById(id);
+    let item = await fetchItemById(id);
+
+    // Voeg class toe aan dit item
+    item = addExpertiseClassToItem(item);
+    // console.log(itemWithClass.class);
 
     // Render the details view with the fetched item
     res.render("pages/details", {
