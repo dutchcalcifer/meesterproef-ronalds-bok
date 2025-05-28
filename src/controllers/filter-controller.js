@@ -1,26 +1,29 @@
 import { fetchApiData } from "./api-controller.js";
 
-function extractFiltersFromData(data, velden) {
+// Extract unique values per field from dataset, for use in filters
+function extractFiltersFromData(data, fields) {
   const filters = {};
 
-  velden.forEach((veld) => {
-    const waarden = data
-      .map((item) => item[veld])
-      .filter(Boolean)
-      .flatMap((waarde) => waarde.split("\n"))
-      .map((waarde) => waarde.trim())
-      .filter(Boolean);
+  fields.forEach((field) => {
+    const values = data
+      .map((item) => item[field])            // Get the field value
+      .filter(Boolean)                       // Remove null/undefined
+      .flatMap((value) => value.split("\n")) // Split multi-line values
+      .map((value) => value.trim())          // Trim whitespace
+      .filter(Boolean);                      // Remove any empty strings
 
-    filters[veld] = [...new Set(waarden)].sort();
+    // Use a Set to remove duplicates, then sort alphabetically
+    filters[field] = [...new Set(values)].sort();
   });
 
   return filters;
 }
 
+// Get a filter object with all relevant fields and their unique values
 export async function getFilters() {
   const data = await fetchApiData();
 
-  const filterVelden = [
+  const filterFields = [
     "rel_jaar",
     "rel_vak",
     "rel_cmd_expertise",
@@ -30,17 +33,19 @@ export async function getFilters() {
     "soort"
   ];
 
-  return extractFiltersFromData(data.data, filterVelden);
+  return extractFiltersFromData(data.data, filterFields);
 }
 
-
-
+// Convert query string values into an object with array values per field
 export function parseFiltersFromQuery(filterQuery) {
-    const filters = {};
-    for (const veld in filterQuery) {
-      if (filterQuery[veld]) {
-        filters[veld] = Array.isArray(filterQuery[veld]) ? filterQuery[veld] : [filterQuery[veld]];
-      }
+  const filters = {};
+  for (const field in filterQuery) {
+    if (filterQuery[field]) {
+      // Ensure every filter value is treated as an array
+      filters[field] = Array.isArray(filterQuery[field]) 
+        ? filterQuery[field] 
+        : [filterQuery[field]];
     }
-    return filters;
   }
+  return filters;
+}
