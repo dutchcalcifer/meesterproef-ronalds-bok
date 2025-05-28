@@ -1,11 +1,12 @@
 import Fuse from "fuse.js";
 import { fetchApiData } from "./api-controller.js";
 
+// Perform a fuzzy search on data using Fuse.js, combined with filters
 export const getSearchResults = async (q, filters = {}) => {
   const apiData = await fetchApiData();
   const data = apiData.data;
 
-  // Fuse instance met alle keys waarin gezocht/filtred wordt
+  // Initialize Fuse.js with specific fields to search through
   const fuse = new Fuse(data, {
     keys: [
       "naam",
@@ -18,17 +19,17 @@ export const getSearchResults = async (q, filters = {}) => {
       "moeilijkheid",
       "soort",
     ],
-    threshold: 0.3,
+    threshold: 0.3, // Sensitivity of the search
   });
 
-  // Als geen query en geen filters, geef alles terug
+  // If there's no query and no filters, return everything
   if ((!q || q.trim() === "") && Object.keys(filters).length === 0) {
     return data;
   }
 
   const logicalQueries = [];
 
-  // Voeg zoekterm toe als $or tussen naam en ondertitel
+  // If there's a search term, match either title or subtitle
   if (q && q.trim() !== "") {
     logicalQueries.push({
       $or: [
@@ -38,19 +39,19 @@ export const getSearchResults = async (q, filters = {}) => {
     });
   }
 
-  // Voeg filters toe
-  for (const veld in filters) {
-    if (filters[veld] && filters[veld].length > 0) {
-      const orConditions = filters[veld].map((waarde) => ({
-        [veld]: waarde,
+  // Add filters (multiple selected values per field are handled as OR conditions)
+  for (const field in filters) {
+    if (filters[field] && filters[field].length > 0) {
+      const orConditions = filters[field].map((value) => ({
+        [field]: value,
       }));
       logicalQueries.push({ $or: orConditions });
     }
   }
 
-  // Combineer alles met $and (alle filters en zoekterm moeten gelden)
+  // All filter conditions and query must apply
   const fuseQuery = { $and: logicalQueries };
 
-  // Voer zoekopdracht uit met de samengestelde query
+  // Perform the Fuse.js search with the combined query
   return fuse.search(fuseQuery).map((result) => result.item);
 };
