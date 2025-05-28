@@ -1,48 +1,50 @@
-<details  class="custom-summary">
-  <summary>Filters</summary>
-  <section>
-    <p>filterinformatie</p>
-    <p>filterinformatie</p>
-    <p>filterinformatie</p>
-    <p>filterinformatie</p>
-    <p>filterinformatie</p>
-  </section>
+<details class="filters">
+  <form method="GET" action="/">
+    <% Object.entries(filters).forEach(([veld, opties])=> { %>
+    <fieldset>
+      <legend><%= veld %></legend>
+      <% opties.forEach(optie=> { const checkedValues =
+      Array.isArray(query[veld]) ? query[veld] : (query[veld] ? [query[veld]] :
+      []); const isChecked = checkedValues.includes(optie); %>
+      <label>
+        <input type="checkbox" name="<%= veld %>" value="<%= optie %>"
+        <%=isChecked ? "checked" : "" %>> <%= optie %>
+      </label>
+      <% }) %>
+    </fieldset>
+    <% }) %>
+    <button type="submit">Filteren</button>
+  </form>
 </details>
-
-<div class="chat-box">
+<section class="search">
+  <form id="search-form">
+    <input
+      id="search-input"
+      autocomplete="off"
+      placeholder="Wat is je vraag?"
+    />
+    <button type="submit">Verstuur</button>
+  </form>
   <ul id="messages">
-    <li class="assistant">Hallo! Ik ben KAI (Knowledge AI), hoe kan ik je helpen?</li>
-    <li class="user">Ik weet het niet</li>
-    <li class="assistant">Oke, zoek het dan zelf uit.</li>
+    <li class="assistant">Waarmee kan ik je helpen?</li>
   </ul>
-  
-  <div>
-    <form method="get" action="/">
-      <input type="text" name="q" placeholder="Zoeken..." value="<%= query %>" />
-      <button type="submit"><svg xmlns:xlink="http://www.w3.org/1999/xlink" alt="Search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="transform: scale(1);"><path d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" fill="#283237"></path></svg></button>
-    </form>
-
-    <button type="button" id="toggleChat">bekijk chat</button>
-  </div>
-</div>
-
-
+</section>
 <ul class="results">
   <% for(i=0; i<10; i++) { %>
-    <li class="card">
+  <li class="card">
+    <div>
+      <section>
+        <h1>vormgeving</h1>
+        <p>docent naam</p>
+      </section>
       <div>
-        <section>
-          <h1>vormgeving</h1>
-          <p>docent naam</p>
-        </section>
-        <div>
-          <p>1</p>
-        </div>
+        <p>1</p>
       </div>
-      <a href="">Https//:example.com</a>
-    </li>
+    </div>
+    <a href="">Https//:example.com</a>
+  </li>
   <% } %>
-  </ul>
+</ul>
 
 <% if (results.length > 0) { %>
 <ul>
