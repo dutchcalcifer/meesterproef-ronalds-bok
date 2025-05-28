@@ -4,6 +4,12 @@
   const messages = document.getElementById("messages");
   let conversation = [];
 
+  const savedChat = localStorage.getItem("chatHistory");
+  if (savedChat) {
+    conversation = JSON.parse(savedChat);
+    conversation.forEach((msg) => appendMessage(msg.role, msg.content));
+  }
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const userText = input.value.trim();
@@ -11,6 +17,7 @@
 
     appendMessage("user", userText);
     conversation.push({ role: "user", content: userText });
+    localStorage.setItem("chatHistory", JSON.stringify(conversation));
     input.value = "";
     input.focus();
 
@@ -35,6 +42,7 @@
       } else {
         messages.children[placeholderIndex].textContent = data.message;
         conversation.push({ role: "assistant", content: data.message });
+        localStorage.setItem("chatHistory", JSON.stringify(conversation));
       }
     } catch (err) {
       messages.children[placeholderIndex].textContent =
