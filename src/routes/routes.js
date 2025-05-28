@@ -20,7 +20,7 @@ router.get("/", async (req, res, next) => {
     const activeFilters = parseFiltersFromQuery(filterQuery);
 
     // Fetch search results and available filters
-    const results = await getSearchResults(q, activeFilters);
+    let results = await getSearchResults(q, activeFilters);
     
     // Voeg classes toe aan elk resultaat
     results = addExpertiseClassToData(results);
