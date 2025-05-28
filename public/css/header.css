@@ -1,2 +1,37 @@
 header {
+    form.theme {
+        width: fit-content;
+        height: fit-content;
+
+        label {
+            display: block;
+            width: 4em;
+            height: 2em;
+            border-radius: 1em;
+            padding: .25em;
+            background: var(--color-main);
+            position: relative;
+            cursor: pointer;
+        }
+
+        label::after {
+            content: "";
+            display: block;
+            width: 1.5em;
+            height: 1.5em;
+            background-color: var(--color-secondary);
+            position: absolute;
+            left: .25em;
+            transition: left .5s;
+            border-radius: .75em;
+        }
+
+        label:has(input:checked)::after {
+            left: 2.25em;
+        }
+
+        [type=checkbox] {
+            display: none;
+        }
+    }
 }
