@@ -1,8 +1,8 @@
-.home {
+.index {
     width: 100%;
     padding: 1em 8em 1em 1em;
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 3em auto;
     gap: 1em;
 
     /* details */
@@ -44,11 +44,11 @@
     }
 
     /* make searchbar grow if details is open */
-    &:has(.custom-summary[open]) .chat-box {
+    &:has(.custom-summary[open]) .search {
         grid-column: 1/-1;
     }
 
-    .chat-box {
+    .search {
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
@@ -135,7 +135,7 @@
         
     /* als de chat open staat */
     &.open {
-        .chat-box{
+        .search{
             height: 70vh;
             grid-column: 1/-1;
             grid-row: 2/3;
@@ -164,7 +164,7 @@
 }
 
 @media (min-width: 600px) {
-    .home {
+    .index {
         grid-template-columns: 25% auto;
         grid-template-rows: auto auto auto;
 
@@ -184,7 +184,7 @@
             }
         }
 
-        .chat-box {
+        .search {
             grid-column: -2/-1;
             justify-self: self-start;
             height: 3em;
@@ -214,14 +214,14 @@
                 display: block;
             }
 
-            .chat-box {
+            .search {
                 grid-column: 2/-1;
             }
         }
 
         /* als de chat open is */
         &.open {
-            .chat-box {
+            .search {
                 grid-column: 2/-1;
                 grid-row: 1/2;
 

@@ -1,5 +1,5 @@
 const button = document.querySelector("#toggleChat")
-const searchBox = document.querySelector(":has(> .chat-box)")
+const searchBox = document.querySelector(":has(> .search)")
 let open = false
 
 button.addEventListener("click", () => {

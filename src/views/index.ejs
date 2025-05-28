@@ -1,4 +1,5 @@
-<details class="filters">
+<details  class="custom-summary">
+  <summary>Filters</summary>
   <form method="GET" action="/">
     <% Object.entries(filters).forEach(([veld, opties])=> { %>
     <fieldset>
@@ -16,19 +17,28 @@
     <button type="submit">Filteren</button>
   </form>
 </details>
+
 <section class="search">
-  <form id="search-form">
-    <input
-      id="search-input"
-      autocomplete="off"
-      placeholder="Wat is je vraag?"
-    />
-    <button type="submit">Verstuur</button>
-  </form>
   <ul id="messages">
     <li class="assistant">Waarmee kan ik je helpen?</li>
   </ul>
+
+  <div>
+    <form id="search-form">
+      <input
+        id="search-input"
+        autocomplete="off"
+        placeholder="Wat is je vraag?"
+      />
+      <button type="submit"><svg xmlns:xlink="http://www.w3.org/1999/xlink" alt="Search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="transform: scale(1);"><path d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" fill="#283237"></path></svg></button>
+    </form>
+    
+    <button type="button" id="toggleChat">bekijk chat</button>
+  </div>
 </section>
+
+
+// code van annika
 <ul class="results">
   <% for(i=0; i<10; i++) { %>
   <li class="card">
@@ -46,10 +56,11 @@
   <% } %>
 </ul>
 
+// hier moet de uiteindelijke structuur van annika in
 <% if (results.length > 0) { %>
-<ul>
+<ul class="results">
   <% results.forEach(result => { %>
-  <li>
+  <li class="card">
     <a href="/item/<%= result.id %>"><%= result.naam %></a>
     <p><%= result.ondertitel %></p>
   </li>
