@@ -38,31 +38,44 @@
 </section>
 
 
-// code van annika
-<ul class="results">
+<!-- // code van annika -->
+<!-- <ul class="results">
   <% for(i=0; i<10; i++) { %>
   <li class="card">
     <div>
       <section>
-        <h1>vormgeving</h1>
+       
+      </section>
+      <div>
+        <p>1</p>
+      </div>
+    </div>
+  
+  </li>
+  <% } %>
+</ul> -->
+
+<!-- // hier moet de uiteindelijke structuur van annika in -->
+<% if (results.length > 0) { %>
+<ul class="results">
+  <% results.forEach(result => { %>
+  <li class="card">
+<!-- //// dit is de header met de kleur categorie//// -->
+    <div>
+      <section>
+        <a href="/item/<%= result.id %>"><%= result.naam %></a>
         <p>docent naam</p>
       </section>
       <div>
         <p>1</p>
       </div>
     </div>
-    <a href="">Https//:example.com</a>
-  </li>
-  <% } %>
-</ul>
-
-// hier moet de uiteindelijke structuur van annika in
-<% if (results.length > 0) { %>
-<ul class="results">
-  <% results.forEach(result => { %>
-  <li class="card">
-    <a href="/item/<%= result.id %>"><%= result.naam %></a>
-    <p><%= result.ondertitel %></p>
+    <!-- /// onder de header//// -->
+    <div>
+      <p><%= result.ondertitel %></p>
+  
+      <a href="">Https//:example.com</a>
+    </div>
   </li>
   <% }) %>
 </ul>
