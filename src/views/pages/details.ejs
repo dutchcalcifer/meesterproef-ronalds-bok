@@ -1,2 +1,148 @@
-<h1>Naam: <%= item.naam %></h1>
-<p>Ondertitel: <%= item.ondertitel %></p>
+<h1>
+    <%= item.naam %>
+</h1>
+
+<% if (item.ondertitel) { %>
+    <h2>
+        <%= item.ondertitel %>
+    </h2>
+    <% } %>
+
+        <% if (item.korte_beschrijving) { %>
+            <p><strong>Korte beschrijving:</strong>
+                <%= item.korte_beschrijving %>
+            </p>
+            <% } %>
+
+                <% if (item.toepassing) { %>
+                    <p><strong>Toepassing:</strong><br>
+                        <%= item.toepassing.replace(/\n/g, "<br>" ) %>
+                    </p>
+                    <% } %>
+
+                        <% if (item.strekking) { %>
+                            <p><strong>Strekking:</strong><br>
+                                <%= item.strekking.replace(/\n/g, "<br>" ) %>
+                            </p>
+                            <% } %>
+
+                                <% if (item.soort) { %>
+                                    <p><strong>Soort:</strong>
+                                        <%= item.soort %>
+                                    </p>
+                                    <% } %>
+
+                                        <% if (item.moeilijkheid) { %>
+                                            <p><strong>Moeilijkheid:</strong>
+                                                <%= item.moeilijkheid %>
+                                            </p>
+                                            <% } %>
+
+                                                <% if (item.alternatieve_naam) { %>
+                                                    <p><strong>Alternatieve naam:</strong>
+                                                        <%= item.alternatieve_naam %>
+                                                    </p>
+                                                    <% } %>
+
+                                                        <% if (item.schrijver_of_bron) { %>
+                                                            <p><strong>Bron / schrijver:</strong>
+                                                                <%= item.schrijver_of_bron %>
+                                                            </p>
+                                                            <% } %>
+
+                                                                <hr>
+
+                                                                <h3>Gerelateerde elementen</h3>
+                                                                <ul>
+                                                                    <% if (item.rel_competentie) { %>
+                                                                        <li><strong>Competentie:</strong>
+                                                                            <%= item.rel_competentie %>
+                                                                        </li>
+                                                                        <% } %>
+                                                                            <% if (item.rel_thema) { %>
+                                                                                <li><strong>Thema:</strong>
+                                                                                    <%= item.rel_thema %>
+                                                                                </li>
+                                                                                <% } %>
+                                                                                    <% if (item.rel_principe) { %>
+                                                                                        <li><strong>Principe:</strong>
+                                                                                            <%= item.rel_principe %>
+                                                                                        </li>
+                                                                                        <% } %>
+                                                                                            <% if (item.rel_methode) {
+                                                                                                %>
+                                                                                                <li><strong>Methode:</strong>
+                                                                                                    <%= item.rel_methode
+                                                                                                        %>
+                                                                                                </li>
+                                                                                                <% } %>
+                                                                                                    <% if
+                                                                                                        (item.rel_beroepstaak)
+                                                                                                        { %>
+                                                                                                        <li><strong>Beroepstaak:</strong>
+                                                                                                            <%= item.rel_beroepstaak
+                                                                                                                %>
+                                                                                                        </li>
+                                                                                                        <% } %>
+                                                                                                            <% if
+                                                                                                                (item.rel_jaar)
+                                                                                                                { %>
+                                                                                                                <li><strong>Jaar:</strong>
+                                                                                                                    <%= item.rel_jaar
+                                                                                                                        %>
+                                                                                                                </li>
+                                                                                                                <% } %>
+                                                                                                                    <% if
+                                                                                                                        (item.rel_vak)
+                                                                                                                        {
+                                                                                                                        %>
+                                                                                                                        <li><strong>Vak:</strong>
+                                                                                                                            <%= item.rel_vak
+                                                                                                                                %>
+                                                                                                                        </li>
+                                                                                                                        <% }
+                                                                                                                            %>
+                                                                                                                            <% if
+                                                                                                                                (item.rel_vakgebied)
+                                                                                                                                {
+                                                                                                                                %>
+                                                                                                                                <li><strong>Vakgebied:</strong>
+                                                                                                                                    <%= item.rel_vakgebied
+                                                                                                                                        %>
+                                                                                                                                </li>
+                                                                                                                                <% }
+                                                                                                                                    %>
+                                                                                                                                    <% if
+                                                                                                                                        (item.rel_cmd_expertise)
+                                                                                                                                        {
+                                                                                                                                        %>
+                                                                                                                                        <li><strong>CMD
+                                                                                                                                                Expertise:</strong>
+                                                                                                                                            <%= item.rel_cmd_expertise
+                                                                                                                                                %>
+                                                                                                                                        </li>
+                                                                                                                                        <% }
+                                                                                                                                            %>
+                                                                </ul>
+
+                                                                <% if (item.meer_bij_personen) { %>
+                                                                    <p><strong>Meer bij personen:</strong><br>
+                                                                        <%= item.meer_bij_personen.replace(/\n/g, "<br>"
+                                                                            ) %>
+                                                                    </p>
+                                                                    <% } %>
+
+                                                                        <% if (item.meer_bij_vak) { %>
+                                                                            <p><strong>Meer bij vak:</strong><br>
+                                                                                <%= item.meer_bij_vak.replace(/\n/g, "<br>"
+                                                                                    ) %>
+                                                                            </p>
+                                                                            <% } %>
+
+                                                                                <% if (item.meer_op_web) { %>
+                                                                                    <p><strong>Meer op web:</strong> <a
+                                                                                            href="<%= item.meer_op_web %>"
+                                                                                            target="_blank">
+                                                                                            <%= item.meer_op_web %>
+                                                                                        </a></p>
+                                                                                    <% } %>

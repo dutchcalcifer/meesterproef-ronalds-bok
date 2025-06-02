@@ -16,8 +16,12 @@ export const getSearchResults = async (q, filters = {}) => {
       "rel_cmd_expertise",
       "rel_beroepstaak",
       "rel_vakgebied",
-      "moeilijkheid",
       "soort",
+      "rel_thema",
+      "rel_competentie",
+      "rel_principe",
+      "rel_methode",
+      "meer_bij_personen"
     ],
     threshold: 0.3, // Sensitivity of the search
   });
