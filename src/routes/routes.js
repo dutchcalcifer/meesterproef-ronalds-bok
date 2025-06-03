@@ -8,6 +8,8 @@ import {
   parseFiltersFromQuery,
 } from "../controllers/filter-controller.js";
 import { addExpertiseClassToData, addExpertiseClassToItem } from "../controllers/class-controller.js";
+import { getDetailData } from "../controllers/details-controller.js";
+
 
 // Create a new router instance
 const router = express.Router();
@@ -26,7 +28,7 @@ router.get("/", async (req, res, next) => {
     results = addExpertiseClassToData(results);
 
     const allFilters = await getFilters();
-    // console.log(results.map(r => r.class));
+    console.log(results.map(r => r.class));
 
     // Render the index view with data
     res.render("index", {
@@ -64,18 +66,17 @@ router.post("/", async (req, res, next) => {
 router.get("/item/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    let item = await fetchItemById(id);
 
-    // Voeg class toe aan dit item
-    item = addExpertiseClassToItem(item);
-    // console.log(itemWithClass.class);
+    // Roep de controller-functie aan die alles regelt
+    const { item, allItems } = await getDetailData(id);
 
-    // Render the details view with the fetched item
+    // Render de pagina met de data die controller gaf
     res.render("pages/details", {
       layout: "layout/layout",
-      title: `${item.naam}`,
+      title: item.naam,
       className: "details",
       item,
+      allItems,
     });
   } catch (error) {
     next(error);
