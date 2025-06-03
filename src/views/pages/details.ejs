@@ -1,4 +1,4 @@
-<h1>
+<h1 id="details-h1">
     <%= item.naam %>
 </h1>
 
@@ -9,21 +9,15 @@
     <% } %>
 
         <% if (item.korte_beschrijving) { %>
-            <p><strong>Korte beschrijving:</strong>
-                <%= item.korte_beschrijving %>
-            </p>
+            <p><strong>Korte beschrijving:</strong> <%- item.korte_beschrijving.replace(/\n/g, "<br>" ) %></p>
             <% } %>
 
                 <% if (item.toepassing) { %>
-                    <p><strong>Toepassing:</strong><br>
-                        <%= item.toepassing.replace(/\n/g, "<br>" ) %>
-                    </p>
+                    <p><strong>Toepassing:</strong><br> <%- item.toepassing.replace(/\n/g, "<br>" ) %></p>
                     <% } %>
 
                         <% if (item.strekking) { %>
-                            <p><strong>Strekking:</strong><br>
-                                <%= item.strekking.replace(/\n/g, "<br>" ) %>
-                            </p>
+                            <p><strong>Strekking:</strong><br> <%- item.strekking.replace(/\n/g, "<br>" ) %></p>
                             <% } %>
 
                                 <% if (item.soort) { %>
@@ -55,24 +49,22 @@
                                                                 <h3>Gerelateerde elementen</h3>
                                                                 <ul>
                                                                     <% if (item.rel_competentie) { %>
-                                                                        <li><strong>Competentie:</strong>
-                                                                            <%= item.rel_competentie %>
-                                                                        </li>
+                                                                        <li><strong>Competentie:</strong> <%-
+                                                                                item.rel_competentie %></li>
                                                                         <% } %>
                                                                             <% if (item.rel_thema) { %>
-                                                                                <li><strong>Thema:</strong>
-                                                                                    <%= item.rel_thema %>
-                                                                                </li>
+                                                                                <li><strong>Thema:</strong> <%-
+                                                                                        item.rel_thema %></li>
                                                                                 <% } %>
                                                                                     <% if (item.rel_principe) { %>
                                                                                         <li><strong>Principe:</strong>
-                                                                                            <%= item.rel_principe %>
+                                                                                            <%- item.rel_principe %>
                                                                                         </li>
                                                                                         <% } %>
                                                                                             <% if (item.rel_methode) {
                                                                                                 %>
                                                                                                 <li><strong>Methode:</strong>
-                                                                                                    <%= item.rel_methode
+                                                                                                    <%- item.rel_methode
                                                                                                         %>
                                                                                                 </li>
                                                                                                 <% } %>
@@ -80,7 +72,7 @@
                                                                                                         (item.rel_beroepstaak)
                                                                                                         { %>
                                                                                                         <li><strong>Beroepstaak:</strong>
-                                                                                                            <%= item.rel_beroepstaak
+                                                                                                            <%- item.rel_beroepstaak
                                                                                                                 %>
                                                                                                         </li>
                                                                                                         <% } %>
@@ -88,7 +80,7 @@
                                                                                                                 (item.rel_jaar)
                                                                                                                 { %>
                                                                                                                 <li><strong>Jaar:</strong>
-                                                                                                                    <%= item.rel_jaar
+                                                                                                                    <%- item.rel_jaar
                                                                                                                         %>
                                                                                                                 </li>
                                                                                                                 <% } %>
@@ -97,7 +89,7 @@
                                                                                                                         {
                                                                                                                         %>
                                                                                                                         <li><strong>Vak:</strong>
-                                                                                                                            <%= item.rel_vak
+                                                                                                                            <%- item.rel_vak
                                                                                                                                 %>
                                                                                                                         </li>
                                                                                                                         <% }
@@ -107,7 +99,7 @@
                                                                                                                                 {
                                                                                                                                 %>
                                                                                                                                 <li><strong>Vakgebied:</strong>
-                                                                                                                                    <%= item.rel_vakgebied
+                                                                                                                                    <%- item.rel_vakgebied
                                                                                                                                         %>
                                                                                                                                 </li>
                                                                                                                                 <% }
@@ -118,7 +110,7 @@
                                                                                                                                         %>
                                                                                                                                         <li><strong>CMD
                                                                                                                                                 Expertise:</strong>
-                                                                                                                                            <%= item.rel_cmd_expertise
+                                                                                                                                            <%- item.rel_cmd_expertise
                                                                                                                                                 %>
                                                                                                                                         </li>
                                                                                                                                         <% }
@@ -126,23 +118,22 @@
                                                                 </ul>
 
                                                                 <% if (item.meer_bij_personen) { %>
-                                                                    <p><strong>Meer bij personen:</strong><br>
-                                                                        <%= item.meer_bij_personen.replace(/\n/g, "<br>"
-                                                                            ) %>
-                                                                    </p>
+                                                                    <p><strong>Meer bij personen:</strong><br> <%-
+                                                                            item.meer_bij_personen.replace(/\n/g, "<br>"
+                                                                            ) %></p>
                                                                     <% } %>
 
                                                                         <% if (item.meer_bij_vak) { %>
-                                                                            <p><strong>Meer bij vak:</strong><br>
-                                                                                <%= item.meer_bij_vak.replace(/\n/g, "<br>"
-                                                                                    ) %>
-                                                                            </p>
+                                                                            <p><strong>Meer bij vak:</strong><br> <%-
+                                                                                    item.meer_bij_vak.replace(/\n/g, "<br>"
+                                                                                    ) %></p>
                                                                             <% } %>
 
                                                                                 <% if (item.meer_op_web) { %>
                                                                                     <p><strong>Meer op web:</strong> <a
                                                                                             href="<%= item.meer_op_web %>"
-                                                                                            target="_blank">
+                                                                                            target="_blank"
+                                                                                            rel="noopener noreferrer">
                                                                                             <%= item.meer_op_web %>
                                                                                         </a></p>
                                                                                     <% } %>
