@@ -251,68 +251,17 @@
     align-self: center;
   }
  
-  .card{
+  .results li{
     display: flex;
     flex-direction: column;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
     border-radius: 1em;
     font-size: .8em;
   }
- 
-  .card div:nth-of-type(1) {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1em 1.5em;
-    gap: 1em;
-    background-color: var( --pink-main);
-    color: var( --pink-secondary);
-    border-top-right-radius: 1em;
-    border-top-left-radius: 1em;
-  }
-  .card div:nth-of-type(1) div{
-    display: flex;
-    place-content: center;
-    border-radius: 5em;
-    background-color: var( --pink-secondary) ;
-    color: var( --color-main) ;
-    font-weight: bold;
-    height: 2em;
-    width:2em ;
-    padding: 0;
-    flex-shrink: 0;
-  }
-  .card div:nth-of-type(1) a{
-    font-size: 1.2em;
-    font-weight: bold;
-    text-decoration: none;
-    color: var(--pink-secondary);
 
-  }
-  .card div:nth-of-type(1) p{
-        max-width: 15em; /* of een andere vaste breedte */
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-  }
-
-  .card div:nth-of-type(2) {
-    padding: 1em 1.5em;
-  }
-
-.card div:nth-of-type(2) a{
-  display: block;
-  width: 85%;
-  background-color: var(--pink-secondary);
-  color: var(--color-main);
-  border-radius: .7em;
-  padding: 1em;
-  margin-top: auto; 
-  margin-bottom: 1.5em;
-  align-self: center;
-  text-overflow: ellipsis;
-}
- 
-.results .card:nth-child(4n) {
-    grid-column: span 2;
+  .color-theme{
+    height: 3em;
+    width:3em;
+    background-color: var(--color-purple-dark);
+    border-radius: 50%;
   }

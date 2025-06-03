@@ -20,7 +20,7 @@
 
 <section class="search">
   <ul id="messages">
-    <li class="assistant">Waarmee kan ik je helpen?</li>
+    <li class="assistant">Hoi ik ben Kai! Waarmee kan ik je helpen?</li>
   </ul>
 
   <div>
@@ -59,22 +59,12 @@
 <% if (results.length > 0) { %>
 <ul class="results">
   <% results.forEach(result => { %>
-  <li class="card">
-<!-- //// dit is de header met de kleur categorie//// -->
-    <div>
-      <section>
-        <a href="/item/<%= result.id %>"><%= result.naam %></a>
-        <p> <%= result.ondertitel %></p>
-      </section>
-      <div>
-        <p> 1</p>
-      </div>
+  <li>
+    <div class="color-theme">
+      <div></div>
+      
     </div>
-    <!-- /// onder de header//// -->
-    <div>
-      <p> <%= result.korte_beschrijving %> </p>
-      <a href="">Https//:example.com</a>
-    </div>
+    <a href="/item/<%= result.id %>"><%= result.naam %></a>
   </li>
   <% }) %>
 </ul>
