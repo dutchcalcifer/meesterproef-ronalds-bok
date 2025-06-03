@@ -29,8 +29,12 @@ export async function getFilters() {
     "rel_cmd_expertise",
     "rel_beroepstaak",
     "rel_vakgebied",
-    "moeilijkheid",
-    "soort"
+    "soort",
+    "rel_thema",
+    "rel_competentie",
+    "rel_principe",
+    "rel_methode",
+    "meer_bij_personen"
   ];
 
   return extractFiltersFromData(data.data, filterFields);
