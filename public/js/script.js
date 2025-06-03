@@ -70,3 +70,10 @@
     messages.scrollTop = messages.scrollHeight;
   }
 })();
+
+(() => {
+  document.getElementById("clearChat").addEventListener("click", () => {
+    localStorage.clear();
+    location.reload();
+  });
+})();

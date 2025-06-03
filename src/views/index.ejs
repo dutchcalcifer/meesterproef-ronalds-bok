@@ -37,10 +37,9 @@
     </form>
 
     <button type="button" id="toggleChat">bekijk chat</button>
+    <button type="button" id="clearChat">clear chat</button>
   </div>
 </section>
-
-
 
 <!-- // hier moet de uiteindelijke structuur van annika in -->
 <% if (results.length> 0) { %>
@@ -56,8 +55,6 @@
       </li>
       <% }) %>
   </ul>
-
-
 
   <% } else if (query) { %>
     <p>Geen resultaten gevonden</p>
