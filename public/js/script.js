@@ -16,7 +16,7 @@
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const userText = input.value.trim();
-    if (!userText) return; // Ignore empty input
+    if (!userText) return;
 
     // Show user message
     appendMessage("user", userText);
@@ -47,7 +47,18 @@
 
       // If final query, redirect with query params
       if (data.final) {
-        window.location.href = `/?${data.query}`;
+        // Show final acknowledgement before redirect
+        messages.children[placeholderIndex].textContent =
+          "ik ga voor je aan de slag";
+        conversation.push({
+          role: "assistant",
+          content: "ik ga voor je aan de slag",
+        localStorage.setItem("chatHistory", JSON.stringify(conversation));
+
+        // Redirect with query params
+        setTimeout(() => {
+          window.location.href = `/?${data.query}`;
+        }, 500); // small delay so user sees the message
       } else {
         // Replace placeholder with assistant message
         messages.children[placeholderIndex].textContent = data.message;
@@ -78,11 +89,11 @@
   });
 })();
 
-console.log("hello world!")
-
-const buttons = document.querySelectorAll('.results li button');
-for (const button of buttons) {
-  button.addEventListener('click', function() {
-    this.classList.toggle('filled');
-  });
-}
+(() => {
+  const buttons = document.querySelectorAll(".results li button");
+  for (const button of buttons) {
+    button.addEventListener("click", function () {
+      this.classList.toggle("filled");
+    });
+  }
+})();
