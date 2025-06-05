@@ -39,6 +39,11 @@
     --blue-secondary: light-dark(var(--color-blue-dark), var(--color-blue-light));
 
 
+    --font-xl:2em ;
+    --font-l: 1.5em ;
+    --font-m: 1em;
+    --font-s: .7em ;
+
     /* light/dark mode logic */
     :has([value=theme]:checked) {
         color-scheme: dark;
@@ -53,8 +58,5 @@
     * {
         font-family: 'DM Sans', sans-serif;
     }
-    --font-xl: ;
-    --font-l: ;
-    --font-m: clamp();
-    --font-s: ;
+    --font-xl:2em ;
 }

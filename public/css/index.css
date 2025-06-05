@@ -1,7 +1,7 @@
 /* ----------------------------------- */
 /* ----------- NIEUWE CODE ----------- */
 /* ----------------------------------- */
-section.index {
+/* section.index {
     width: 100%;
     padding: .5em;
     display: grid;
@@ -11,9 +11,75 @@ section.index {
 
     #logo {
         justify-self: center;
+    } */
+.index {
+  width: 100%;
+  padding: 1em 8em 1em 1em;
+  display: grid;
+  grid-template-columns: 3em auto;
+  gap: 1em;
+
+  /* details */
+  .custom-summary {
+    grid-column: 1/2;
+    border: none;
+    font-size: 1em;
+    padding: 0.5em;
+    width: 3em;
+    height: 3em;
+    border-radius: 1.5em;
+    overflow: hidden;
+    background-color: black;
+    z-index: 1;
+    transition: height 1s, width 1s;
+
+    summary {
+      color: black;
+      padding-left: 0;
+      text-align: center;
+      font-size: 1em;
     }
 
-    .search {
+    &[open] {
+      grid-column: 1/3;
+      width: 100%;
+      height: 80vh;
+
+      summary {
+        color: white;
+      }
+
+      section {
+        position: absolute;
+        width: 100%;
+        color: white;
+      }
+    }
+  }
+
+  /* make searchbar grow if details is open */
+  &:has(.custom-summary[open]) .search {
+    grid-column: 1/-1;
+  }
+
+  .search {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 1em;
+    height: 7em;
+    overflow-y: auto;
+    transition: height 1s, width 1s;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      position: relative;
+
+      form {
+        height: fit-content;
+        width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
@@ -119,6 +185,18 @@ section.index {
                 align-self: flex-end;
             }
         }
+      }
+
+      #toggleChat {
+        height: 3em;
+        font-size: 1em;
+        padding: 0.5em 1em;
+        width: 8em;
+        background-color: var(--color-secondary);
+        color: var(--color-main);
+        border: none;
+        transition: bottom 1s;
+      }
     }
 
     .custom-summary {
@@ -271,58 +349,118 @@ section.index {
     100% {
         height: 100%;
     }
+  }
 }
 
-
 /* //////////////////////////// resultaten grid////////////////////////// */
- 
-.results{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
-    grid-auto-rows:30em;
-    list-style: none;
-    grid-gap: 1em;
-    width: 100%;
-  }
- 
-  .card{
-    display: flex;
-    flex-direction: column;
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
-    border-radius: 1em;
-  }
- 
-  .card div:nth-of-type(1) {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1em 2em;
-    gap: 1em;
-    background-color: var( --pink-main);
-    color: var( --pink-secondary);
-    border-top-right-radius: 1em;
-    border-top-left-radius: 1em;
-  
-  }
-  .card div:nth-of-type(1) div{
-    display: flex;
-    place-content: center;
-    border-radius: 5em;
-    background-color: var( --pink-secondary) ;
-    color: var( --color-main) ;
-    font-weight: bold;
-    height: 2em;
-    width:2em ;
-    padding: 0;
-    flex-shrink: 0;
-  }
-  .card div:nth-of-type(1) a{
-    font-size: 1.2em;
-    font-weight: bold;
-    text-decoration: none;
-    color: var(--pink-secondary);
+.results {
+  grid-column: 1/3;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  grid-auto-rows: auto;
+  list-style: none;
+  grid-gap: 1em;
+  width: 100%;
+  place-self: center;
+}
 
+.results li {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  border-radius: 1em;
+  font-size: 0.8em;
+  padding: 2em;
+
+  section {
+    flex-grow: 1;
   }
+  h2 {
+    font-weight: 400;
+    font-size: var(--font-xl);
+    margin: 0.5em 0;
+    /* height: 2.5em; */
+    /* display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis; */
+  }
+  p {
+    font-size: var(--font-m);
+    font-weight: 200;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  a {
+    background-color: var(--color-darker);
+    color: var(--color-main);
+    align-self: flex-end;
+    margin-top: auto;
+    text-decoration: none;
+    border-radius: 2em;
+    padding: 0.5em 1em;
+    transition: 0.1s ease-in-out;
+  }
+}
+
+.results li div {
+  display: flex;
+  justify-content: space-between;
+  div {
+    top: 0;
+    left: 0;
+  }
+  button {
+    position: absolute;
+    top: -0.5em;
+    right: 1.5em;
+    background-color: transparent;
+    border: none;
+    z-index: 10;
+    justify-content: start;
+  }
+}
+
+.results li svg {
+  display: flex;
+  z-index: 1;
+  height: 3em;
+  width: 3em;
+}
+
+.results li button path {
+  place-self: center;
+  fill: none;
+  stroke: black;
+  stroke-width: 0.5;
+  transition: fill 0.3s ease;
+}
+
+.results li button.filled path {
+  fill: black;
+}
+
+.results li a:hover {
+  background-color: var(--color-dark);
+}
+.results li a:active {
+  transform: translateY(0.1em);
+  background-color: var(--color-dark);
+}
+
+/* ////////// dit zijn de classes voor de kleur categorien///// */
+/* standaard styling van het balletje van de kleur categorie */
+.color-theme {
+  height: 3em;
+  width: 3em;
+  border-radius: 50%;
+}
 
 .card div:nth-of-type(2) a{
   display: block;
@@ -335,4 +473,37 @@ section.index {
   margin-bottom: 1.5em;
   align-self: center;
   text-overflow: ellipsis;
+}
+
+.expertise-visual-design {
+  background-color: var(--color-pink-dark);
+}
+.expertise-interactieontwerp-visual-design {
+  background: linear-gradient(
+    to bottom left,
+    var(--color-pink-dark) 50%,
+    var(--color-blue-dark) 50% 100%
+  );
+}
+.expertise-interactieontwerp-visual-design:hover {
+  animation: rotation 1s linear infinite;
+}
+
+.expertise-interactieontwerp {
+  background-color: var(--color-blue-dark);
+}
+
+.expertise-onbekend {
+  background-color: var(--color-orange-light);
+}
+
+/* zet hier boven alle kleuren van de expertises classes^^^^^^ */
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
