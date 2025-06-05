@@ -1,14 +1,20 @@
 const button = document.querySelector("#toggleChat")
-const searchBox = document.querySelector(":has(> .search)")
-let open = false
+const searchBox = document.querySelector(".search")
+let open = true
 
-button.addEventListener("click", () => {
-    console.log("click")
-    if (open == true) {
+button.addEventListener("click", changeOpenState)
+
+function changeOpenState() {
+    console.log("hoi")
+    if (open === false) {
         searchBox.classList.remove("open")
-        open = false
+        button.innerHTML = "bekijk chat"
+        open = true
     } else {
         searchBox.classList.add("open")
-        open = true
+        button.innerHTML = "verberg chat"
+        open = false
     }
-})
+}
+
+changeOpenState()
