@@ -14,13 +14,18 @@ document.addEventListener("DOMContentLoaded", () => {
     messages.scrollTop = messages.scrollHeight;
   }
 
-  if (messages) {
-    // Chat geschiedenis laden
-    const savedChat = localStorage.getItem("chatHistory");
-    if (savedChat) {
-      conversation = JSON.parse(savedChat);
-      conversation.forEach((msg) => appendMessage(msg.role, msg.content));
-    }
+//   if (messages) {
+//     // Chat geschiedenis laden
+//     const savedChat = localStorage.getItem("chatHistory");
+//     if (savedChat) {
+//       conversation = JSON.parse(savedChat);
+//       conversation.forEach((msg) => appendMessage(msg.role, msg.content));
+//     }
+  // Handle form submission
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const userText = input.value.trim();
+    if (!userText) return;
 
     // Form event listener voor chat
     if (form && input) {
@@ -91,6 +96,27 @@ document.addEventListener("DOMContentLoaded", () => {
       if (saved.includes(itemId)) {
         button.classList.add("filled");
       }
+      // If final query, redirect with query params
+      if (data.final) {
+        // Show final acknowledgement before redirect
+        messages.children[placeholderIndex].textContent =
+          "ik ga voor je aan de slag";
+        conversation.push({
+          role: "assistant",
+          content: "ik ga voor je aan de slag",
+        });
+        localStorage.setItem("chatHistory", JSON.stringify(conversation));
+
+        // Redirect with query params
+        setTimeout(() => {
+          window.location.href = `/?${data.query}`;
+        }, 500); // small delay so user sees the message
+      } else {
+        // Replace placeholder with assistant message
+        messages.children[placeholderIndex].textContent = data.message;
+        conversation.push({ role: "assistant", content: data.message });
+        localStorage.setItem("chatHistory", JSON.stringify(conversation));
+      }
 
       button.addEventListener("click", () => {
         if (saved.includes(itemId)) {
@@ -124,3 +150,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+})();
+
+(() => {
+  // Clear chat history
+  document.getElementById("clearChat").addEventListener("click", () => {
+    localStorage.clear();
+    location.reload();
+  });
+})();
+
+(() => {
+  const buttons = document.querySelectorAll(".results li button");
+  for (const button of buttons) {
+    button.addEventListener("click", function () {
+      this.classList.toggle("filled");
+    });
+  }
+})();
