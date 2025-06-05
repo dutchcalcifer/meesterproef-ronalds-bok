@@ -35,7 +35,7 @@
 </svg>
 <details class="custom-summary">
   <summary>Filters</summary>
-  <form method="GET" action="/">
+  <form method="GET" action="/" class="searchFilter">
     <% Object.entries(filters).forEach(([veld, opties])=> { %>
       <fieldset>
         <legend>
@@ -77,26 +77,6 @@
   </div>
 </section>
 
-<details  class="custom-summary">
-  <summary>Filters</summary>
-  <form method="GET" action="/" class="searchFilter">
-    <% Object.entries(filters).forEach(([veld, opties])=> { %>
-    <fieldset>
-      <legend><%= veld %></legend>
-      <% opties.forEach(optie=> { const checkedValues =
-      Array.isArray(query[veld]) ? query[veld] : (query[veld] ? [query[veld]] :
-      []); const isChecked = checkedValues.includes(optie); %>
-      <label>
-        <input type="checkbox" name="<%= veld %>" value="<%= optie %>"
-        <%=isChecked ? "checked" : "" %>> <%= optie %>
-      </label>
-      <% }) %>
-    </fieldset>
-    <% }) %>
-    <button type="submit">Filteren</button>
-  </form>
-</details>
-
 <%- include('components/result-list', { filters, results, query  }) %>
 
 <a href="/index">Index</a>
@@ -112,33 +92,3 @@
 <section>
   <a id="go-to-saved" href="#">Opgeslagen kaarten</a>
 </section>
-
-<!-- // hier moet de uiteindelijke structuur van annika in -->
-<% if (results.length> 0) { %>
-  <ul class="results">
-    <% results.forEach(result=> { %>
-      <li data-id="<%= result.id %>">
-        <div>
-          <div class="color-theme <%= result.class %>"></div>
-          <button>
-            <svg viewBox="0 0 24 24">
-              <path d="M6 4v16l6-6 6 6V4z"></path>
-            </svg>
-          </button>
-        </div>
-        <section>
-          <h2>
-            <%= result.naam %>
-          </h2>
-          <p>
-            <%= result.korte_beschrijving %>
-          </p>
-        </section>
-        <a href="/item/<%= result.id %>">lees meer </a>
-      </li>
-      <% }) %>
-  </ul>
-
-  <% } else if (query) { %>
-    <p>Geen resultaten gevonden</p>
-    <% } %>

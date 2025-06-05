@@ -14,30 +14,32 @@
       </form>
     </section>
   
-    <% if (results.length > 0) { %>
-    <ul class="results">
-      <% results.forEach(result => { %>
-      <li class="card">
-    <!-- //// dit is de header met de kleur categorie//// -->
+    <% if (results.length> 0) { %>
+  <ul class="results">
+    <% results.forEach(result=> { %>
+      <li data-id="<%= result.id %>">
         <div>
-          <section>
-            <a href="/item/<%= result.id %>"><%= result.naam %></a>
-            <p>docent naam</p>
-          </section>
-          <div>
-            <p>1</p>
-          </div>
+          <div class="color-theme <%= result.class %>"></div>
+          <button>
+            <svg viewBox="0 0 24 24">
+              <path d="M6 4v16l6-6 6 6V4z"></path>
+            </svg>
+          </button>
         </div>
-        <!-- /// onder de header//// -->
-        <div>
-          <p><%= result.ondertitel %></p>
-      
-          <a href="">Https//:example.com</a>
-        </div>
+        <section>
+          <h2>
+            <%= result.naam %>
+          </h2>
+          <p>
+            <%= result.korte_beschrijving %>
+          </p>
+        </section>
+        <a href="/item/<%= result.id %>">lees meer </a>
       </li>
       <% }) %>
-    </ul>
-    <% } else if (query) { %>
+  </ul>
+
+  <% } else if (query) { %>
     <p>Geen resultaten gevonden</p>
-    <% } %>
+  <% } %>
   </div>
