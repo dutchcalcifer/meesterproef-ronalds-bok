@@ -84,6 +84,7 @@
 })();
 
 (() => {
+  // Clear chat history
   document.getElementById("clearChat").addEventListener("click", () => {
     localStorage.clear();
     location.reload();
