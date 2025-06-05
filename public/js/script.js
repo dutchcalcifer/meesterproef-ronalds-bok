@@ -53,6 +53,7 @@
         conversation.push({
           role: "assistant",
           content: "ik ga voor je aan de slag",
+        });
         localStorage.setItem("chatHistory", JSON.stringify(conversation));
 
         // Redirect with query params
