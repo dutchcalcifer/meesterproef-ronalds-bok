@@ -1,0 +1,43 @@
+<div id="resultsAndFilters">
+    <section id="activeFilters">
+      <form method="GET" action="/" class="searchFilter">
+        <% Object.entries(filters).forEach(([veld, opties])=> { %>
+          <% opties.forEach(optie=> { const checkedValues =
+          Array.isArray(query[veld]) ? query[veld] : (query[veld] ? [query[veld]] :
+          []); const isChecked = checkedValues.includes(optie); %>
+          <label>
+            <input type="checkbox" name="<%= veld %>" value="<%= optie %>"
+            <%=isChecked ? "checked" : "" %>> <%= optie %>
+          </label>
+          <% }) %>
+        <% }) %>
+      </form>
+    </section>
+  
+    <% if (results.length > 0) { %>
+    <ul class="results">
+      <% results.forEach(result => { %>
+      <li class="card">
+    <!-- //// dit is de header met de kleur categorie//// -->
+        <div>
+          <section>
+            <a href="/item/<%= result.id %>"><%= result.naam %></a>
+            <p>docent naam</p>
+          </section>
+          <div>
+            <p>1</p>
+          </div>
+        </div>
+        <!-- /// onder de header//// -->
+        <div>
+          <p><%= result.ondertitel %></p>
+      
+          <a href="">Https//:example.com</a>
+        </div>
+      </li>
+      <% }) %>
+    </ul>
+    <% } else if (query) { %>
+    <p>Geen resultaten gevonden</p>
+    <% } %>
+  </div>
