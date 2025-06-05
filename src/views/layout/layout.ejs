@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html lang="nl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= title %></title>
-    <meta
-      name="description"
-      content="Ronalds BOK - Dante Piekart, Vivanne Hoogendam, Lorenzo Horden, Annika Mekkelholt"
-    />
-    <link rel="preload" href="/css/style.css" as="style" />
-    <link rel="preload" href="/js/script.js" as="script" />
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <header>
-      <!-- <form class="theme">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    <%= title %>
+  </title>
+  <meta name="description"
+    content="Ronalds BOK - Dante Piekart, Vivanne Hoogendam, Lorenzo Horden, Annika Mekkelholt" />
+  <link rel="preload" href="/css/style.css" as="style" />
+  <link rel="preload" href="/js/script.js" as="script" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <!-- <form class="theme">
         <label>
           <input type="checkbox" value="theme">
         </label>
@@ -59,15 +63,16 @@
         </g>
       </svg>
        -->
-    </header>
-    <main>
-      <section class="<%- className %>">
-        <%- body %>
-      </section>
-    </main>
-    <footer>
-      <p>Copyright &copy; 2025 CMData. Alle rechten voorbehouden</p>
-    </footer>
-  </body>
-  <script src="/js/script.js"></script>
+  </header>
+  <main>
+    <section class="<%- className %>">
+      <%- body %>
+    </section>
+  </main>
+  <footer>
+    <p>Copyright &copy; 2025 CMData. Alle rechten voorbehouden</p>
+  </footer>
+</body>
+<script src="/js/script.js"></script>
+
 </html>
