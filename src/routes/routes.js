@@ -9,6 +9,7 @@ import {
 } from "../controllers/filter-controller.js";
 import { addExpertiseClassToData, addExpertiseClassToItem } from "../controllers/class-controller.js";
 import { getDetailData } from "../controllers/details-controller.js";
+import { getSavedItems } from "../controllers/saved-controller.js";
 
 
 // Create a new router instance
@@ -77,6 +78,27 @@ router.get("/item/:id", async (req, res, next) => {
       className: "details",
       item,
       allItems,
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get("/saved", async (req, res, next) => {
+  try {
+    const { ids } = req.query;
+
+    if (!ids) {
+      return res.redirect("/"); // of render lege saved pagina
+    }
+
+    const results = await getSavedItems(ids);
+
+    res.render("pages/saved", {
+      layout: "layout/layout",
+      title: "Opgeslagen Kaarten",
+      className: "saved",
+      results,
     });
   } catch (error) {
     next(error);
