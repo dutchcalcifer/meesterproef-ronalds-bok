@@ -77,3 +77,12 @@
     location.reload();
   });
 })();
+
+console.log("hello world!")
+
+const buttons = document.querySelectorAll('.results li button');
+for (const button of buttons) {
+  button.addEventListener('click', function() {
+    this.classList.toggle('filled');
+  });
+}
