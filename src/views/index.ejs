@@ -59,19 +59,17 @@
   <% results.forEach(result=> { %>
   <li>
     <div >
-      <div class="color-theme <%= result.class %>"></div>
-      <button>
-        <svg viewBox="0 0 24 24">
-          <path d="M6 4v16l6-6 6 6V4z"></path>
-        </svg>
-        
-      </button>
+      <div id="themaExpertise" class="color-theme <%= result.class %>"></div>
     </div>
-    <section>
+      <p id="themaSoort" class="color-theme <%= result.class %>"><%= result.soort %></p>
       <h2><%= result.naam %></h2>
       <p><%= result.korte_beschrijving %></p>
-    </section>
-    <a href="/item/<%= result.id %>">lees meer </a>
+    <a href="/item/<%= result.id %>">lees meer<span class="visually-hidden">over <%= result.naam %> </span> </a>
+    <button>
+      <svg viewBox="0 0 24 24">
+    <path d="M6 4v16l6-6 6 6V4z"></path>
+    </svg>   
+    </button>
   </li>
   <% }) %>
 </ul>
