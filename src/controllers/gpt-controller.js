@@ -1,77 +1,91 @@
-// Import OpenAI client and filesystem/path utilities
+// gpt-controller.js
+// ────────────────────────────────────────────────────────────────────────────
+// Doel   : Chat-controller voor KAI (Knowledge AI).
+// Opzet  : • Veldnamen zitten alléén hier (makkelijk uitbreiden)
+//          • Prompt wordt tijdens runtime verrijkt met de veldlijst
+//          • Vector-context wordt compact meegegeven
+//          • Output-types: { type: "final_query", query }  óf  { type: "message", message }
+// ────────────────────────────────────────────────────────────────────────────
+
 import openai from "../../server.js";
 import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 
-// Determine current file and directory paths
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Initialize placeholders for system prompt and vector data
-let systemPrompt = "";
-let vectorData = [];
-
-// Load system prompt from JSON file (fallback to default on error)
+// ───────────────────────────────────────────────────────── base-prompt inlezen
 const promptPath = path.join(__dirname, "../data/prompts.json");
-fs.readFile(promptPath, "utf-8")
-  .then((data) => {
-    const parsed = JSON.parse(data);
-    systemPrompt = parsed.prompt;
-  })
-  .catch((err) => {
-    console.error("Failed to load system prompt:", err);
-    systemPrompt = "Je bent een zoekassistent.";
-  });
+let basePrompt = "Je bent een zoekassistent."; // fallback
 
-// Load vector data from JSON file (fallback to empty array on error)
-const vectorPath = path.join(__dirname, "../data/vectors.json");
-fs.readFile(vectorPath, "utf-8")
-  .then((data) => {
-    vectorData = JSON.parse(data);
-  })
-  .catch((err) => {
-    console.error("Failed to load vector data:", err);
-    vectorData = [];
-  });
-
-// Helper to sanitize FINAL_QUERY output
-function sanitizeFinalQuery(rawQuery) {
-  return rawQuery
-    .replace(/\s*=\s*/g, "=") // Remove spaces around "="
-    .replace(/\s*&\s*/g, "&") // Remove spaces around "&"
-    .replace(/\s+/g, "+") // Replace remaining spaces with "+"
-    .replace(/\+\+\+/g, "+") // Collapse triple pluses if any
-    .replace(/\+\+/g, "+"); // Collapse double pluses
+try {
+  const data = await fs.readFile(promptPath, "utf-8");
+  const parsed = JSON.parse(data);
+  if (parsed.prompt) basePrompt = parsed.prompt;
+} catch (err) {
+  console.error("⚠️  Failed to load prompt:", err);
 }
 
-// Main GPT function
+// ──────────────────────────────────────────────────────── toegestane velden
+// Pas deze array aan als er velden bijkomen — de prompt zelf hoeft dan niet mee.
+export const allowedFields = [
+  "rel_jaar",
+  "rel_vak",
+  "rel_cmd_expertise",
+  "rel_beroepstaak",
+  "rel_vakgebied",
+  "rel_competentie",
+  "rel_thema",
+  "rel_principe",
+  "rel_methode",
+  "moeilijkheid",
+  "soort",
+];
+
+// ───────────────────────────────────────────────────────── vector-data inlezen
+const vectorPath = path.join(__dirname, "../data/vectors.json");
+let vectorData = [];
+
+try {
+  const data = await fs.readFile(vectorPath, "utf-8");
+  vectorData = JSON.parse(data);
+} catch (err) {
+  console.error("⚠️  Failed to load vector data:", err);
+}
+
+// ───────────────────────────────────────────────────────── hulpmethodes
+function sanitizeFinalQuery(raw) {
+  return raw
+    .replace(/\s*=\s*/g, "=") // spaties rond "=" weg
+    .replace(/\s*&\s*/g, "&") // spaties rond "&" weg
+    .replace(/\s+/g, "+") // spaties → "+"
+    .replace(/\+\+/g, "+"); // dubbele "+" inklappen
+}
+
+function buildContextSnippets(vec) {
+  // Houd de context compact: alleen toegestane velden + naam
+  return vec
+    .map((item) => {
+      const parts = [];
+      for (const key of allowedFields) {
+        if (item[key]) parts.push(`${key}: ${item[key]}`);
+      }
+      return `Term: ${item.naam}${parts.length ? "\n" + parts.join("\n") : ""}`;
+    })
+    .join("\n\n");
+}
+
+// ───────────────────────────────────────────────────────── hoofd-export
 export async function gpt(conversation) {
-  // Build context snippets from loaded vector data
-  const fields = [
-    "rel_jaar",
-    "rel_vak",
-    "rel_cmd_expertise",
-    "rel_beroepstaak",
-    "rel_vakgebied",
-    "rel_competentie",
-    "rel_thema",
-    "rel_principe",
-    "rel_methode",
-    "moeilijkheid",
-    "soort",
-  ];
+  // Prompt aanvullen met dynamische veldlijst
+  const systemPrompt = `${basePrompt}\n\nBeschikbare filtervelden (exact spellen): ${allowedFields.join(
+    ", "
+  )}`;
 
-  const contextSnippets = vectorData.map((item) => {
-    const filterData = fields
-      .map((key) => (item[key] ? `${key}: ${item[key]}` : null))
-      .filter(Boolean)
-      .join("\n");
-    return `Term: ${item.naam}\n${filterData}`;
-  });
-
-  const contextPrompt = `Je kent de volgende CMD-termen en bijbehorende filtervelden:\n\n${contextSnippets.join(
-    "\n\n"
+  // Vector-context
+  const contextPrompt = `Je kent de volgende CMD-termen en bijbehorende filtervelden:\n\n${buildContextSnippets(
+    vectorData
   )}`;
 
   const messages = [
@@ -87,10 +101,9 @@ export async function gpt(conversation) {
 
   const text = response.choices[0].message.content.trim();
 
-  if (text.startsWith("FINAL_QUERY:")) {
-    const rawQuery = text.replace(/^FINAL_QUERY:\s*/i, "");
-    const sanitized = sanitizeFinalQuery(rawQuery);
-    return { type: "final_query", query: sanitized };
+  if (/^FINAL_QUERY:/i.test(text)) {
+    const raw = text.replace(/^FINAL_QUERY:\s*/i, "");
+    return { type: "final_query", query: sanitizeFinalQuery(raw) };
   }
 
   return { type: "message", message: text };
