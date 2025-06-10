@@ -1,4 +1,15 @@
+#main-section {
+  max-width: 2560px;
+  margin: 100px 10%;
+}
+
 #details-h1 {
-  font-size: 2em;
+  font-size: 3em;
   font-weight: 400;
+}
+
+.details-subtitle {
+  font-size: 1.2em;
+  font-weight: 200;
+  padding-bottom: 2em;
 }
