@@ -107,19 +107,21 @@ section.index {
 
             li {
                 max-width: 80%;
-                background-color: var(--background);
                 color: var(--color-darker);
                 padding: .5em 1em;
-                border-radius: 1em;
                 margin: 0;
             }
 
             .assistant {
                 align-self: flex-start;
+                border-radius: 1em 1em 1em .1em;
+
             }
 
             .user {
                 align-self: flex-end;
+                background-color: var(--background);
+                border-radius: 1em 1em .3em 1em;
             }
         }
     }
