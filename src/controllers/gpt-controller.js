@@ -1,34 +1,25 @@
-// gpt-controller.js
-// ────────────────────────────────────────────────────────────────────────────
-// Doel   : Chat-controller voor KAI (Knowledge AI).
-// Opzet  : • Veldnamen zitten alléén hier (makkelijk uitbreiden)
-//          • Prompt wordt tijdens runtime verrijkt met de veldlijst
-//          • Vector-context wordt compact meegegeven
-//          • Output-types: { type: "final_query", query }  óf  { type: "message", message }
-// ────────────────────────────────────────────────────────────────────────────
-
+// Import packages and utilities
 import openai from "../../server.js";
 import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 
+// Resolve current file paths
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// ───────────────────────────────────────────────────────── base-prompt inlezen
+// Read the base prompt from JSON (fallback to default)
 const promptPath = path.join(__dirname, "../data/prompts.json");
-let basePrompt = "Je bent een zoekassistent."; // fallback
-
+let basePrompt = "Je bent een zoekassistent."; // default prompt
 try {
   const data = await fs.readFile(promptPath, "utf-8");
   const parsed = JSON.parse(data);
   if (parsed.prompt) basePrompt = parsed.prompt;
 } catch (err) {
-  console.error("⚠️  Failed to load prompt:", err);
+  console.error("Failed to load system prompt:", err);
 }
 
-// ──────────────────────────────────────────────────────── toegestane velden
-// Pas deze array aan als er velden bijkomen — de prompt zelf hoeft dan niet mee.
+// Define allowed filter fields (edit here to add more later)
 export const allowedFields = [
   "rel_jaar",
   "rel_vak",
@@ -43,28 +34,27 @@ export const allowedFields = [
   "soort",
 ];
 
-// ───────────────────────────────────────────────────────── vector-data inlezen
+// Load vector data that contains all CMD terms
 const vectorPath = path.join(__dirname, "../data/vectors.json");
 let vectorData = [];
-
 try {
   const data = await fs.readFile(vectorPath, "utf-8");
   vectorData = JSON.parse(data);
 } catch (err) {
-  console.error("⚠️  Failed to load vector data:", err);
+  console.error("Failed to load vector data:", err);
 }
 
-// ───────────────────────────────────────────────────────── hulpmethodes
+// Helper: clean up the FINAL_QUERY string before redirecting
 function sanitizeFinalQuery(raw) {
   return raw
-    .replace(/\s*=\s*/g, "=") // spaties rond "=" weg
-    .replace(/\s*&\s*/g, "&") // spaties rond "&" weg
-    .replace(/\s+/g, "+") // spaties → "+"
-    .replace(/\+\+/g, "+"); // dubbele "+" inklappen
+    .replace(/\s*=\s*/g, "=")
+    .replace(/\s*&\s*/g, "&")
+    .replace(/\s+/g, "+")
+    .replace(/\+\+/g, "+");
 }
 
+// Helper: build compact vector context for GPT
 function buildContextSnippets(vec) {
-  // Houd de context compact: alleen toegestane velden + naam
   return vec
     .map((item) => {
       const parts = [];
@@ -76,23 +66,25 @@ function buildContextSnippets(vec) {
     .join("\n\n");
 }
 
-// ───────────────────────────────────────────────────────── hoofd-export
+// Exported GPT handler
 export async function gpt(conversation) {
-  // Prompt aanvullen met dynamische veldlijst
+  // Combine base prompt with dynamic field list
   const systemPrompt = `${basePrompt}\n\nBeschikbare filtervelden (exact spellen): ${allowedFields.join(
     ", "
   )}`;
 
-  // Vector-context
+  // Append vector context
   const contextPrompt = `Je kent de volgende CMD-termen en bijbehorende filtervelden:\n\n${buildContextSnippets(
     vectorData
   )}`;
 
+  // Assemble full message list for OpenAI
   const messages = [
     { role: "system", content: `${systemPrompt}\n\n${contextPrompt}` },
     ...conversation,
   ];
 
+  // Create chat completion
   const response = await openai.chat.completions.create({
     model: "gpt-4o-mini",
     messages,
@@ -101,6 +93,7 @@ export async function gpt(conversation) {
 
   const text = response.choices[0].message.content.trim();
 
+  // Return final query or next chat message
   if (/^FINAL_QUERY:/i.test(text)) {
     const raw = text.replace(/^FINAL_QUERY:\s*/i, "");
     return { type: "final_query", query: sanitizeFinalQuery(raw) };
