@@ -6,7 +6,7 @@
     --color-dark: #353535;
     --color-darker: rgb(0,0,0);
     
---shadow:rgba(0, 0, 0, 0.1)
+    --shadow:rgba(0, 0, 0, 0.1);
 
     --color-orange-light: #FEF11F;
     --color-purple-dark: #BF80FF;
