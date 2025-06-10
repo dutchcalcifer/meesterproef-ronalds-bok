@@ -1,11 +1,17 @@
 header {
     display: flex;
     align-items: center;
-    margin: 4em 2em 2em 2em;
+    justify-content: space-between;
+    margin: 2em 4em;
+}
+
+#home, h1 {
+    display: block;
 }
 
 h1 svg {
     height: 110px;
+    display: block;
 }
 
 .hide-text {
@@ -18,8 +24,15 @@ h1 svg {
     color: black;
     display: flex;
     align-items: center;
+    padding: .5em;
+    border-radius: 2em;
 
     svg {
         height: 2em;
+        
+        path {
+            fill: none;
+            stroke: black;
+        }
     }
 }
