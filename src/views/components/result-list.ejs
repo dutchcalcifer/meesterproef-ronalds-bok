@@ -18,9 +18,7 @@
   <ul class="results">
     <% results.forEach(result=> { %>
       <li data-id="<%= result.id %>">
-        <div>
-          <div  id="themaExpertise" class="color-theme <%= result.class %>"></div>
-        </div>
+        <div  id="themaExpertise" class="color-theme <%= result.class %>"></div>
         <p id="themaSoort" class="color-theme <%= result.class %>"><%= result.soort %></p>
         <h2><%= result.naam %></h2>
         <p><%= result.korte_beschrijving %></p>
