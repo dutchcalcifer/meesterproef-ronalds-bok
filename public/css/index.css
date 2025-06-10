@@ -19,26 +19,29 @@ section.index {
         gap: 1em;
         height: 3em;
         overflow-y: visible;
-        transition: height 1s, width 1s;
-
+        border-radius: 2em;
+        transition: height 1s, width 1s,background-color 1s;
+        padding: 1em;
+        
         &.open {
-            height: 70vh;
+            height: 60vh;
+            background-color: var(--color-light);
+            
         }
 
         div {
             display: flex;
-            background-color: lightgray;
-            border-radius: 1.5em;
+            background-color:var(--background);
+            border-radius: 2em;
+            border: .4em solid var(--color-main);
             align-items: center;
 
             #toggleChat {
-                height: 2.5em;
                 font-size: 1em;
-                padding: .5em;
-                margin-left: .25em;
-                border-radius: 1.5em;
+                padding: 1em;
+                border-radius: 2em;
                 width: fit-content;
-                background-color: gray;
+                background-color:var( --color-grey);
                 border: none;
                 position: relative;
 
@@ -103,8 +106,8 @@ section.index {
 
             li {
                 max-width: 80%;
-                background-color: var(--color-secondary);
-                color: var(--color-main);
+                background-color: var(--background);
+                color: var(--color-darker);
                 padding: .5em 1em;
                 border-radius: 1em;
                 margin: 0;
@@ -129,7 +132,7 @@ section.index {
         transition: max-height 1s;
 
         summary {
-            color: black;
+            color: var(--color-darker);
             padding-left: 0;
             text-align: center;
             font-size: 1em;
@@ -143,7 +146,7 @@ section.index {
                 display: block;
                 width: .25em;
                 height: 100%;
-                background-color: black;
+                background-color: var(--color-darker);
             }
 
             &::after {
@@ -292,48 +295,59 @@ section.index {
       grid-template-columns: subgrid;
       grid-template-rows: subgrid;
       row-gap: 0;
-      box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+      background-color:var(--color-main) ;
+      box-shadow: var(--shadow) 0px 4px 12px;
       border-radius: 1em;
       font-size: .8em;
       padding: 2em;
-  
+
       h2{
           grid-row: 3/4;
           font-weight: 400;
           font-size: var( --font-xl);
+          hyphens: auto;
   }
       p:nth-of-type(2){
           grid-row: 4/5;
           font-size:var(--font-m);
           font-weight: 200;
           margin: 2em 0;
-          display: -webkit-box;
-          -webkit-line-clamp: 4;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-          text-overflow: ellipsis;
-         
       }
       a{
           grid-row: 5;
-          /* background-color: var(--color-darker); */
           background: linear-gradient(
           to bottom left,
-          #FEF11F 50%,
+          var( --color-main) 50%,
           var(--color-darker) 50%
           );
-          background-size: 200% 320%;
+          background-size: 200% 330%;
           background-position: bottom;
           color: var(--color-main);
           justify-self: end;
           align-self: flex-end;
           margin-top: auto;
           text-decoration: none;
+          outline:.2em solid transparent ;
           border-radius:2em ;
           padding: .5em 1em;
           transition: .3s ease-in-out;
           cursor: pointer;
       }
+       a:hover{
+          /* background-color: var(--color-dark); */
+          background-position: top right;
+          outline:.2em solid var(--color-darker) ;
+          color:var(--color-darker) ;
+        }
+        a:active{
+          transform: translateY(0.1em) scale(0.95);
+          background-color: var(--color-dark);
+        }
+        a:focus{
+            outline:.2em solid var(--color-darker) ;
+            background: var(--color-main);
+            color:var(--color-darker);
+        }
   
       button{
           position: absolute;
@@ -343,40 +357,30 @@ section.index {
           overflow: hidden;
           border: none;
           z-index: 10;
-          cursor: pointer;
+          cursor: copy;
+      }
+      button:focus svg {
+        stroke:var(--color-darker);
+        stroke-width: 1;
+        fill: var(--color-main);
       }
     }
-  
-    .results li > div{
-      display: flex;
-      justify-content: space-between; 
-      grid-row: 1/2;
-  
-      grid-column: 1/3;
-  
-  }
+
+
     .results li button svg {
       position: relative;
       width: 3em;
       height: 3em;
       animation: 2s ease-in forwards;
       z-index: 2;
-      stroke: black;
+      stroke:var(--color-darker);
       stroke-width: 0;
-      fill: rgb(232, 232, 232);
+      fill: var(--color-grey);
       stroke-dasharray: 100;
       stroke-dashoffset: 0;
       transform-origin: center;
   
     }
-    
-    /* .results li button path {
-      fill: transparent;
-      stroke: black;
-      stroke-width: 0.5;
-      transition: fill 0.3s ease;
-    } */
-  
   
     .results li button.filled svg{
       animation: 2s ease-out forwards saved;
@@ -401,63 +405,44 @@ section.index {
          
       }
   }
-  
-    /* button::before {
-      content: "";
-      position: absolute;
-      top: -100%;  
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: black; 
-      mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M6 4v16l6-6 6 6V4z"/></svg>');
-      mask-repeat: no-repeat;
-      mask-position: center;
-      mask-size: contain;
-      transition: top 0.3s ease-in-out;
-      z-index: 1;
-      pointer-events: none; 
-    }
-  button.filled::before {
-      top: -.15em;
-    } */
-  
-  
-    /* .results li svg {
-      display: flex;
-      z-index: 1;
-      height: 3em;
-      width: 3em;
-      
-    } */
-  
-  
-    .results li a:hover{
-      /* background-color: var(--color-dark); */
-      background-position: top right;
-      outline:.1em solid var(--color-darker) ;
-      color:var(--color-darker) ;
-    }
-    .results li a:active{
-      transform: translateY(0.1em) scale(0.95);
-      background-color: var(--color-dark);
-    }
-  
-  
-    /* ////////// dit zijn de classes voor de kleur categorien///// */
+
   /* standaard styling van het balletje van de kleur categorie */
     #themaExpertise{
-  
-      height:3em;
-      width:3em;
-      border-radius: 50%;
-      background-color: none;
+        grid-row: 1/2;
+        grid-column: 1/3;
+        height:3em;
+        width:3em;
+        border-radius: 50%;
+
+        position: relative;
     }
-  
+    #themaExpertise::after{
+        content: "";
+        position: absolute;
+        top: 8%;
+        left:110%;
+        padding: 0; 
+        border: .1em solid var(--color-grey);
+        border-radius: 2em;
+        white-space: nowrap;
+        opacity: 0;
+        z-index: 10;
+        transition: opacity .5s ease-out;
+    }
+
+    #themaExpertise:hover::after {
+        opacity: 1;
+        padding: .5em .7em; 
+        background-color: var(--color-main); 
+    }
+
   #themaExpertise.expertise-visual-design{
       background-color:var(--color-pink-dark);
   
   }
+  #themaExpertise.expertise-visual-design:hover::after {
+    content: "visual design";
+}
   #themaExpertise.expertise-interactieontwerp-visual-design{
       background: linear-gradient(
           to bottom left,
@@ -465,6 +450,9 @@ section.index {
          var(--color-blue-dark)50% 100%
         );
   }
+  #themaExpertise.expertise-interactieontwerp-visual-design:hover::after {
+    content: "interactie ontwerp en visual design";
+}
   /* #themaExpertise.expertise-interactieontwerp-visual-design:hover{
       animation: rotation 1s linear infinite;
   } */
@@ -473,10 +461,18 @@ section.index {
       
       background-color:var(--color-blue-dark);
   }
+  #themaExpertise.expertise-interactieontwerp:hover::after {
+    content: "interactie ontwerp";
+}
+  
   
   #themaExpertise.expertise-onbekend{
       background-color:var(--color-green-dark);
   }
+  #themaExpertise.expertise-onbekend:hover::after {
+    content: "expertise is onbekend";
+}
+
   /* ///////////////////////// soort die een kleur heeft van de expertise////////// */
   
   #themaSoort{

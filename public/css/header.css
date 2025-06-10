@@ -13,7 +13,7 @@ h1 svg {
 }
 
 #go-to-saved {
-    background-color: #E9E9E9;
+    background-color: var(--color-grey);
     text-decoration: none;
     color: black;
     display: flex;
