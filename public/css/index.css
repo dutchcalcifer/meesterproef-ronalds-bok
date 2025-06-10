@@ -334,6 +334,15 @@ section.index {
           transition: .3s ease-in-out;
       }
   
+      button{
+          position: absolute;
+          top: -.6em; 
+          right: 1em;
+          background-color: transparent;
+          overflow: hidden;
+          border: none;
+          z-index: 10;
+      }
     }
   
     .results li > div{
@@ -343,15 +352,6 @@ section.index {
   
       grid-column: 1/3;
   
-  }
-  button{
-      position: absolute;
-      top: -.6em; 
-      right: 1em;
-      background-color: transparent;
-      overflow: hidden;
-      border: none;
-      z-index: 10;
   }
     .results li button svg {
       position: relative;
