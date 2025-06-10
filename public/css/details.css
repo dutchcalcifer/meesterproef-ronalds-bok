@@ -122,6 +122,7 @@
 
 #detail-wrapper.expertise-interactieontwerp .web-button:hover {
   background-color: var(--color-blue-dark);
+  color: black;
 }
 
 /* terug naar overzicht knop */
