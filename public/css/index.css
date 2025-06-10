@@ -332,6 +332,7 @@ section.index {
           border-radius:2em ;
           padding: .5em 1em;
           transition: .3s ease-in-out;
+          cursor: pointer;
       }
   
       button{
@@ -342,6 +343,7 @@ section.index {
           overflow: hidden;
           border: none;
           z-index: 10;
+          cursor: pointer;
       }
     }
   
