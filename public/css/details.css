@@ -13,6 +13,8 @@
   background: none;
   margin-bottom: 5em;
   margin-top: 5em;
+  flex-wrap: wrap;
+  gap: 1em;
 }
 
 #detail-wrapper.expertise-visual-design .section-partial-right {
@@ -96,6 +98,16 @@
   }
 }
 
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 774px) {
+  .left {
+    max-width: none;
+  }
+
+  .right {
+    min-width: 100%;
+  }
+}
 .web-button {
   text-align: center;
   color: white;
