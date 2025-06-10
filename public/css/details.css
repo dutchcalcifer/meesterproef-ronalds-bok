@@ -1,6 +1,37 @@
-#main-section {
-  max-width: 2560px;
-  margin: 100px 10%;
+.details {
+  width: 100vw;
+  padding: 100px 15vw;
+  background-color: #f7f7f7;
+  min-height: 100vh;
+}
+
+#detail-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: transparent;
+  background: none;
+}
+
+#detail-wrapper.expertise-visual-design .section-partial-right {
+  border: 2px solid var(--color-pink-dark);
+}
+
+#detail-wrapper.expertise-interactieontwerp-visual-design
+  .section-partial-right {
+  border: 2px solid var(--color-pink-dark);
+}
+
+#detail-wrapper.expertise-onbekend .section-partial-right {
+  border: 2px solid var(--color-orange-light);
+}
+
+#detail-wrapper.expertise-interactieontwerp .section-partial-right {
+  border: 2px solid var(--color-blue-dark);
+}
+
+#detail-wrapper.expertise-interactieontwerp-visual-design:hover {
+  animation: none;
 }
 
 #details-h1 {
@@ -12,4 +43,27 @@
   font-size: 1.2em;
   font-weight: 200;
   padding-bottom: 2em;
+}
+
+#korte-beschrijving {
+  padding: 20px 20px;
+  border-radius: 10px;
+  background-color: white;
+  width: fit-content;
+  margin-bottom: 2em;
+}
+
+.left {
+  max-width: 40vw;
+}
+
+.right {
+  min-width: 20vw;
+
+  .section-partial-right {
+    padding: 20px 20px;
+
+    margin-bottom: 1em;
+    border-radius: 10px;
+  }
 }

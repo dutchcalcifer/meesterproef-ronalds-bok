@@ -50,27 +50,31 @@
 <!-- // hier moet de uiteindelijke structuur van annika in -->
 <% if (results.length> 0) { %>
   <ul class="results">
-    <% results.forEach(result=> { %>
-      <li data-id="<%= result.id %>">
-        <div>
-          <div class="color-theme <%= result.class %>"></div>
-          <button>
-            <svg viewBox="0 0 24 24">
-              <path d="M6 4v16l6-6 6 6V4z"></path>
-            </svg>
-          </button>
-        </div>
-        <section>
-          <h2>
-            <%= result.naam %>
-          </h2>
-          <p>
-            <%= result.korte_beschrijving %>
-          </p>
-        </section>
-        <a href="/item/<%= result.id %>">lees meer </a>
-      </li>
-      <% }) %>
+    <% if (item.rel_beroepstaak && item.rel_beroepstaak.length) { %>
+      <% item.rel_beroepstaak.forEach(beroepstaak=> { %>
+        <li data-id="<%= beroepstaak.id %>">
+          <div>
+            <div class="color-theme <%= beroepstaak.class %>"></div>
+            <button>
+              <svg viewBox="0 0 24 24">
+                <path d="M6 4v16l6-6 6 6V4z"></path>
+              </svg>
+            </button>
+          </div>
+          <section>
+            <h2>
+              <%= beroepstaak.naam %>
+            </h2>
+            <p>
+              <%= beroepstaak.korte_beschrijving %>
+            </p>
+          </section>
+          <a href="/item/<%= beroepstaak.id %>">lees meer</a>
+        </li>
+        <% }) %>
+          <% } else { %>
+            <p>Geen gerelateerde beroepstaken gevonden.</p>
+            <% } %>
   </ul>
 
   <% } else if (query) { %>
