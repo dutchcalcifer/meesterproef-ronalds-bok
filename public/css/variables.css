@@ -1,10 +1,14 @@
 :root {
     /* colors */
+    --background:#F7F7F7;
     --color-light: #fff;
+    --color-grey:#E9E9E9;
     --color-dark: #353535;
-    --color-darker: #000;
+    --color-darker: rgb(0,0,0);
+    
+    --shadow:rgba(0, 0, 0, 0.1);
 
-    --color-orange-light: #FDDA4E;
+    --color-orange-light: #FEF11F;
     --color-purple-dark: #BF80FF;
     --color-green-dark: #99DE5F;
     --color-pink-dark: #ed2956;

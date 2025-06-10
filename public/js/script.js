@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const savedChat = localStorage.getItem("chatHistory");
   if (savedChat) {
     conversation = JSON.parse(savedChat);
-    conversation.forEach(msg => appendMessage(msg.role, msg.content));
+    conversation.forEach((msg) => appendMessage(msg.role, msg.content));
   }
 
   // Form submit handler - maar 1x event listener!
@@ -52,8 +52,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await res.json();
 
         if (data.final) {
-          messages.children[placeholderIndex].textContent = "ik ga voor je aan de slag";
-          conversation.push({ role: "assistant", content: "ik ga voor je aan de slag" });
+          messages.children[placeholderIndex].textContent =
+            "ik ga voor je aan de slag, ik heb de volgende resultaten gevonden:";
+          conversation.push({
+            role: "assistant",
+            content:
+              "ik ga voor je aan de slag, ik heb de volgende resultaten gevonden:",
+          });
           localStorage.setItem("chatHistory", JSON.stringify(conversation));
 
           setTimeout(() => {
@@ -65,7 +70,8 @@ document.addEventListener("DOMContentLoaded", () => {
           localStorage.setItem("chatHistory", JSON.stringify(conversation));
         }
       } catch (err) {
-        messages.children[placeholderIndex].textContent = "Er ging iets mis. Probeer opnieuw.";
+        messages.children[placeholderIndex].textContent =
+          "Er ging iets mis. Probeer opnieuw.";
       }
     });
   }
