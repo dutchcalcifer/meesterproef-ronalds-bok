@@ -86,7 +86,8 @@ export async function gpt(conversation) {
 
   // Create chat completion
   const response = await openai.chat.completions.create({
-    model: "gpt-4o-mini",
+    model: "gpt-4o-mini", // dev
+    // model: "gpt-4o", // prod
     messages,
     temperature: 0.0,
   });
