@@ -83,7 +83,6 @@ section.index {
                     padding-left: 1em;
                     border: none;
                     background-color: transparent;
-                    color: var(--color-grey);
                 }
 
                 button {
@@ -339,7 +338,7 @@ section.index {
           align-self: flex-end;
           margin-top: auto;
           text-decoration: none;
-          outline:.2em solid transparent ;
+          outline:.2em solid var(--color-darker);
           border-radius:2em ;
           padding: .5em 1em;
           transition: .3s ease-in-out;
