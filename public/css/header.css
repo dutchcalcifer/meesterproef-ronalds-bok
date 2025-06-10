@@ -1,48 +1,25 @@
 header {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    form.theme {
-        width: fit-content;
-        height: fit-content;
+    margin: 4em 2em 2em 2em;
+}
 
-        label {
-            display: block;
-            width: 4em;
-            height: 2em;
-            border-radius: 1em;
-            padding: .25em;
-            background: var(--color-main);
-            box-shadow: inset 1px 1px 5px var(--color-secondary);
-            position: relative;
-            cursor: pointer;
-        }
+h1 svg {
+    height: 110px;
+}
 
-        label::after {
-            content: "";
-            display: block;
-            width: 1.5em;
-            height: 1.5em;
-            background-color: var(--color-secondary);
-            position: absolute;
-            left: .25em;
-            transition: left .5s;
-            border-radius: .75em;
-        }
+.hide-text {
+    display: none;
+}
 
-        label:has(input:checked)::after {
-            left: 2.25em;
-        }
+#go-to-saved {
+    background-color: #E9E9E9;
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
 
-        [type=checkbox] {
-            display: none;
-            
-        }
-    }
-
-    svg{
-        height:5em;
-        padding: 0;
-        margin: 0;
+    svg {
+        height: 2em;
     }
 }
