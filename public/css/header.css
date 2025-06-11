@@ -22,7 +22,15 @@ h1 svg {
     max-width: 100%;
     object-fit: contain;
 }
+h1 svg:hover {
+    transform: scale(1.05);
+    transition: transform .5s ease-out;
+}
 
+#home:focus{
+    outline:.1em solid var(--color-darker) ;
+    border-radius: 2em;
+}
 .hide-text {
     display: none;
 }

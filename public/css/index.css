@@ -49,6 +49,7 @@ section.index {
                 background-color:var( --color-grey);
                 border: none;
                 position: relative;
+                cursor: pointer;
 
                 &::before {
                     content: "";
@@ -63,6 +64,11 @@ section.index {
                     left: -.5em;
                     overflow: visible;
                 }
+            }
+            #toggleChat:focus-visible{
+                outline: .1em solid var(--color-darker);
+                background-color: var(--background);
+                font-weight: 300;
             }
 
             form {
@@ -85,6 +91,10 @@ section.index {
                     background-color: transparent;
 
                 }
+                input:focus-visible{
+                    outline: .1em solid var(--color-darker);
+                    border-radius:.5em 2em 2em .5em;
+                }
 
                 button {
                     position: absolute;
@@ -101,6 +111,11 @@ section.index {
                         height: 2.2em;
                         width: 2.2em;
                     }
+
+                }
+                button:focus-visible{
+                outline: .2em solid var(--color-darker);
+                border-radius: 2em;
                 }
             }
         }
@@ -134,6 +149,7 @@ section.index {
             overflow-y: scroll;
             margin: 1em;
             margin-top: 3em;
+            margin-bottom: 0;
             padding:0 2.5em;
 
 
@@ -155,8 +171,19 @@ section.index {
                 font-weight: 300;
                 border-radius: 1em 1em .3em 1em;
             }
+            .loading{
+                height: 1em;
+                width: 1em;
+                border-radius: 50%;
+                animation: waiting 3s infinite;
+                color: transparent;
+                aspect-ratio: 1;
+                padding: 0;
+            }
         }
     }
+    
+   
 
     .custom-summary {
         grid-column: 1/2;
@@ -333,6 +360,17 @@ section.index {
     }
 }
  
+@keyframes waiting {
+    0% {
+        background-color: #000;
+    }
+    50% {
+        background-color: rgb(202, 202, 202);
+    }
+    100% {
+        background-color: #000;
+    }
+}
   
   /* //////////////////////////// resultaten grid////////////////////////// */
   .results{
@@ -402,7 +440,7 @@ section.index {
           transform: translateY(0.1em) scale(0.95);
           background-color: var(--color-dark);
         }
-        a:focus{
+        a:focus-visible{
             outline:.2em solid var(--color-darker) ;
             background: var(--color-main);
             color:var(--color-darker);
@@ -418,7 +456,7 @@ section.index {
           z-index: 10;
           cursor: copy;
       }
-      button:focus svg {
+      button:focus-visible svg {
         stroke:var(--color-darker);
         stroke-width: 1;
         fill: var(--color-main);
@@ -568,3 +606,10 @@ section.index {
    white-space: nowrap;
    width: 1px;
     }
+
+
+/* ////////// opgeslagen styling */
+
+.saved h1{
+    margin-bottom: 2em;
+}
