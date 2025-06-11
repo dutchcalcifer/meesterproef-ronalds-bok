@@ -24,6 +24,7 @@ section.index {
         border-radius: 2em;
         transition: height 1s, width 1s,background-color 1s;
         padding: .5em;
+        position: relative;
         
         &.open {
             height: 60vh;
@@ -31,6 +32,10 @@ section.index {
             
             div{
                 border: .2em solid var(--background);
+            }
+
+            #clearChat {
+                display: block !important;
             }
         }
 
@@ -72,9 +77,9 @@ section.index {
                 font-weight: 300;
             }
             #toggleChat:hover{
-                background-color: var(--color-dark);
-                color: var(--color-main);
-                transition: background-color .7s ease;
+                outline: .15em solid var(--color-darker);
+                background-color: var(--background);
+                transition: background-color .3s ease, outline .3s ease;
             }
 
             form {
@@ -159,6 +164,24 @@ section.index {
             margin-bottom: 0;
             padding:0 2.5em;
 
+            #clearChat {
+                opacity: .5;
+                display: none;
+                position: absolute;
+                top: 1.75em;
+                right: 50%;
+                transform: translateX(50%);
+                border: 1px solid var(--color-darker);
+                padding: .5em 1em;
+                background: none;
+                transition: .2s;
+                border-radius: 2em;
+
+                &:hover {
+                    opacity: 1;
+                    cursor: pointer;
+                }
+            }
 
             li {
                 max-width: 80%;
@@ -202,7 +225,7 @@ section.index {
         font-size: 1em;
         width: 100%;
         max-height: 2em;
-        transition: .5s;
+        transition: .5s ease-in-out;
         overflow: hidden;
 
         input {
@@ -267,16 +290,22 @@ section.index {
                     border-radius: 2em;
                     min-width: 2em;
                     opacity: .6;
+                    text-align: center;
 
                     &:has(:checked) {
                         border: 1px solid var(--color-filter-blue);
                         background-color: var(--color-filter-lightblue);
                         color: var(--color-filter-blue);
                         opacity: 1;
+            
                     }
 
                     &:hover {
                         opacity: 1;
+                    }
+
+                    &:has([name=rel_jaar]) {
+                        text-align: center;
                     }
                 }
             }
@@ -299,24 +328,30 @@ section.index {
         #activeFilters {
             display: flex;
             flex-wrap: wrap;
+            justify-content: space-between;
             gap: .5em;
+            margin: 2em 0 1.5em 0;
 
             .amount-of-results {
                 display: flex;
                 gap: .25em;
                 font-weight: normal;
+                align-items: center;
 
                 &::before {
                     content: "";
                     display: block;
                     width: .125em;
                     height: 100%;
-                    background-color: black;
+                    background-color:var(--color-darker);
                 }
             }
 
             label:has(input[type=checkbox]:not(:checked)) {
                 display: none;
+            }
+            label{
+                margin: .2em 0 ;
             }
 
             label:has(:checked) {
@@ -360,24 +395,21 @@ section.index {
     }
 }
 
-@keyframes details {
-    0% {
-        height: 2em;
-    }
-    100% {
-        height: 100%;
+@media (max-width: 600px) {
+    .filters {
+        grid-row: 2/3;
     }
 }
  
 @keyframes waiting {
     0% {
-        background-color: #000;
+        background-color: var(--color-darker);
     }
     50% {
-        background-color: rgb(202, 202, 202);
+        background-color: var(--color-grey);
     }
     100% {
-        background-color: #000;
+        background-color: var(--color-darker);
     }
 }
   
@@ -410,12 +442,12 @@ section.index {
       h2{
           grid-row: 3/4;
           font-weight: 400;
-          font-size: var( --font-xl);
+          font-size: 2em;
           hyphens: auto;
   }
       p:nth-of-type(2){
           grid-row: 4/5;
-          font-size:var(--font-m);
+          font-size:1.1em;
           font-weight: 200;
           margin: 2em 0;
       }
@@ -586,7 +618,7 @@ section.index {
   
   #themaSoort{
       grid-row:2/3;
-      font-size:var(--font-m);
+      font-size:1.1em;
       font-weight: 300;
       font-style: italic;
       padding: 0;
