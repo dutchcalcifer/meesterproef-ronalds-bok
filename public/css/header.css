@@ -35,12 +35,13 @@ h1 svg {
 
 #go-to-saved {
     text-decoration: none;
-    color: black;
+    color: var(--color-darker);
     display: flex;
     align-items: center;
     padding: .5em 1em;
     transition: background-color .5s, border-radius .5s ;
     border-radius: 2em;
+    background-color: var(--color-grey);
 
     svg {
         height: 2em;
@@ -52,11 +53,16 @@ h1 svg {
     }
 }
 
-#go-to-saved:hover{
-    background-color: var(--color-grey);
-    box-shadow: var(--color-main) 1px 1px 10px;
-}
-
 #go-to-saved:focus{
     outline: .2em solid var(--color-darker);
+}
+
+@media (min-width: 600px){
+    #go-to-saved{
+        background-color: transparent;
+    }
+    #go-to-saved:hover{
+        background-color: var(--color-grey);
+        box-shadow: var(--color-main) 1px 1px 10px;
+    }
 }
