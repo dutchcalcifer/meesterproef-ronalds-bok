@@ -1,37 +1,68 @@
 header {
-    form.theme {
-        width: fit-content;
-        height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: .5em;
+    margin: 2em 4em;
 
-        label {
-            display: block;
-            width: 4em;
-            height: 2em;
-            border-radius: 1em;
-            padding: .25em;
-            background: var(--color-main);
-            position: relative;
-            cursor: pointer;
-        }
+    @media (max-width: 600px) {
+        justify-content: center;
+        margin: 2em;
+        margin-bottom: 1em;
+    }
+}
 
-        label::after {
-            content: "";
-            display: block;
-            width: 1.5em;
-            height: 1.5em;
-            background-color: var(--color-secondary);
-            position: absolute;
-            left: .25em;
-            transition: left .5s;
-            border-radius: .75em;
-        }
+#home, h1 {
+    display: block;
+}
 
-        label:has(input:checked)::after {
-            left: 2.25em;
-        }
+h1 svg {
+    max-height: 110px;
+    display: block;
+    max-width: 100%;
+    object-fit: contain;
+}
 
-        [type=checkbox] {
-            display: none;
+
+#home:focus{
+    outline:.1em solid var(--color-darker) ;
+    border-radius: 2em;
+}
+.hide-text {
+    display: none;
+}
+
+#go-to-saved {
+    text-decoration: none;
+    color: var(--color-darker);
+    display: flex;
+    align-items: center;
+    padding: .5em 1em;
+    transition: background-color .5s, border-radius .5s ;
+    border-radius: 2em;
+    background-color: var(--color-grey);
+
+    svg {
+        height: 2em;
+        
+        path {
+            fill: none;
+            stroke: black;
         }
+    }
+}
+
+#go-to-saved:focus{
+    outline: .2em solid var(--color-darker);
+}
+
+@media (min-width: 600px){
+    #go-to-saved{
+        background-color: transparent;
+    }
+    #go-to-saved:hover{
+        background-color: var(--color-grey);
+        box-shadow: var(--color-main) 1px 1px 10px;
     }
 }

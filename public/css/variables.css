@@ -1,43 +1,26 @@
 :root {
     /* colors */
+    --background:#F7F7F7;
     --color-light: #fff;
-    --color-dark: #353535;
-    --color-darker: #000;
+    --color-grey:#E9E9E9;
 
-    --color-orange-light: #EFCE7B;
+    --color-dark: #565656;
+    --color-darker: rgb(0,0,0);
+    
+    --shadow:rgba(0, 0, 0, 0.1);
 
-    --color-purple-light: #D3B6D3;
-    --color-purple-dark: #6D1F42;
-
-    --color-green-light: #AACC96;
-    --color-green-dark: #1C3B30;
-
-    --color-pink-light: #FFBCD5;
-    --color-pink-dark: #C50049;
-
-    --color-blue-light: #B8CEE8;
-    --color-blue-dark: #0D3C74;
+    --color-orange-light: #FEF11F;
+    --color-purple-dark: #BF80FF;
+    --color-green-dark: #99DE5F;
+    --color-pink-dark: #ed2956;
+    --color-blue-dark: #00CEFF;
+    --color-filter-blue: #0076FF;
+    --color-filter-lightblue: #E5F0FC;
 
 
     /* light-dark colors */
-    --color-main: light-dark(var(--color-light), var(--color-dark));
-    --color-secondary: light-dark(var(--color-dark), var(--color-light));
-
-    --orange-main: light-dark(var(--color-orange-light), var(--color-green-dark));
-    --orange-secondary: light-dark(var(--color-green-dark), var(--color-orange-light));
-
-    --purple-main: light-dark(var(--color-purple-light), var(--color-purple-dark));
-    --purple-secondary: light-dark(var(--color-purple-dark), var(--color-purple-light));
-
-    --green-main: light-dark(var(--color-green-light), var(--color-green-dark));
-    --green-secondary: light-dark(var(--color-green-dark), var(--color-green-light));
-
-    --pink-main: light-dark(var(--color-pink-light), var(--color-purple-dark));
-    --pink-secondary: light-dark(var(--color-purple-dark), var(--color-pink-light));
-
-    --blue-main: light-dark(var(--color-blue-light), var(--color-blue-dark));
-    --blue-secondary: light-dark(var(--color-blue-dark), var(--color-blue-light));
-
+    --color-main: light-dark(var(--color-light), var(--color-darker));
+    --color-secondary: light-dark(var(--color-darker), var(--color-light));
 
     /* light/dark mode logic */
     :has([value=theme]:checked) {
@@ -53,8 +36,5 @@
     * {
         font-family: 'DM Sans', sans-serif;
     }
-    --font-xl: ;
-    --font-l: ;
-    --font-m: clamp();
-    --font-s: ;
 }
+ 

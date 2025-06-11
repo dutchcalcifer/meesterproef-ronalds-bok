@@ -29,8 +29,12 @@ export async function getFilters() {
     "rel_cmd_expertise",
     "rel_beroepstaak",
     "rel_vakgebied",
-    "moeilijkheid",
-    "soort"
+    "soort",
+    "rel_thema",
+    "rel_competentie",
+    "rel_principe",
+    "rel_methode",
+    "meer_bij_personen"
   ];
 
   return extractFiltersFromData(data.data, filterFields);
@@ -48,4 +52,17 @@ export function parseFiltersFromQuery(filterQuery) {
     }
   }
   return filters;
+}
+
+export function prettifyLabel(fieldName) {
+  const words = fieldName
+    .replace(/^rel_/, "")
+    .split("_")
+    .map(word => word.toLowerCase());
+
+  if (words.length === 0) return "";
+
+  words[0] = words[0].charAt(0).toUpperCase() + words[0].slice(1);
+
+  return words.join(" ");
 }

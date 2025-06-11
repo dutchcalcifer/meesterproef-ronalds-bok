@@ -1,14 +1,25 @@
 const button = document.querySelector("#toggleChat")
-const searchBox = document.querySelector(":has(> .chat-box)")
-let open = false
+const searchBox = document.querySelector(".search")
+let open = true
+let state = JSON.parse(localStorage.getItem("chatState"));
 
-button.addEventListener("click", () => {
-    console.log("click")
-    if (open == true) {
+if (state) {
+    console.log("close de chat!")
+    open = false
+}
+
+button.addEventListener("click", changeOpenState)
+
+function changeOpenState() {
+    if (open === false) {
         searchBox.classList.remove("open")
-        open = false
+        button.innerHTML = "bekijk chat"
+        open = true
     } else {
         searchBox.classList.add("open")
-        open = true
+        button.innerHTML = "verberg chat"
+        open = false
     }
-})
+}
+
+changeOpenState()

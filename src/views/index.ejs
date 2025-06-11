@@ -1,61 +1,54 @@
-<details  class="custom-summary">
-  <summary>Filters</summary>
-  <section>
-    <p>filterinformatie</p>
-    <p>filterinformatie</p>
-    <p>filterinformatie</p>
-    <p>filterinformatie</p>
-    <p>filterinformatie</p>
-  </section>
-</details>
+<section class="filters">
+  <label>Filters
+    <input type="checkbox">
+  </label>
+  <form method="GET" action="/" class="searchFilter">
+    <% Object.entries(filters).forEach(([veld, opties])=> { %>
+      <fieldset>
+        <legend>
+          <%= filterLabels[veld] %>
+        </legend>
+        <% const checkedValues=Array.isArray(query[veld]) ? query[veld] : (query[veld] ? [query[veld]] : []); %>
+          <% opties.forEach(optie=> {
+            const isChecked = checkedValues.includes(optie);
+            %>
+            <label>
+              <input type="checkbox" name="<%= veld %>" value="<%= optie %>" <%=isChecked ? "checked" : "" %> >
+              <%= optie %>
+            </label>
+            <% }) %>
+      </fieldset>
+      <% }) %>
+  </form>
+</section>
 
-<div class="chat-box">
+<section class="search">
   <ul id="messages">
-    <li class="assistant">Hallo! Ik ben KAI (Knowledge AI), hoe kan ik je helpen?</li>
-    <li class="user">Ik weet het niet</li>
-    <li class="assistant">Oke, zoek het dan zelf uit.</li>
-  </ul>
-  
-  <div>
-    <form method="get" action="/">
-      <input type="text" name="q" placeholder="Zoeken..." value="<%= query %>" />
-      <button type="submit"><svg xmlns:xlink="http://www.w3.org/1999/xlink" alt="Search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="transform: scale(1);"><path d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" fill="#283237"></path></svg></button>
-    </form>
-
-    <button type="button" id="toggleChat">bekijk chat</button>
-  </div>
-</div>
-
-
-<ul class="results">
-  <% for(i=0; i<10; i++) { %>
-    <li class="card">
-      <div>
-        <section>
-          <h1>vormgeving</h1>
-          <p>docent naam</p>
-        </section>
-        <div>
-          <p>1</p>
-        </div>
-      </div>
-      <a href="">Https//:example.com</a>
+    <button id="clearChat">clear chat</button>
+    <li class="welcome">
+      <h2>Hallo! Ik ben Kai,</h2> je persoonlijke gids voor CMD. Waar ben je vandaag naar
+      op zoek – een theorie, methode, vakgebied of iets heel anders?
     </li>
-  <% } %>
   </ul>
 
-<% if (results.length > 0) { %>
-<ul>
-  <% results.forEach(result => { %>
-  <li>
-    <a href="/item/<%= result.id %>"><%= result.naam %></a>
-    <p><%= result.ondertitel %></p>
-  </li>
-  <% }) %>
-</ul>
-<% } else if (query) { %>
-<p>Geen resultaten gevonden voor "<%= query %>"</p>
-<% } %>
-<a href="/index">Index</a>
-<a href="/chat">Chat</a>
-<script src="/js/toggle-chat.js"></script>
+  <div>
+    <button type="button" id="toggleChat">bekijk chat</button>
+
+    <form id="search-form">
+      <input id="search-input" autocomplete="off" placeholder="Wat is je vraag?" />
+      <button type="submit">
+        <svg xmlns:xlink="http://www.w3.org/1999/xlink" alt="Search" xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24" width="24" height="24" style="transform: scale(1)">
+          <path
+            d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"
+            fill="#6b6b6b"></path>
+        </svg>
+      </button>
+    </form>
+  </div>
+</section>
+
+<%- include('components/result-list', { filters, results, query }) %>
+
+  <script src="/js/toggle-chat.js"></script>
+  <script src="/js/showActiveFilters.js"></script>

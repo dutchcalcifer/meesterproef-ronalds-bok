@@ -1,2 +1,105 @@
-<h1>Naam: <%= item.naam %></h1>
-<p>Ondertitel: <%= item.ondertitel %></p>
+<a class="back-button" href="/">Terug naar overzicht</a>
+<section id="detail-wrapper" class="<%= item.class %>">
+
+    <div class="left">
+
+
+        <div id="themaExpertise" class="color-theme <%= item.class %>"></div>
+
+        <h1 id="details-h1">
+            <%= item.naam %>
+        </h1>
+
+        <% if (item.ondertitel) { %>
+            <h2 class="details-subtitle">
+                <%= item.ondertitel %>
+            </h2>
+            <% } %>
+
+                <% if (item.korte_beschrijving) { %>
+                    <p id="korte-beschrijving"><%- item.korte_beschrijving.replace(/\n/g, "<br>" ) %></p>
+                    <% } %>
+
+                        <% if (item.toepassing) { %>
+                            <h2>Toepassing</h2>
+                            <p><%- item.toepassing.replace(/\n/g, "<br>" ) %></p>
+                            <% } %>
+    </div>
+
+    <div class="right">
+        <% if (item.rel_jaar || item.moeilijkheid) { %>
+            <div class="section-partial-right">
+                <h3>Materiaal</h3>
+                <% if (item.rel_jaar) { %>
+                    <h4>Jaar</h4>
+                    <p>
+                        <%= item.rel_jaar %>
+                    </p>
+                    <% } %>
+                        <% if (item.moeilijkheid) { %>
+                            <h4>Moeilijkheid</h4>
+                            <p>
+                                <%= item.moeilijkheid %>
+                            </p>
+                            <% } %>
+            </div>
+            <% } %>
+
+                <% if (item.schrijver_of_bron) { %>
+                    <div class="section-partial-right">
+                        <h3>Bron / schrijver</h3>
+                        <p>
+                            <%= item.schrijver_of_bron %>
+                        </p>
+                    </div>
+                    <% } %>
+
+                        <% if (item.soort || item.rel_principe || item.rel_competentie || item.rel_vakgebied) { %>
+                            <div class="section-partial-right">
+                                <h3>Soort & gerelateerd</h3>
+                                <% if (item.soort) { %>
+                                    <h4>Soort</h4>
+                                    <p>
+                                        <%= item.soort %>
+                                    </p>
+                                    <% } %>
+                                        <% if (item.rel_principe) { %>
+                                            <h4>Principe</h4>
+                                            <p>
+                                                <%= item.rel_principe %>
+                                            </p>
+                                            <% } %>
+                                                <% if (item.rel_competentie) { %>
+                                                    <h4>Competentie</h4>
+                                                    <p>
+                                                        <%= item.rel_competentie %>
+                                                    </p>
+                                                    <% } %>
+                                                        <% if (item.rel_vakgebied) { %>
+                                                            <h4>Vakgebied</h4>
+                                                            <p>
+                                                                <%= item.rel_vakgebied %>
+                                                            </p>
+                                                            <% } %>
+                            </div>
+                            <% } %>
+
+                                <% if (item.meer_op_web) { %>
+                                    <a href="<%= item.meer_op_web %>" target="_blank" class="web-button">Meer op web</a>
+                                    <% } %>
+    </div>
+</section>
+
+<% if (item.rel_beroepstaak && item.rel_beroepstaak.length> 0) { %>
+    <section class="gerelateerd-wrapper">
+        <h2>Gerelateerde beroepstaken</h2>
+        <%- include('../components/result-list', { results: item.rel_beroepstaak, filters: {}, query: {} }) %>
+    </section>
+    <% } %>
+
+        <% if (item.rel_methode && item.rel_methode.length> 0) { %>
+            <section class="gerelateerd-wrapper">
+                <h2>Gerelateerde methodes</h2>
+                <%- include('../components/result-list', { results: item.rel_methode, filters: {}, query: {} }) %>
+            </section>
+            <% } %>
