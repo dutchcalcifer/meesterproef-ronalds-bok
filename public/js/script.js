@@ -7,13 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let state = JSON.parse(localStorage.getItem("chatState"));
   let conversation = [];
 
-  // Chat state
-  if (state) {
-    console.log("chatState is true");
-  } else {
-    console.log("chatState is false");
-  }
-
   function appendMessage(role, text) {
     if (!messages) return;
     const li = document.createElement("li");
