@@ -22,6 +22,7 @@ section.index {
         overflow-y: visible;
         border-radius: 2em;
         transition: height 1s, width 1s,background-color 1s;
+        padding: .5em;
         
         &.open {
             height: 60vh;

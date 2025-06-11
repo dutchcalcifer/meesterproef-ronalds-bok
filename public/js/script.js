@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await res.json();
 
         if (data.final) {
+          console.log("data.final")
           messages.children[placeholderIndex].textContent =
             "ik ga voor je aan de slag, ik heb de volgende resultaten gevonden:";
           conversation.push({
@@ -62,7 +63,9 @@ document.addEventListener("DOMContentLoaded", () => {
           localStorage.setItem("chatHistory", JSON.stringify(conversation));
 
           setTimeout(() => {
+            console.log("er komt iets aan")
             const results = parseQuery(data.query)
+            console.log(results)
             updateFilters(results)
             changeOpenState()
           }, 500);
@@ -154,6 +157,7 @@ function parseQuery(queryString) { // chatGPT
 function updateFilters(newFilters) {
   newFilters.forEach(filter => {
     const element = document.querySelector(`input[name="${filter.name}"][value="${filter.id}"]`)
+    console.log(element)
     element.checked = true
     const event = new Event('change', { bubbles: true })
     element.dispatchEvent(event)
