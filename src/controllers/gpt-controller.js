@@ -1,16 +1,18 @@
+// gpt-controller.js
+
 // Import packages and utilities
 import openai from "../../server.js";
 import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 
-// Resolve current file paths
+// Resolve the current file location
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Read the base prompt from JSON (fallback to default)
+// Read the base prompt from JSON (fallback to a minimal default)
 const promptPath = path.join(__dirname, "../data/prompts.json");
-let basePrompt = "Je bent een zoekassistent."; // default prompt
+let basePrompt = "Je bent een zoekassistent."; // fallback prompt
 try {
   const data = await fs.readFile(promptPath, "utf-8");
   const parsed = JSON.parse(data);
@@ -19,7 +21,7 @@ try {
   console.error("Failed to load system prompt:", err);
 }
 
-// Define allowed filter fields (edit here to add more later)
+// Allowed filter fields (extend this list when new filters are added)
 export const allowedFields = [
   "rel_jaar",
   "rel_vak",
@@ -44,16 +46,34 @@ try {
   console.error("Failed to load vector data:", err);
 }
 
-// Helper: clean up the FINAL_QUERY string before redirecting
+// Helper: safely encode each value in FINAL_QUERY
 function sanitizeFinalQuery(raw) {
-  return raw
-    .replace(/\s*=\s*/g, "=")
-    .replace(/\s*&\s*/g, "&")
-    .replace(/\s+/g, "+")
-    .replace(/\+\+/g, "+");
+  // 1) Remove extra spaces around "=" and "&"
+  const trimmed = raw.replace(/\s*=\s*/g, "=").replace(/\s*&\s*/g, "&");
+
+  // 2) Process each key=value pair separately
+  const cleaned = trimmed
+    .split("&")
+    .map((pair) => {
+      const [key, val = ""] = pair.split("=");
+
+      // a) Convert spaces to "+"
+      let v = val.replace(/\s+/g, "+");
+
+      // b) Encode special characters the prompt specifies
+      v = v.replace(/\//g, "%2F").replace(/\(/g, "%28").replace(/\)/g, "%29");
+
+      // c) Collapse multiple plus signs
+      v = v.replace(/\++/g, "+");
+
+      return `${key}=${v}`;
+    })
+    .join("&");
+
+  return cleaned;
 }
 
-// Helper: build compact vector context for GPT
+// Helper: build a compact vector context string
 function buildContextSnippets(vec) {
   return vec
     .map((item) => {
@@ -66,35 +86,37 @@ function buildContextSnippets(vec) {
     .join("\n\n");
 }
 
-// Exported GPT handler
+// Main GPT handler
 export async function gpt(conversation) {
-  // Combine base prompt with dynamic field list
+  // Choose model via environment variable (set in npm scripts)
+  const MODEL_NAME = process.env.OPENAI_MODEL || "gpt-4o-mini";
+
+  // Compose the system prompt with the dynamic field list
   const systemPrompt = `${basePrompt}\n\nBeschikbare filtervelden (exact spellen): ${allowedFields.join(
     ", "
   )}`;
 
-  // Append vector context
+  // Add vector context
   const contextPrompt = `Je kent de volgende CMD-termen en bijbehorende filtervelden:\n\n${buildContextSnippets(
     vectorData
   )}`;
 
-  // Assemble full message list for OpenAI
+  // Full message list for OpenAI
   const messages = [
     { role: "system", content: `${systemPrompt}\n\n${contextPrompt}` },
     ...conversation,
   ];
 
-  // Create chat completion
+  // Request a chat completion
   const response = await openai.chat.completions.create({
-    model: "gpt-4o-mini", // dev
-    // model: "gpt-4o", // prod
+    model: MODEL_NAME,
     messages,
     temperature: 0.0,
   });
 
   const text = response.choices[0].message.content.trim();
 
-  // Return final query or next chat message
+  // Detect and return either a FINAL_QUERY or an ordinary reply
   if (/^FINAL_QUERY:/i.test(text)) {
     const raw = text.replace(/^FINAL_QUERY:\s*/i, "");
     return { type: "final_query", query: sanitizeFinalQuery(raw) };
