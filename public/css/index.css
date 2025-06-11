@@ -175,6 +175,7 @@ section.index {
                 padding: .5em 1em;
                 background: none;
                 transition: .2s;
+                border-radius: 2em;
 
                 &:hover {
                     opacity: 1;
@@ -386,6 +387,12 @@ section.index {
 
     #resultsAndFilters {
         grid-column: 2/3;
+    }
+}
+
+@media (max-width: 600px) {
+    .filters {
+        grid-row: 2/3;
     }
 }
  

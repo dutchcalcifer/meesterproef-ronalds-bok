@@ -9,6 +9,7 @@ header {
     @media (max-width: 600px) {
         justify-content: center;
         margin: 2em;
+        margin-bottom: 1em;
     }
 }
 
