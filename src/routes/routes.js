@@ -8,7 +8,6 @@ import { addExpertiseClassToData, addExpertiseClassToItem } from "../controllers
 import { getDetailData } from "../controllers/details-controller.js";
 import { getSavedItems } from "../controllers/saved-controller.js";
 
-
 // Create a new router instance
 const router = express.Router();
 
@@ -83,13 +82,18 @@ router.get("/item/:id", async (req, res, next) => {
 
 router.get("/saved", async (req, res, next) => {
   try {
-    const { ids } = req.query;
-
-    if (!ids) {
-      return res.redirect("/"); // of render lege saved pagina
+    const rawCookie = req.cookies.savedIds;
+    let savedIds = [];
+  
+    try {
+      savedIds = JSON.parse(decodeURIComponent(rawCookie));
+    } catch {
+      // als parsing mislukt, gebruik lege array
+      savedIds = [];
     }
 
-    const results = await getSavedItems(ids);
+    const results = await getSavedItems(savedIds);
+    console.log(results.length)
 
     res.render("pages/saved", {
       layout: "layout/layout",
