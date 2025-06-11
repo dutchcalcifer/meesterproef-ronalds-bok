@@ -302,11 +302,13 @@ section.index {
             display: flex;
             flex-wrap: wrap;
             gap: .5em;
+            margin: 2em 0 1.5em 0;
 
             .amount-of-results {
                 display: flex;
                 gap: .25em;
                 font-weight: normal;
+                align-items: center;
 
                 &::before {
                     content: "";
@@ -319,6 +321,9 @@ section.index {
 
             label:has(input[type=checkbox]:not(:checked)) {
                 display: none;
+            }
+            label{
+                margin: .2em 0 ;
             }
 
             label:has(:checked) {
