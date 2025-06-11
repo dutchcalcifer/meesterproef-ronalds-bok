@@ -1,8 +1,12 @@
 const button = document.querySelector("#toggleChat")
 const searchBox = document.querySelector(".search")
 let open = true
-const openState = localStorage.getItem("chatState")
-console.log(openState)
+let state = JSON.parse(localStorage.getItem("chatState"));
+
+if (state) {
+    console.log("close de chat!")
+    open = false
+}
 
 button.addEventListener("click", changeOpenState)
 
