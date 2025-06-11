@@ -4,7 +4,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("search-form");
   const input = document.getElementById("search-input");
   const clearChat = document.getElementById("clearChat");
+  let state = JSON.parse(localStorage.getItem("chatState"));
   let conversation = [];
+
+  // Chat state
+  if (state) {
+    // close chat
+    console.log("chatState is true");
+  } else {
+    // leave open
+    console.log("chatState is false");
+  }
 
   function appendMessage(role, text) {
     if (!messages) return;
