@@ -19,12 +19,12 @@ h1 svg {
 }
 
 #go-to-saved {
-    background-color: var(--color-grey);
     text-decoration: none;
     color: black;
     display: flex;
     align-items: center;
-    padding: .5em;
+    padding: .5em 1em;
+    transition: background-color .5s, border-radius .5s ;
     border-radius: 2em;
 
     svg {
@@ -35,4 +35,13 @@ h1 svg {
             stroke: black;
         }
     }
+}
+
+#go-to-saved:hover{
+    background-color: var(--color-grey);
+    box-shadow: var(--color-main) 1px 1px 10px;
+}
+
+#go-to-saved:focus{
+    outline: .2em solid var(--color-darker);
 }

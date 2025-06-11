@@ -23,11 +23,11 @@ section.index {
         border-radius: 2em;
         transition: height 1s, width 1s,background-color 1s;
         padding: .5em;
-
+        
         &.open {
             height: 60vh;
             background-color: var(--color-light);
-
+            
             div{
                 border: .2em solid var(--background);
             }
@@ -83,6 +83,7 @@ section.index {
                     padding-left: 1em;
                     border: none;
                     background-color: transparent;
+
                 }
 
                 button {
@@ -94,7 +95,7 @@ section.index {
                     align-items: center; /* centreert verticaal */
                     justify-content: center; /* centreert horizontaal */
                     height: 100%; /* zorg ervoor dat de button net zo hoog is als het inputveld */
-
+                
                     svg {
                         align-self: center;
                         height: 2.2em;
@@ -160,6 +161,10 @@ section.index {
                 background-color: var(--color-darker);
             }
 
+            summary:focus{
+                outline: .2em solid var(--color-darker);
+                padding: .5em;
+           }
             &::after {
                 content: "";
                 display: block;
@@ -169,6 +174,10 @@ section.index {
                 transform: rotate(90deg);
                 transition: .5s;
             }
+            summary:focus{
+                outline: .2em solid var(--color-darker);
+                padding: .5em;
+           }
         }
 
         &[open] {
@@ -242,11 +251,11 @@ section.index {
                 padding: .25em .5em;
                 border-radius: 1em;
                 cursor: pointer;
-
+        
                 &::before {
                     content: "x";
                     display: inline;
-
+        
                 }
 
                 input {
@@ -284,7 +293,8 @@ section.index {
         height: 100%;
     }
 }
-
+ 
+  
   /* //////////////////////////// resultaten grid////////////////////////// */
   .results{
       grid-column: 1/3;
@@ -295,9 +305,9 @@ section.index {
       grid-gap: 1em;
       width: 100%;
       place-self: center;
-
+  
     }
-
+   
   .results li{
       display: grid;
       position: relative;
@@ -358,7 +368,7 @@ section.index {
             background: var(--color-main);
             color:var(--color-darker);
         }
-
+  
       button{
           position: absolute;
           top: -.6em; 
@@ -389,30 +399,30 @@ section.index {
       stroke-dasharray: 100;
       stroke-dashoffset: 0;
       transform-origin: center;
-
+  
     }
-
+  
     .results li button.filled svg{
       animation: 2s ease-out forwards saved;
   }
-
+  
   @keyframes saved {
       0% {
           stroke-width: .5;
           stroke-dashoffset: 100;
           fill:transparent;
       }
-
+  
       40% {
           stroke-dashoffset: 0;
           fill: var(--color-dark);
       }
-
+  
       100% {
           stroke-width: .5;
           stroke-dashoffset: 0;
           fill: var(--color-darker);
-
+         
       }
   }
 
@@ -448,7 +458,7 @@ section.index {
 
   #themaExpertise.expertise-visual-design{
       background-color:var(--color-pink-dark);
-
+  
   }
   #themaExpertise.expertise-visual-design:hover::after {
     content: "visual design";
@@ -466,16 +476,16 @@ section.index {
   /* #themaExpertise.expertise-interactieontwerp-visual-design:hover{
       animation: rotation 1s linear infinite;
   } */
-
+  
   #themaExpertise.expertise-interactieontwerp{
-
+      
       background-color:var(--color-blue-dark);
   }
   #themaExpertise.expertise-interactieontwerp:hover::after {
     content: "interactie ontwerp";
 }
-
-
+  
+  
   #themaExpertise.expertise-onbekend{
       background-color:var(--color-green-dark);
   }
@@ -484,7 +494,7 @@ section.index {
 }
 
   /* ///////////////////////// soort die een kleur heeft van de expertise////////// */
-
+  
   #themaSoort{
       grid-row:2/3;
       font-size:var(--font-m);
@@ -495,20 +505,20 @@ section.index {
       margin-top: 1.5em;
       color: grey;
   }
-
+  
   /* zet hier boven alle kleuren van de expertises classes^^^^^^ */
-
+  
   @keyframes rotation{
       0%{
           transform: rotate(0deg);
       }
       100%{
           transform: rotate(360deg);
-
+  
       }
-
+     
   }
-
+  
   /* ///////////////////// toegankelijkheid visible hidden voor buttons meer info//////////// */
   .visually-hidden {
    clip: rect(0 0 0 0);
