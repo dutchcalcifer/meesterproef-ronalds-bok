@@ -1,5 +1,3 @@
-// gpt-controller.js
-
 // Import packages and utilities
 import openai from "../../server.js";
 import fs from "fs/promises";
