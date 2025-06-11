@@ -62,7 +62,9 @@ document.addEventListener("DOMContentLoaded", () => {
           localStorage.setItem("chatHistory", JSON.stringify(conversation));
 
           setTimeout(() => {
-            window.location.href = `/?${data.query}`;
+            const results = parseQuery(data.query)
+            updateFilters(results)
+            changeOpenState()
           }, 500);
         } else {
           messages.children[placeholderIndex].textContent = data.message;
@@ -131,3 +133,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+function parseQuery(queryString) { // chatGPT
+  const params = new URLSearchParams(queryString);
+  const result = [];
+
+  for (const [key, value] of params.entries()) {
+    if (key !== 'q') {
+
+      result.push({
+        name: key.toString(),
+        id: value.toString()
+      });
+    }
+  }
+  
+  return result;
+}
+
+function updateFilters(newFilters) {
+  newFilters.forEach(filter => {
+    const element = document.querySelector(`input[name="${filter.name}"][value="${filter.id}"]`)
+    element.checked = true
+    const event = new Event('change', { bubbles: true })
+    element.dispatchEvent(event)
+  })
+
+}

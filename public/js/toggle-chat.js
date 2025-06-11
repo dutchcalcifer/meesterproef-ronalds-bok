@@ -5,7 +5,6 @@ let open = true
 button.addEventListener("click", changeOpenState)
 
 function changeOpenState() {
-    console.log("hoi")
     if (open === false) {
         searchBox.classList.remove("open")
         button.innerHTML = "bekijk chat"
