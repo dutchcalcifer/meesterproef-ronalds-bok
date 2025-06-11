@@ -1,6 +1,6 @@
 {
   "name": "meesterproef-ronalds-bok",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Ronalds BOK",
   "main": "server.js",
   "type": "module",
