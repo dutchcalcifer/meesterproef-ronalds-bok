@@ -1,6 +1,56 @@
-#main-section {
-  max-width: 2560px;
-  margin: 100px 10%;
+.details {
+  width: 100vw;
+  padding: 100px 15vw;
+  background-color: #f7f7f7;
+  min-height: 100vh;
+
+  & .back-button {
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    background-color: black;
+    border: 2px solid transparent;
+    border-radius: 30px;
+    transition: background-color 0.2s ease-in-out;
+    padding: 10px 20px;
+  }
+
+  & .back-button:hover {
+    background-color: rgb(72, 72, 72);
+  }
+}
+
+#detail-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: transparent;
+  background: none;
+  margin-bottom: 5em;
+  margin-top: 5em;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+#detail-wrapper.expertise-visual-design .section-partial-right {
+  border: 2px solid var(--color-pink-dark);
+}
+
+#detail-wrapper.expertise-interactieontwerp-visual-design
+  .section-partial-right {
+  border: 2px solid var(--color-pink-dark);
+}
+
+#detail-wrapper.expertise-onbekend .section-partial-right {
+  border: 2px solid var(--color-green-dark);
+}
+
+#detail-wrapper.expertise-interactieontwerp .section-partial-right {
+  border: 2px solid var(--color-blue-dark);
+}
+
+#detail-wrapper.expertise-interactieontwerp-visual-design:hover {
+  animation: none;
 }
 
 #details-h1 {
@@ -13,3 +63,93 @@
   font-weight: 200;
   padding-bottom: 2em;
 }
+
+#korte-beschrijving {
+  padding: 20px 20px;
+  border-radius: 10px;
+  background-color: white;
+  width: fit-content;
+  margin-bottom: 2em;
+}
+
+#detail-wrapper h2 {
+  margin-bottom: 0.5em;
+}
+
+.gerelateerd-wrapper {
+  margin-bottom: 5em;
+
+  & h2 {
+    margin-bottom: 0.5em;
+  }
+}
+
+#detail-wrapper h3 {
+  font-size: 1.3em;
+  font-weight: 400;
+  margin-bottom: 0.5em;
+}
+
+#detail-wrapper h4 + p {
+  font-size: 1em;
+  font-weight: 400;
+  margin-bottom: 1em;
+}
+
+.left {
+  max-width: 40vw;
+}
+
+.right {
+  min-width: 20vw;
+  display: flex;
+  flex-direction: column;
+
+  .section-partial-right {
+    padding: 20px 20px;
+
+    margin-bottom: 1em;
+    border-radius: 10px;
+  }
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 774px) {
+  .left {
+    max-width: none;
+  }
+
+  .right {
+    min-width: 100%;
+  }
+}
+.web-button {
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  background-color: black;
+  border: 2px solid transparent;
+  border-radius: 30px;
+  transition: background-color 0.2s ease-in-out;
+  padding: 10px 20px;
+}
+
+#detail-wrapper.expertise-visual-design .web-button:hover {
+  background-color: var(--color-pink-dark);
+}
+
+#detail-wrapper.expertise-interactieontwerp-visual-design .web-button:hover {
+  background-color: var(--color-pink-dark);
+}
+
+#detail-wrapper.expertise-onbekend .web-button:hover {
+  background-color: var(--color-green-dark);
+  color: black;
+}
+
+#detail-wrapper.expertise-interactieontwerp .web-button:hover {
+  background-color: var(--color-blue-dark);
+  color: black;
+}
+
+/* terug naar overzicht knop */
