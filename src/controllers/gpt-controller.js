@@ -87,7 +87,8 @@ function buildContextSnippets(vec) {
 // Main GPT handler
 export async function gpt(conversation) {
   // Choose model via environment variable (set in npm scripts)
-  const MODEL_NAME = process.env.OPENAI_MODEL || "gpt-4o-mini";
+  const MODEL_NAME = process.env.OPENAI_MODEL || "gpt-4o-mini"; // for testing
+  // const MODEL_NAME = process.env.OPENAI_MODEL || "gpt-4o"; // for production
 
   // Compose the system prompt with the dynamic field list
   const systemPrompt = `${basePrompt}\n\nBeschikbare filtervelden (exact spellen): ${allowedFields.join(

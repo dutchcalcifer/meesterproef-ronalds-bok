@@ -9,19 +9,27 @@ export const getSearchResults = async (q, filters = {}) => {
   // Initialize Fuse.js with specific fields to search through
   const fuse = new Fuse(data, {
     keys: [
-      "naam",
-      "ondertitel",
-      "rel_jaar",
-      "rel_vak",
-      "rel_cmd_expertise",
-      "rel_beroepstaak",
-      "rel_vakgebied",
-      "soort",
-      "rel_thema",
-      "rel_competentie",
-      "rel_principe",
       "rel_methode",
-      "meer_bij_personen"
+      "rel_principe",
+      "rel_thema",
+      "meer_bij_personen",
+      "meer_op_web",
+      "rel_cmd_expertise",
+      "rel_vakgebied",
+      "rel_competentie",
+      "rel_jaar",
+      "rel_beroepstaak",
+      "meer_bij_vak",
+      "rel_vak",
+      "toepassing",
+      "korte_beschrijving",
+      "strekking",
+      "moeilijkheid",
+      "schrijver_of_bron",
+      "ondertitel",
+      "alternatieve_naam",
+      "naam",
+      "soort",
     ],
     threshold: 0.3, // Sensitivity of the search
   });
@@ -36,10 +44,7 @@ export const getSearchResults = async (q, filters = {}) => {
   // If there's a search term, match either title or subtitle
   if (q && q.trim() !== "") {
     logicalQueries.push({
-      $or: [
-        { naam: q },
-        { ondertitel: q },
-      ],
+      $or: [{ naam: q }, { ondertitel: q }],
     });
   }
 

@@ -37,7 +37,8 @@ async function generateVectors() {
 
       // Request embedding from OpenAI
       const res = await openai.embeddings.create({
-        model: "text-embedding-3-small",
+        // model: "text-embedding-3-large", // for production
+        model: "text-embedding-3-small", // for testing
         input: inputText,
       });
 
