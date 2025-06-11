@@ -8,6 +8,7 @@ section.index {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
     gap: .5em;
+    column-gap: 5em;
 
     #logo {
         justify-self: center;
@@ -135,16 +136,20 @@ section.index {
         }
     }
 
-    .custom-summary {
+    .filters {
         grid-column: 1/2;
         border: none;
         font-size: 1em;
-        width: fit-content;
+        width: 100%;
         max-height: 2em;
+        transition: .5s;
         overflow: hidden;
-        transition: max-height 10s;
 
-        summary {
+        input {
+            display: none;
+        }
+
+        > label {
             color: var(--color-darker);
             padding-left: 0;
             text-align: center;
@@ -153,6 +158,7 @@ section.index {
             display: flex;
             align-items: center;
             gap: .5em;
+            position: relative;
 
             &::before {
                 content: "";
@@ -162,10 +168,6 @@ section.index {
                 background-color: var(--color-darker);
             }
 
-            summary:focus{
-                outline: .2em solid var(--color-darker);
-                padding: .5em;
-           }
             &::after {
                 content: "";
                 display: block;
@@ -174,60 +176,57 @@ section.index {
                 background-image: url("/img/arrow.svg");
                 transform: rotate(90deg);
                 transition: .5s;
+                position: absolute;
+                right: 0;
             }
-            summary:focus{
-                outline: .2em solid var(--color-darker);
-                padding: .5em;
-           }
         }
 
-        &[open] {
-            width: 100%;
-            max-height: fit-content;
-            background-color: var(--color-light);
+        form {
+            color: var(--color-secondary);
+            margin: .5em;
 
-            summary::after {
-                transform: rotate(-90deg);
-            }
+            fieldset {
+                border: none;
+                display: flex;
+                flex-wrap: wrap;
+                gap: .5em;
 
-            form {
-                color: var(--color-secondary);
-                margin: .5em;
+                legend {
+                    padding-bottom: .5em;
+                }
 
-                fieldset {
-                    border: none;
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: .5em;
+                &:not(:nth-last-of-type(1)) {
+                    margin-bottom: 1em;
+                }
 
-                    legend {
-                        font-weight: bold;
-                        font-size: 1.5em;
+                label {
+                    border: 1px solid var(--color-secondary);
+                    display: inline-block;
+                    padding: .25em .5em;
+                    height: fit-content;
+                    border-radius: 2em;
+                    min-width: 2em;
+                    opacity: .6;
+
+                    &:has(:checked) {
+                        border: 1px solid var(--color-filter-blue);
+                        background-color: var(--color-filter-lightblue);
+                        color: var(--color-filter-blue);
+                        opacity: 1;
                     }
 
-                    &:not(:nth-last-of-type(1)) {
-                        margin-bottom: 1em;
-                    }
-
-                    label {
-                        border: 1px solid var(--color-secondary);
-                        display: inline-block;
-                        padding: .25em .5em;
-                        height: 2em;
-                        border-radius: 1em;
-                        min-width: 2em;
-                        text-align: center;
-
-                        &:has(:checked) {
-                            background-color: var(--color-secondary);
-                            color: var(--color-main);
-                        }
-
-                        input {
-                            display: none;
-                        }
+                    &:hover {
+                        opacity: 1;
                     }
                 }
+            }
+        }
+
+        &:has(> label > :checked) {
+            max-height: 100%;
+
+            label::after {
+                transform: rotate(-90deg);
             }
         }
     }
@@ -284,7 +283,7 @@ section.index {
 
 @media (min-width: 600px) {
     section.index {
-        grid-template-columns: 30% auto;
+        grid-template-columns: 25% auto;
         padding: .5em 4em;
     }
 
@@ -292,7 +291,7 @@ section.index {
         align-self: center;
     }
 
-    .custom-summary {
+    .filters {
         grid-row: 1/4;
     }
 

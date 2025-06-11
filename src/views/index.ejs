@@ -1,5 +1,7 @@
-<details class="custom-summary">
-  <summary>Filters</summary>
+<section class="filters">
+  <label>Filters
+    <input type="checkbox">
+  </label>
   <form method="GET" action="/" class="searchFilter">
     <% Object.entries(filters).forEach(([veld, opties])=> { %>
     <fieldset>
@@ -15,7 +17,7 @@
     </fieldset>
     <% }) %>
   </form>
-</details>
+</section>
 
 <section class="search">
   <ul id="messages">
