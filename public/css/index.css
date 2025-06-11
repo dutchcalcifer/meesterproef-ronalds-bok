@@ -24,6 +24,7 @@ section.index {
         border-radius: 2em;
         transition: height 1s, width 1s,background-color 1s;
         padding: .5em;
+        position: relative;
         
         &.open {
             height: 60vh;
@@ -31,6 +32,10 @@ section.index {
             
             div{
                 border: .2em solid var(--background);
+            }
+
+            #clearChat {
+                display: block !important;
             }
         }
 
@@ -137,6 +142,23 @@ section.index {
             margin-top: 3em;
             padding:0 2.5em;
 
+            #clearChat {
+                opacity: .5;
+                display: none;
+                position: absolute;
+                top: 1.75em;
+                right: 50%;
+                transform: translateX(50%);
+                border: 1px solid var(--color-darker);
+                padding: .5em 1em;
+                background: none;
+                transition: .2s;
+
+                &:hover {
+                    opacity: 1;
+                    cursor: pointer;
+                }
+            }
 
             li {
                 max-width: 80%;
@@ -241,6 +263,10 @@ section.index {
                     &:hover {
                         opacity: 1;
                     }
+
+                    &:has([name=rel_jaar]) {
+                        text-align: center;
+                    }
                 }
             }
         }
@@ -262,6 +288,7 @@ section.index {
         #activeFilters {
             display: flex;
             flex-wrap: wrap;
+            justify-content: space-between;
             gap: .5em;
 
             .amount-of-results {
