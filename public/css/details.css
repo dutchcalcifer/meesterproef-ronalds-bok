@@ -26,6 +26,12 @@
     outline: 0.15em solid var(--color-darker);
     color: var(--color-darker);
   }
+  & .back-button:focus-visible {
+    background-color: var(--color-main);
+    outline: 0.15em solid var(--color-darker);
+    color: var(--color-darker);
+  }
+  
 }
 
 #detail-wrapper {
@@ -72,6 +78,12 @@
       width: fit-content;
       margin-bottom: 2em;
     }
+    a:focus-visible{
+      outline: .1em solid var(--color-darker);
+      border-radius:2em;
+      color: var(--color-darker);
+      background-color: var(--color-orange-light);
+    }
   }
 
   & .right {
@@ -84,6 +96,12 @@
 
       margin-bottom: 1em;
       border-radius: 1em;
+    }
+    a:focus-visible{
+      border-radius:2em;
+      color: var(--color-darker);
+      background-color: var(--color-main);
+      outline: .2em solid var(--color-darker);
     }
   }
 }

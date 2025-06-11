@@ -1,6 +1,7 @@
 <section class="filters">
-  <label>Filters
-    <input type="checkbox">
+  <label  role="button" aria-expanded="false" aria-controls="filtersForm">
+    Filters
+    <input name="open-filter" tabindex="0" type="checkbox" aria-hidden="true">
   </label>
   <form method="GET" action="/" class="searchFilter">
     <% Object.entries(filters).forEach(([veld, opties])=> { %>

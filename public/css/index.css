@@ -181,6 +181,12 @@ section.index {
                     opacity: 1;
                     cursor: pointer;
                 }
+
+                &:focus-visible{
+                    outline: .2em solid var(--color-darker);
+                    opacity: 1;
+                    font-weight: 500;
+                }
             }
 
             li {
@@ -228,9 +234,22 @@ section.index {
         transition: .5s ease-in-out;
         overflow: hidden;
 
-        input {
-            display: none;
+        > label:has(input:focus-visible) {
+            
+            border: .2em solid var(--color-darker);
+           
         }
+
+        input {
+           opacity: 0;
+           position:absolute;
+ 
+        }
+        label:has(:focus-visible) {
+            outline: .2em solid var(--color-darker);
+            outline-offset: .2em;
+          }
+        
 
         > label {
             color: var(--color-darker);
@@ -263,6 +282,7 @@ section.index {
                 right: 0;
             }
         }
+
 
         form {
             color: var(--color-secondary);
