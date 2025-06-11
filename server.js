@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import expressEjsLayouts from "express-ejs-layouts";
 import OpenAI from "openai";
 import projectRoutes from "./src/routes/routes.js";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "src/views"));
 app.use(expressEjsLayouts);
+app.use(cookieParser());
 
 // Routes
 app.use("/", projectRoutes);
