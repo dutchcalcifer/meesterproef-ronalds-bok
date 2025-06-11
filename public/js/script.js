@@ -4,7 +4,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("search-form");
   const input = document.getElementById("search-input");
   const clearChat = document.getElementById("clearChat");
+  let state = JSON.parse(localStorage.getItem("chatState"));
   let conversation = [];
+
+  // Chat state
+  if (state) {
+    // close chat
+    console.log("chatState is true");
+  } else {
+    // leave open
+    console.log("chatState is false");
+  }
 
   function appendMessage(role, text) {
     if (!messages) return;
@@ -44,6 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       try {
+        localStorage.setItem("chatState", JSON.stringify(false));
+
         const res = await fetch("/", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -52,6 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await res.json();
 
         if (data.final) {
+          localStorage.setItem("chatState", JSON.stringify(true));
+
           messages.children[placeholderIndex].textContent =
             "ik ga voor je aan de slag, ik heb de volgende resultaten gevonden:";
           conversation.push({

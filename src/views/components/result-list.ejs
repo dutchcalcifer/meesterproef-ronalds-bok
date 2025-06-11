@@ -1,5 +1,7 @@
 <div id="resultsAndFilters">
     <section id="activeFilters">
+      <h2 class="amount-of-results"><%= results.length %> Resulaten</h2>
+
       <form method="GET" action="/" class="searchFilter">
         <% Object.entries(filters).forEach(([veld, opties])=> { %>
           <% opties.forEach(optie=> { const checkedValues =
