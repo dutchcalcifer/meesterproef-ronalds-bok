@@ -53,3 +53,16 @@ export function parseFiltersFromQuery(filterQuery) {
   }
   return filters;
 }
+
+export function prettifyLabel(fieldName) {
+  const words = fieldName
+    .replace(/^rel_/, "")
+    .split("_")
+    .map(word => word.toLowerCase());
+
+  if (words.length === 0) return "";
+
+  words[0] = words[0].charAt(0).toUpperCase() + words[0].slice(1);
+
+  return words.join(" ");
+}

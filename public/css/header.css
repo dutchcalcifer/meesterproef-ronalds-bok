@@ -23,6 +23,11 @@ h1 svg {
     object-fit: contain;
 }
 
+
+#home:focus{
+    outline:.1em solid var(--color-darker) ;
+    border-radius: 2em;
+}
 .hide-text {
     display: none;
 }

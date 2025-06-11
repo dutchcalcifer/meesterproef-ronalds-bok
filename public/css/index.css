@@ -55,6 +55,7 @@ section.index {
                 background-color:var( --color-grey);
                 border: none;
                 position: relative;
+                cursor: pointer;
 
                 &::before {
                     content: "";
@@ -69,6 +70,16 @@ section.index {
                     left: -.5em;
                     overflow: visible;
                 }
+            }
+            #toggleChat:focus-visible{
+                outline: .2em solid var(--color-darker);
+                background-color: var(--background);
+                font-weight: 300;
+            }
+            #toggleChat:hover{
+                outline: .15em solid var(--color-darker);
+                background-color: var(--background);
+                transition: background-color .3s ease, outline .3s ease;
             }
 
             form {
@@ -91,6 +102,10 @@ section.index {
                     background-color: transparent;
 
                 }
+                input:focus-visible{
+                    outline: .1em solid var(--color-darker);
+                    border-radius:.5em 2em 2em .5em;
+                }
 
                 button {
                     position: absolute;
@@ -101,12 +116,18 @@ section.index {
                     align-items: center; /* centreert verticaal */
                     justify-content: center; /* centreert horizontaal */
                     height: 100%; /* zorg ervoor dat de button net zo hoog is als het inputveld */
+                    cursor: pointer;
                 
                     svg {
                         align-self: center;
                         height: 2.2em;
                         width: 2.2em;
                     }
+
+                }
+                button:focus-visible{
+                outline: .2em solid var(--color-darker);
+                border-radius: 2em;
                 }
             }
         }
@@ -140,6 +161,7 @@ section.index {
             overflow-y: scroll;
             margin: 1em;
             margin-top: 3em;
+            margin-bottom: 0;
             padding:0 2.5em;
 
             #clearChat {
@@ -178,8 +200,23 @@ section.index {
                 font-weight: 300;
                 border-radius: 1em 1em .3em 1em;
             }
+            .loading{
+                height: 1em;
+                width: 1em;
+                border-radius: 50%;
+                animation: waiting 3s infinite;
+                color: transparent;
+                aspect-ratio: 1;
+                padding: 0;
+            }
+        }
+        #messages:focus-visible{
+            outline: .15em solid var(--color-darker);
+            border-radius: 1em;
         }
     }
+    
+   
 
     .filters {
         grid-column: 1/2;
@@ -252,12 +289,14 @@ section.index {
                     border-radius: 2em;
                     min-width: 2em;
                     opacity: .6;
+                    text-align: center;
 
                     &:has(:checked) {
                         border: 1px solid var(--color-filter-blue);
                         background-color: var(--color-filter-lightblue);
                         color: var(--color-filter-blue);
                         opacity: 1;
+            
                     }
 
                     &:hover {
@@ -301,7 +340,7 @@ section.index {
                     display: block;
                     width: .125em;
                     height: 100%;
-                    background-color: black;
+                    background-color:var(--color-darker);
                 }
             }
 
@@ -359,6 +398,17 @@ section.index {
     }
 }
  
+@keyframes waiting {
+    0% {
+        background-color: var(--color-darker);
+    }
+    50% {
+        background-color: var(--color-grey);
+    }
+    100% {
+        background-color: var(--color-darker);
+    }
+}
   
   /* //////////////////////////// resultaten grid////////////////////////// */
   .results{
@@ -389,12 +439,12 @@ section.index {
       h2{
           grid-row: 3/4;
           font-weight: 400;
-          font-size: var( --font-xl);
+          font-size: 2em;
           hyphens: auto;
   }
       p:nth-of-type(2){
           grid-row: 4/5;
-          font-size:var(--font-m);
+          font-size:1.1em;
           font-weight: 200;
           margin: 2em 0;
       }
@@ -428,7 +478,7 @@ section.index {
           transform: translateY(0.1em) scale(0.95);
           background-color: var(--color-dark);
         }
-        a:focus{
+        a:focus-visible{
             outline:.2em solid var(--color-darker) ;
             background: var(--color-main);
             color:var(--color-darker);
@@ -442,9 +492,12 @@ section.index {
           overflow: hidden;
           border: none;
           z-index: 10;
-          cursor: copy;
+          cursor:pointer;
       }
-      button:focus svg {
+      button:focus-visible{
+        outline: 0 solid ;
+      }
+      button:focus-visible svg {
         stroke:var(--color-darker);
         stroke-width: 1;
         fill: var(--color-main);
@@ -562,7 +615,7 @@ section.index {
   
   #themaSoort{
       grid-row:2/3;
-      font-size:var(--font-m);
+      font-size:1.1em;
       font-weight: 300;
       font-style: italic;
       padding: 0;

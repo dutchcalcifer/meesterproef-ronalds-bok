@@ -1,14 +1,18 @@
 .details {
   width: 100vw;
-  padding: 100px 15vw;
-  background-color: #f7f7f7;
+  padding: 50px 15vw;
+
+  /* ^ annika: achtergrond kleur is al op body, verwijder deze tekst als je het hebt gelezen thanks ahahaah.  ook padding top minde gemaakt en de button diplay block gegeven zodat hij goed in de section zit  */
   min-height: 100vh;
 
   & .back-button {
+    display: block;
+    width: fit-content;
     text-align: center;
-    color: white;
+    color: var(--color-main);
     text-decoration: none;
-    background-color: black;
+    background-color: var(--color-darker);
+    outline:.15em solid var(--color-darker);
     border: 2px solid transparent;
     border-radius: 30px;
     transition: background-color 0.2s ease-in-out;
@@ -16,7 +20,9 @@
   }
 
   & .back-button:hover {
-    background-color: rgb(72, 72, 72);
+    background-color: var(--color-main);
+    outline:.15em solid var(--color-darker);
+    color: var(--color-darker);
   }
 }
 
@@ -67,7 +73,7 @@
 #korte-beschrijving {
   padding: 20px 20px;
   border-radius: 10px;
-  background-color: white;
+  background-color: var(--color-main);
   width: fit-content;
   margin-bottom: 2em;
 }
@@ -125,9 +131,9 @@
 }
 .web-button {
   text-align: center;
-  color: white;
+  color: var(--color-main);
   text-decoration: none;
-  background-color: black;
+  background-color: var(--color-darker);
   border: 2px solid transparent;
   border-radius: 30px;
   transition: background-color 0.2s ease-in-out;
@@ -144,12 +150,12 @@
 
 #detail-wrapper.expertise-onbekend .web-button:hover {
   background-color: var(--color-green-dark);
-  color: black;
+  color: var(--color-darker);
 }
 
 #detail-wrapper.expertise-interactieontwerp .web-button:hover {
   background-color: var(--color-blue-dark);
-  color: black;
+  color: var(--color-darker);
 }
 
 /* terug naar overzicht knop */

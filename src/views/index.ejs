@@ -4,18 +4,21 @@
   </label>
   <form method="GET" action="/" class="searchFilter">
     <% Object.entries(filters).forEach(([veld, opties])=> { %>
-    <fieldset>
-      <legend><%= veld %></legend>
-      <% opties.forEach(optie=> { const checkedValues =
-      Array.isArray(query[veld]) ? query[veld] : (query[veld] ? [query[veld]] :
-      []); const isChecked = checkedValues.includes(optie); %>
-      <label>
-        <input type="checkbox" name="<%= veld %>" value="<%= optie %>"
-        <%=isChecked ? "checked" : "" %>> <%= optie %>
-      </label>
+      <fieldset>
+        <legend>
+          <%= filterLabels[veld] %>
+        </legend>
+        <% const checkedValues=Array.isArray(query[veld]) ? query[veld] : (query[veld] ? [query[veld]] : []); %>
+          <% opties.forEach(optie=> {
+            const isChecked = checkedValues.includes(optie);
+            %>
+            <label>
+              <input type="checkbox" name="<%= veld %>" value="<%= optie %>" <%=isChecked ? "checked" : "" %> >
+              <%= optie %>
+            </label>
+            <% }) %>
+      </fieldset>
       <% }) %>
-    </fieldset>
-    <% }) %>
   </form>
 </section>
 
@@ -32,25 +35,13 @@
     <button type="button" id="toggleChat">bekijk chat</button>
 
     <form id="search-form">
-      <input
-        id="search-input"
-        autocomplete="off"
-        placeholder="Wat is je vraag?"
-      />
+      <input id="search-input" autocomplete="off" placeholder="Wat is je vraag?" />
       <button type="submit">
-        <svg
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          alt="Search"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          width="24"
-          height="24"
-          style="transform: scale(1)"
-        >
+        <svg xmlns:xlink="http://www.w3.org/1999/xlink" alt="Search" xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24" width="24" height="24" style="transform: scale(1)">
           <path
             d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"
-            fill="#6b6b6b"
-          ></path>
+            fill="#6b6b6b"></path>
         </svg>
       </button>
     </form>
@@ -59,5 +50,5 @@
 
 <%- include('components/result-list', { filters, results, query }) %>
 
-<script src="/js/toggle-chat.js"></script>
-<script src="/js/showActiveFilters.js"></script>
+  <script src="/js/toggle-chat.js"></script>
+  <script src="/js/showActiveFilters.js"></script>
