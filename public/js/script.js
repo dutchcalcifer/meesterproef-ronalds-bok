@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
       input.value = "";
       input.focus();
 
-      appendMessage("assistant", "...");
+      appendMessage("loading", "...");
       const placeholderIndex = messages.children.length - 1;
 
       if (conversation.length > 20) {
