@@ -97,47 +97,66 @@ document.addEventListener("DOMContentLoaded", () => {
   // Bookmark toggle
   const buttons = document.querySelectorAll(".results li button");
   if (buttons.length) {
-    let saved = JSON.parse(localStorage.getItem("savedItems")) || [];
-
     buttons.forEach((button) => {
+      const id = button.parentElement.dataset.id
+
       const parentLi = button.closest("li");
       const link = parentLi.querySelector("a[href^='/item/']");
       if (!link) return;
 
-      const itemId = link.href.split("/").pop();
-
-      if (saved.includes(itemId)) {
-        button.classList.add("filled");
-      }
-
       button.addEventListener("click", () => {
-        if (saved.includes(itemId)) {
-          saved = saved.filter((id) => id !== itemId);
+        const current = getSavedIds().map(String);
+        const index = current.indexOf(id).toString();
+
+        if (index > -1) {
+          console.log("zit erin")
+          current.splice(index, 1);
           button.classList.remove("filled");
-          if (window.location.pathname === "/saved") {
-            parentLi.remove();
-          }
         } else {
-          saved.push(itemId);
+          console.log("zit niet erin")
+          current.push(String(id));
           button.classList.add("filled");
         }
-        localStorage.setItem("savedItems", JSON.stringify(saved));
-      });
+
+        setSavedIds(current);
+        
+        if (window.location.pathname === "/saved") {
+          location.reload();
+        }
+
+      })
     });
   }
 
-  // Link naar saved pagina
-  const savedLink = document.getElementById("go-to-saved");
-  if (savedLink) {
-    savedLink.addEventListener("click", (e) => {
-      e.preventDefault();
-      const saved = JSON.parse(localStorage.getItem("savedItems")) || [];
-      if (saved.length > 0) {
-        const ids = saved.join(",");
-        window.location.href = `/saved?ids=${ids}`;
-      } else {
-        alert("Je hebt nog niks opgeslagen.");
-      }
-    });
-  }
+  // Load saved bookmarks
+  const savedIds = getSavedIds();
+  buttons.forEach((button) => {
+    const id = button.parentElement.dataset.id;
+    if (savedIds.includes(id)) {
+      button.classList.add("filled");
+    }
+  });
 });
+
+ 
+function getSavedIds() {
+  const cookie = document.cookie
+    .split('; ')
+    .find(row => row.startsWith('savedIds='));
+  if (!cookie) return [];
+ 
+  try {
+    return JSON.parse(decodeURIComponent(cookie.split('=')[1]));
+  } catch {
+    return [];
+  }
+}
+
+function setSavedIds(ids) {
+  const days = 30;
+  const date = new Date();
+  date.setTime(date.getTime() + (days*24*60*60*1000));
+  const expires = "expires=" + date.toUTCString();
+ 
+  document.cookie = `savedIds=${encodeURIComponent(JSON.stringify(ids))}; ${expires}; path=/`;
+}

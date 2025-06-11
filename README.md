@@ -77,6 +77,7 @@ meesterproef-ronalds-bok/
 - **dotenv** for environment variables
 - **compute-cosine-similarity** for cosine similarity
 - **openai** for OpenAI API integration
+- **cookieParser** for parsing cookies
 
 ## 👩‍💻 Code Conventions
 
