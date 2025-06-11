@@ -67,9 +67,14 @@ section.index {
                 }
             }
             #toggleChat:focus-visible{
-                outline: .1em solid var(--color-darker);
+                outline: .2em solid var(--color-darker);
                 background-color: var(--background);
                 font-weight: 300;
+            }
+            #toggleChat:hover{
+                background-color: var(--color-dark);
+                color: var(--color-main);
+                transition: background-color .7s ease;
             }
 
             form {
@@ -106,6 +111,7 @@ section.index {
                     align-items: center; /* centreert verticaal */
                     justify-content: center; /* centreert horizontaal */
                     height: 100%; /* zorg ervoor dat de button net zo hoog is als het inputveld */
+                    cursor: pointer;
                 
                     svg {
                         align-self: center;
@@ -181,6 +187,10 @@ section.index {
                 aspect-ratio: 1;
                 padding: 0;
             }
+        }
+        #messages:focus-visible{
+            outline: .15em solid var(--color-darker);
+            border-radius: 1em;
         }
     }
     
@@ -453,7 +463,10 @@ section.index {
           overflow: hidden;
           border: none;
           z-index: 10;
-          cursor: copy;
+          cursor:pointer;
+      }
+      button:focus-visible{
+        outline: 0 solid ;
       }
       button:focus-visible svg {
         stroke:var(--color-darker);
@@ -605,10 +618,3 @@ section.index {
    white-space: nowrap;
    width: 1px;
     }
-
-
-/* ////////// opgeslagen styling */
-
-.saved h1{
-    margin-bottom: 2em;
-}
