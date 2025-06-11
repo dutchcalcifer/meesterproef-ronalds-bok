@@ -6,7 +6,7 @@ header {
     row-gap: .5em;
     margin: 2em 4em;
 
-    @media (max-width: 600px) {
+    @media (max-width: 469px) {
         justify-content: center;
         margin: 2em;
         margin-bottom: 1em;
@@ -21,9 +21,8 @@ h1 svg {
     max-height: 110px;
     display: block;
     max-width: 100%;
-    object-fit: contain;
+    height: 2em;
 }
-
 
 #home:focus{
     outline:.1em solid var(--color-darker) ;
@@ -57,7 +56,7 @@ h1 svg {
     outline: .2em solid var(--color-darker);
 }
 
-@media (min-width: 600px){
+@media (min-width: 800px){
     #go-to-saved{
         background-color: transparent;
     }

@@ -396,7 +396,7 @@ section.index {
     }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 800px) {
     section.index {
         grid-template-columns: 25% auto;
         padding: .5em 4em;
@@ -415,7 +415,7 @@ section.index {
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .filters {
         grid-row: 2/3;
     }
