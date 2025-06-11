@@ -37,9 +37,11 @@ document.addEventListener("DOMContentLoaded", () => {
       input.value = "";
       input.focus();
 
-      appendMessage("loading", "...");
+      appendMessage("assistant", "...");
       const placeholderIndex = messages.children.length - 1;
+      messages.children[placeholderIndex].classList.add("loading");
 
+      // Limit chat history
       if (conversation.length > 20) {
         conversation = conversation.slice(-20);
       }
@@ -57,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (data.final) {
           localStorage.setItem("chatState", JSON.stringify(true));
 
+          messages.children[placeholderIndex].classList.remove("loading");
           messages.children[placeholderIndex].textContent =
             "ik ga voor je aan de slag, ik heb de volgende resultaten gevonden:";
           conversation.push({
@@ -70,11 +73,13 @@ document.addEventListener("DOMContentLoaded", () => {
             window.location.href = `/?${data.query}`;
           }, 500);
         } else {
+          messages.children[placeholderIndex].classList.remove("loading");
           messages.children[placeholderIndex].textContent = data.message;
           conversation.push({ role: "assistant", content: data.message });
           localStorage.setItem("chatHistory", JSON.stringify(conversation));
         }
       } catch (err) {
+        messages.children[placeholderIndex].classList.remove("loading");
         messages.children[placeholderIndex].textContent =
           "Er ging iets mis. Probeer opnieuw.";
       }
