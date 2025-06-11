@@ -72,9 +72,9 @@ section.index {
                 font-weight: 300;
             }
             #toggleChat:hover{
-                background-color: var(--color-dark);
-                color: var(--color-main);
-                transition: background-color .7s ease;
+                outline: .15em solid var(--color-darker);
+                background-color: var(--background);
+                transition: background-color .3s ease, outline .3s ease;
             }
 
             form {
@@ -267,12 +267,14 @@ section.index {
                     border-radius: 2em;
                     min-width: 2em;
                     opacity: .6;
+                    text-align: center;
 
                     &:has(:checked) {
                         border: 1px solid var(--color-filter-blue);
                         background-color: var(--color-filter-lightblue);
                         color: var(--color-filter-blue);
                         opacity: 1;
+            
                     }
 
                     &:hover {
@@ -311,7 +313,7 @@ section.index {
                     display: block;
                     width: .125em;
                     height: 100%;
-                    background-color: black;
+                    background-color:var(--color-darker);
                 }
             }
 
@@ -371,13 +373,13 @@ section.index {
  
 @keyframes waiting {
     0% {
-        background-color: #000;
+        background-color: var(--color-darker);
     }
     50% {
-        background-color: rgb(202, 202, 202);
+        background-color: var(--color-grey);
     }
     100% {
-        background-color: #000;
+        background-color: var(--color-darker);
     }
 }
   
@@ -410,12 +412,12 @@ section.index {
       h2{
           grid-row: 3/4;
           font-weight: 400;
-          font-size: var( --font-xl);
+          font-size: 2em;
           hyphens: auto;
   }
       p:nth-of-type(2){
           grid-row: 4/5;
-          font-size:var(--font-m);
+          font-size:1.1em;
           font-weight: 200;
           margin: 2em 0;
       }
@@ -586,7 +588,7 @@ section.index {
   
   #themaSoort{
       grid-row:2/3;
-      font-size:var(--font-m);
+      font-size:1.1em;
       font-weight: 300;
       font-style: italic;
       padding: 0;

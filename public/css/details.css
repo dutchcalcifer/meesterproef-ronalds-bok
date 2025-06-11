@@ -12,6 +12,7 @@
     color: var(--color-main);
     text-decoration: none;
     background-color: var(--color-darker);
+    outline:.15em solid var(--color-darker);
     border: 2px solid transparent;
     border-radius: 30px;
     transition: background-color 0.2s ease-in-out;
@@ -19,7 +20,9 @@
   }
 
   & .back-button:hover {
-    background-color: var(--color-dark);
+    background-color: var(--color-main);
+    outline:.15em solid var(--color-darker);
+    color: var(--color-darker);
   }
 }
 
