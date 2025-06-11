@@ -105,6 +105,27 @@ section.index {
             }
         }
 
+        .welcome h2{
+            font-weight: 400;
+            position: relative;
+
+            &::before {
+                content: "";
+                display: block;
+                position: absolute;
+                width: 1.3em;
+                height: 1.3em;
+                background-image: url("/img/stars.svg");
+                background-size: contain;
+                background-repeat: no-repeat;
+                top: 0em;
+                left: -2em;
+                overflow: visible;
+            }
+        }
+       
+        
+
         #messages {
             display: flex;
             flex-direction: column;
@@ -112,17 +133,19 @@ section.index {
             list-style: none;
             overflow-y: scroll;
             margin: 1em;
+            margin-top: 3em;
+            padding:0 2.5em;
+
 
             li {
                 max-width: 80%;
                 color: var(--color-darker);
                 padding: .5em 1em;
-                margin: 0;
+                margin: .5em 0;
             }
 
             .assistant {
                 align-self: flex-start;
-                border-radius: 1em 1em 1em .1em;
 
             }
 
