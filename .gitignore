@@ -137,6 +137,3 @@ dist
 
 # Mac stuff
 .DS_Store
-
-# vectors
-/src/data/vectors.json
