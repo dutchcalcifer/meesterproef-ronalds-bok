@@ -1,5 +1,5 @@
 // Import packages and utilities
-import openai from "../../server.js";
+import { openai } from "../../server.js";
 import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
