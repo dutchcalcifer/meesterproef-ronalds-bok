@@ -46,4 +46,7 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-app.listen(3000, () => console.log("Server Started: localhost:3000"));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Node running on port ${PORT}`);
+});
