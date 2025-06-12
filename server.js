@@ -1,7 +1,3 @@
-// -------------------------------
-// server.js  (ESM, Vercel-ready)
-// -------------------------------
-
 // Core & third-party
 import express from "express";
 import path from "path";
@@ -14,9 +10,7 @@ import OpenAI from "openai";
 // Project files
 import projectRoutes from "./src/routes/routes.js";
 
-// ──────────────────────────────────────────────────────────────
 // Setup
-// ──────────────────────────────────────────────────────────────
 dotenv.config();
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
@@ -25,9 +19,7 @@ export { openai }; // <── named export for other modules
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 
-// ──────────────────────────────────────────────────────────────
 // Middleware & routes
-// ──────────────────────────────────────────────────────────────
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
@@ -38,9 +30,7 @@ app.use(expressEjsLayouts);
 
 app.use("/", projectRoutes);
 
-// ──────────────────────────────────────────────────────────────
 // Error handling
-// ──────────────────────────────────────────────────────────────
 app.use((req, res) =>
   res.status(404).render("pages/errors/404.ejs", {
     layout: "layout/layout",
@@ -58,15 +48,10 @@ app.use((err, req, res, _next) => {
   });
 });
 
-// ──────────────────────────────────────────────────────────────
 // Export for Vercel – *no* app.listen() in production
-// ──────────────────────────────────────────────────────────────
 export default app;
 
-/**
- * In local development we still want localhost:3000.
- * The VERCEL env-var is present only inside Vercel’s runtime.
- */
+// For local development
 if (!process.env.VERCEL) {
   const PORT = process.env.PORT ?? 3000;
   app.listen(PORT, () =>
