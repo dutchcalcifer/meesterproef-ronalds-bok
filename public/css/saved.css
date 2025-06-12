@@ -1,33 +1,11 @@
-.saved{
-    width: 100vw;
-    padding: 50px 15vw;
-    min-height: 100vh;
+.saved {
+  width: 100vw;
+  padding: 50px 15vw;
+  min-height: 100vh;
 
-    & .back-button {
-        display: block;
-        width: fit-content;
-        text-align: center;
-        color: var(--color-main);
-        text-decoration: none;
-        background-color: var(--color-darker);
-        outline:.15em solid var(--color-darker);
-        border: 2px solid transparent;
-        border-radius: 30px;
-        transition: background-color 0.2s ease-in-out;
-        padding: 10px 20px;
+  h1 {
+    margin: 1.5em 0;
+    font-size: 3em;
+    font-weight: 400;
   }
-
-    & .back-button:hover {
-        background-color: var(--color-main);
-        outline:.15em solid var(--color-darker);
-        color: var(--color-darker);
-  }
-
-    h1{
-        margin: 1.5em 0;
-        font-size: 3em;
-        font-weight: 400;
-      }
-
 }
-

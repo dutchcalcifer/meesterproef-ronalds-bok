@@ -2,36 +2,6 @@
   width: 100vw;
   padding: 5vh 15vw;
   min-height: 100vh;
-
-  & .back-button {
-    display: block;
-    width: fit-content;
-    padding: 0.75em 1.25em;
-
-    text-align: center;
-    text-decoration: none;
-
-    color: var(--color-main);
-    background-color: var(--color-darker);
-
-    outline: 0.15em solid var(--color-darker);
-    border: 0.15em solid transparent;
-    border-radius: 5em;
-
-    transition: background-color 0.2s ease-in-out;
-  }
-
-  & .back-button:hover {
-    background-color: var(--color-main);
-    outline: 0.15em solid var(--color-darker);
-    color: var(--color-darker);
-  }
-  & .back-button:focus-visible {
-    background-color: var(--color-main);
-    outline: 0.15em solid var(--color-darker);
-    color: var(--color-darker);
-  }
-  
 }
 
 .details section:first-of-type {
@@ -116,15 +86,16 @@
       width: fit-content;
       margin-bottom: 2em;
     }
-    a:focus-visible{
-      outline: .1em solid var(--color-darker);
-      border-radius:2em;
+    a:focus-visible {
+      outline: 0.1em solid var(--color-darker);
+      border-radius: 2em;
       color: var(--color-darker);
       background-color: var(--color-orange-light);
     }
   }
 
   & .right {
+    max-width: 25vw;
     min-width: 20vw;
     display: flex;
     flex-direction: column;
@@ -135,13 +106,63 @@
       margin-bottom: 1em;
       border-radius: 1em;
     }
-    a:focus-visible{
-      border-radius:2em;
+    a:focus-visible {
+      border-radius: 2em;
       color: var(--color-darker);
       background-color: var(--color-main);
-      outline: .2em solid var(--color-darker);
+      outline: 0.2em solid var(--color-darker);
     }
   }
+}
+
+.back-button {
+  display: block;
+  width: fit-content;
+  padding: 0.75em 1.25em;
+
+  text-align: center;
+  text-decoration: none;
+
+  color: var(--color-main);
+  background-color: var(--color-darker);
+
+  outline: var(--button-border);
+  border-radius: 5em;
+
+  transition: background-color 0.2s ease-in-out;
+}
+
+.back-button {
+  background: linear-gradient(
+    to bottom left,
+    var(--color-main) 50%,
+    var(--color-darker) 50%
+  );
+  background-size: 200% 400%;
+  background-position: bottom;
+  color: var(--color-main);
+  margin-top: auto;
+  text-decoration: none;
+  outline: var(--button-border);
+  border-radius: 2em;
+  padding: 0.5em 1em;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+.back-button:hover {
+  /* background-color: var(--color-dark); */
+  background-position: top right;
+  outline: var(--button-border);
+  color: var(--color-darker);
+}
+.back-button:active {
+  transform: translateY(0.1em) scale(0.95);
+  background-color: var(--color-dark);
+}
+.back-button:focus-visible {
+  outline: 0.2em solid var(--color-darker);
+  background: var(--color-main);
+  color: var(--color-darker);
 }
 
 /* border colors based on expertise */
@@ -181,33 +202,33 @@
 
 /* web button based on expertise */
 
+.web-toggle-container {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 1em 1em;
+  border-radius: 1em;
+}
+
 #detail-wrapper .web-button {
-  text-align: center;
-  color: var(--color-main);
+  color: black;
   text-decoration: none;
-  background-color: var(--color-darker);
-  border: 0.15em solid transparent;
-  border-radius: 5em;
-  transition: background-color 0.2s ease-in-out;
-  padding: 0.75em 1.25em;
 }
 
 #detail-wrapper.expertise-visual-design .web-button:hover {
-  background-color: var(--color-pink-dark);
+  color: var(--color-pink-dark);
 }
 
 #detail-wrapper.expertise-interactieontwerp-visual-design .web-button:hover {
-  background-color: var(--color-pink-dark);
+  color: var(--color-pink-dark);
 }
 
 #detail-wrapper.expertise-onbekend .web-button:hover {
-  background-color: var(--color-green-dark);
-  color: var(--color-darker);
+  color: var(--color-green-dark);
 }
 
 #detail-wrapper.expertise-interactieontwerp .web-button:hover {
-  background-color: var(--color-blue-dark);
-  color: var(--color-darker);
+  color: var(--color-blue-dark);
 }
 
 /* responsiveness*/
@@ -220,4 +241,66 @@
   .right {
     min-width: 100% !important;
   }
+}
+
+/* web toggle */
+
+/* Verborgen checkbox */
+.toggle-checkbox {
+  display: none;
+}
+
+/* Standaard: web-links zijn ingeklapt */
+.web-links {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+}
+
+/* Uitgeklapt wanneer checkbox is aangevinkt */
+.web-toggle-container:has(.toggle-checkbox:checked) .web-links {
+  max-height: 500px; /* afhankelijk van max aantal links */
+}
+
+/* Styling voor toggle-knop */
+.web-toggle-button {
+  text-align: center;
+  color: var(--color-main);
+  text-decoration: none;
+  background-color: var(--color-darker);
+  border: 0.15em solid transparent;
+  border-radius: 5em;
+  transition: background-color 0.2s ease-in-out;
+  padding: 0.75em 1.25em;
+}
+
+.web-toggle-button:hover {
+  text-align: center;
+  color: var(--color-main);
+  text-decoration: none;
+  background-color: var(--color-darker);
+  border: 0.15em solid transparent;
+  border-radius: 5em;
+  transition: background-color 0.2s ease-in-out;
+  padding: 0.75em 1.25em;
+}
+
+/* Styling voor individuele links */
+.web-button {
+  display: block;
+  margin: 1rem 0;
+}
+
+#detail-wrapper.expertise-interactieontwerp .web-toggle-button:hover {
+  background-color: var(--color-blue-dark);
+}
+#detail-wrapper.expertise-visual-design .web-toggle-button:hover {
+  background-color: var(--color-pink-dark);
+}
+#detail-wrapper.expertise-onbekend .web-toggle-button:hover {
+  background-color: var(--color-green-dark);
+}
+#detail-wrapper.expertise-interactieontwerp-visual-design
+  .web-toggle-button:hover {
+  background-color: var(--color-pink-dark);
 }

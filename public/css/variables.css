@@ -1,40 +1,41 @@
 :root {
-    /* colors */
-    --background:#F7F7F7;
-    --color-light: #fff;
-    --color-grey:#E9E9E9;
+  /* colors */
+  --background: #f7f7f7;
+  --color-light: #fff;
+  --color-grey: #e9e9e9;
 
-    --color-dark: #565656;
-    --color-darker: rgb(0,0,0);
-    
-    --shadow:rgba(0, 0, 0, 0.1);
+  --color-dark: #565656;
+  --color-darker: rgb(0, 0, 0);
 
-    --color-orange-light: #FEF11F;
-    --color-purple-dark: #BF80FF;
-    --color-green-dark: #99DE5F;
-    --color-pink-dark: #ed2956;
-    --color-blue-dark: #00CEFF;
-    --color-filter-blue: #0076FF;
-    --color-filter-lightblue: #E5F0FC;
+  --shadow: rgba(0, 0, 0, 0.1);
 
+  --color-orange-light: #fef11f;
+  --color-purple-dark: #bf80ff;
+  --color-green-dark: #99de5f;
+  --color-pink-dark: #ed2956;
+  --color-blue-dark: #00ceff;
+  --color-filter-blue: #0076ff;
+  --color-filter-lightblue: #e5f0fc;
 
-    /* light-dark colors */
-    --color-main: light-dark(var(--color-light), var(--color-darker));
-    --color-secondary: light-dark(var(--color-darker), var(--color-light));
+  /* button outline */
 
-    /* light/dark mode logic */
-    :has([value=theme]:checked) {
-        color-scheme: dark;
-    }
+  --button-border: 0.1em solid var(--color-darker);
 
-    :has([value=theme]:not(:checked)) {
-        color-scheme: light;
-    }
+  /* light-dark colors */
+  --color-main: light-dark(var(--color-light), var(--color-darker));
+  --color-secondary: light-dark(var(--color-darker), var(--color-light));
 
+  /* light/dark mode logic */
+  :has([value="theme"]:checked) {
+    color-scheme: dark;
+  }
 
-    /* fonts */
-    * {
-        font-family: 'DM Sans', sans-serif;
-    }
+  :has([value="theme"]:not(:checked)) {
+    color-scheme: light;
+  }
+
+  /* fonts */
+  * {
+    font-family: "DM Sans", sans-serif;
+  }
 }
- 
