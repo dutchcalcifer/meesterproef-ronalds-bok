@@ -1,3 +1,5 @@
+import { toggleBookmarks } from "./script.js"
+
 // Stap 1: Zoekformulieren updaten bij verandering
 document.querySelector('.searchFilter').addEventListener('change', (e) => {
     const formState = new FormData(e.currentTarget)
@@ -13,6 +15,7 @@ document.querySelector('.searchFilter').addEventListener('change', (e) => {
 
             const resultsList = doc.querySelector('#resultsAndFilters')
             document.querySelector('#resultsAndFilters').replaceWith(resultsList)
+            toggleBookmarks()
         })
 })
 
