@@ -94,7 +94,35 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Bookmark toggle
+  toggleBookmarks()
+
+});
+
+ 
+function getSavedIds() {
+  const cookie = document.cookie
+    .split('; ')
+    .find(row => row.startsWith('savedIds='));
+  if (!cookie) return [];
+ 
+  try {
+    return JSON.parse(decodeURIComponent(cookie.split('=')[1]));
+  } catch {
+    return [];
+  }
+}
+
+function setSavedIds(ids) {
+  const days = 30;
+  const date = new Date();
+  date.setTime(date.getTime() + (days*24*60*60*1000));
+  const expires = "expires=" + date.toUTCString();
+ 
+  document.cookie = `savedIds=${encodeURIComponent(JSON.stringify(ids))}; ${expires}; path=/`;
+}
+
+// Bookmark toggle
+export function toggleBookmarks () {
   const buttons = document.querySelectorAll(".results li button");
   if (buttons.length) {
     buttons.forEach((button) => {
@@ -136,27 +164,4 @@ document.addEventListener("DOMContentLoaded", () => {
       button.classList.add("filled");
     }
   });
-});
-
- 
-function getSavedIds() {
-  const cookie = document.cookie
-    .split('; ')
-    .find(row => row.startsWith('savedIds='));
-  if (!cookie) return [];
- 
-  try {
-    return JSON.parse(decodeURIComponent(cookie.split('=')[1]));
-  } catch {
-    return [];
-  }
-}
-
-function setSavedIds(ids) {
-  const days = 30;
-  const date = new Date();
-  date.setTime(date.getTime() + (days*24*60*60*1000));
-  const expires = "expires=" + date.toUTCString();
- 
-  document.cookie = `savedIds=${encodeURIComponent(JSON.stringify(ids))}; ${expires}; path=/`;
 }
