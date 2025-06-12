@@ -1,41 +1,50 @@
 <div id="resultsAndFilters">
-    <section id="activeFilters">
-      <h2 class="amount-of-results"><%= results.length %> Resulaten</h2>
+  <section id="activeFilters">
+    <h2 class="amount-of-results">
+      <%= results.length %> Resulaten
+    </h2>
 
-      <form method="GET" action="/" class="searchFilter">
-        <% Object.entries(filters).forEach(([veld, opties])=> { %>
-          <% opties.forEach(optie=> { const checkedValues =
+    <form method="GET" action="/" class="searchFilter">
+      <% Object.entries(filters).forEach(([veld, opties])=> { %>
+        <% opties.forEach(optie=> { const checkedValues =
           Array.isArray(query[veld]) ? query[veld] : (query[veld] ? [query[veld]] :
           []); const isChecked = checkedValues.includes(optie); %>
           <label>
-            <input type="checkbox" name="<%= veld %>" value="<%= optie %>"
-            <%=isChecked ? "checked" : "" %>> <%= optie %>
+            <input type="checkbox" name="<%= veld %>" value="<%= optie %>" <%=isChecked ? "checked" : "" %>> <%= optie
+              %>
           </label>
           <% }) %>
+            <% }) %>
+    </form>
+  </section>
+
+  <% if (results.length> 0) { %>
+    <ul class="results">
+      <% results.forEach(result=> { %>
+        <li data-id="<%= result.id %>">
+          <div id="themaExpertise" class="color-theme <%= result.class %>"></div>
+          <p id="themaSoort" class="color-theme <%= result.class %>">
+            <%= result.soort %>
+          </p>
+          <h2>
+            <%= result.naam %>
+          </h2>
+          <p>
+            <%= result.korte_beschrijving %>
+          </p>
+          <a href="/item/<%= result.id %>">lees meer<span class="visually-hidden">over <%= result.soort %>
+                <%= result.naam %> </span> </a>
+          <button>
+            <svg viewBox="0 0 24 24">
+              <path d="M6 4v16l6-6 6 6V4z"></path>
+            </svg>
+          </button>
+
+        </li>
         <% }) %>
-      </form>
-    </section>
-  
-    <% if (results.length> 0) { %>
-  <ul class="results">
-    <% results.forEach(result=> { %>
-      <li data-id="<%= result.id %>">
-        <div  id="themaExpertise" class="color-theme <%= result.class %>"></div>
-        <p id="themaSoort" class="color-theme <%= result.class %>"><%= result.soort %></p>
-        <h2><%= result.naam %></h2>
-        <p><%= result.korte_beschrijving %></p>
-        <a href="/item/<%= result.id %>">lees meer<span class="visually-hidden">over <%= result.soort %>  <%= result.naam %> </span> </a>
-        <button>
-          <svg viewBox="0 0 24 24">
-          <path d="M6 4v16l6-6 6 6V4z"></path>
-          </svg>   
-        </button>
+    </ul>
 
-      </li>
-      <% }) %>
-  </ul>
-
-  <% } else if (query) { %>
-    <p>Geen resultaten gevonden</p>
-  <% } %>
-  </div>
+    <% } else if (query) { %>
+      <p>Geen resultaten gevonden</p>
+      <% } %>
+</div>

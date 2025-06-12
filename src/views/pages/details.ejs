@@ -84,8 +84,21 @@
                             </div>
                             <% } %>
 
-                                <% if (item.meer_op_web) { %>
-                                    <a href="<%= item.meer_op_web %>" target="_blank" class="web-button">Meer op web</a>
+                                <% if (item.meer_op_web && item.meer_op_web.length) { %>
+                                    <div class="web-toggle-container">
+                                        <input type="checkbox" id="toggle-web-links" class="toggle-checkbox" />
+                                        <label for="toggle-web-links" class="web-toggle-button">Toon bronnen</label>
+
+                                        <div class="web-links">
+                                            <% item.meer_op_web.forEach(function(link) { const
+                                                domainMatch=link.match(/^https?:\/\/(?:www\.)?([^\/?#]+)(?:[\/?#]|$)/i);
+                                                const displayText=domainMatch ? domainMatch[1] : link; %>
+                                                <a href="<%= link %>" target="_blank" class="web-button">
+                                                    <%= displayText %>
+                                                </a>
+                                                <% }) %>
+                                        </div>
+                                    </div>
                                     <% } %>
     </div>
 </section>
@@ -93,7 +106,9 @@
 <% if (item.rel_beroepstaak && item.rel_beroepstaak.length> 0) { %>
     <section class="gerelateerd-wrapper">
         <h2>Gerelateerde beroepstaken</h2>
-        <%- include('../components/result-list', { results: item.rel_beroepstaak, filters: {}, query: {} }) %>
+        <%- include('../components/result-list', { results: item.rel_beroepstaak, filters: {}, query: {}, currentId:
+            item.id }) %>
+
     </section>
     <% } %>
 

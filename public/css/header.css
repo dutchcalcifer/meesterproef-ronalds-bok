@@ -1,67 +1,68 @@
 header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    row-gap: .5em;
-    margin: 2em 4em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 0.5em;
+  margin: 2em 4em;
 
-    @media (max-width: 469px) {
-        justify-content: center;
-        margin: 2em;
-        margin-bottom: 1em;
-    }
+  @media (max-width: 469px) {
+    justify-content: center;
+    margin: 2em;
+    margin-bottom: 1em;
+  }
 }
 
-#home, h1 {
-    display: block;
+#home,
+h1 {
+  display: block;
 }
 
 h1 svg {
-    max-height: 110px;
-    display: block;
-    max-width: 100%;
-    height: 2em;
+  max-height: 110px;
+  display: block;
+  max-width: 100%;
+  height: 2em;
 }
 
-#home:focus{
-    outline:.1em solid var(--color-darker) ;
-    border-radius: 2em;
+#home:focus {
+  outline: 0.1em solid var(--color-darker);
+  border-radius: 2em;
 }
 .hide-text {
-    display: none;
+  display: none;
 }
 
 #go-to-saved {
-    text-decoration: none;
-    color: var(--color-darker);
-    display: flex;
-    align-items: center;
-    padding: .5em 1em;
-    transition: background-color .5s, border-radius .5s ;
-    border-radius: 2em;
+  text-decoration: none;
+  color: var(--color-darker);
+  display: flex;
+  align-items: center;
+  padding: 0.5em 1em;
+  transition: background-color 0.5s, border-radius 0.5s;
+  border-radius: 2em;
+  background-color: var(--color-grey);
+
+  svg {
+    height: 2em;
+
+    path {
+      fill: none;
+      stroke: black;
+    }
+  }
+}
+
+#go-to-saved:focus {
+  outline: var(--button-border);
+}
+
+@media (min-width: 800px) {
+  #go-to-saved {
+    background-color: transparent;
+  }
+  #go-to-saved:hover {
     background-color: var(--color-grey);
-
-    svg {
-        height: 2em;
-        
-        path {
-            fill: none;
-            stroke: black;
-        }
-    }
-}
-
-#go-to-saved:focus{
-    outline: .2em solid var(--color-darker);
-}
-
-@media (min-width: 800px){
-    #go-to-saved{
-        background-color: transparent;
-    }
-    #go-to-saved:hover{
-        background-color: var(--color-grey);
-        box-shadow: var(--color-main) 1px 1px 10px;
-    }
+    box-shadow: var(--color-main) 1px 1px 10px;
+  }
 }
