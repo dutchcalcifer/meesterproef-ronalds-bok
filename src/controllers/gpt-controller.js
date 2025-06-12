@@ -87,7 +87,7 @@ function buildContextSnippets(vec) {
 // Main GPT handler
 export async function gpt(conversation) {
   // Choose model via environment variable (set in npm scripts)
-  const MODEL_NAME = process.env.OPENAI_MODEL || "gpt-4o";
+  const MODEL_NAME = process.env.OPENAI_MODEL || "gpt-4o-mini";
   console.log(`Using model: ${MODEL_NAME}`);
 
   // Compose the system prompt with the dynamic field list

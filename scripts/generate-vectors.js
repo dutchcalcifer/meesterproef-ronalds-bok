@@ -3,7 +3,7 @@ import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 // Import OpenAI client and data-fetch helper
-import openai from "../server.js";
+import { openai } from "../server.js";
 import { fetchApiData } from "../src/controllers/api-controller.js";
 
 // Determine current file and project directories
@@ -37,8 +37,7 @@ async function generateVectors() {
 
       // Request embedding from OpenAI
       const res = await openai.embeddings.create({
-        model: "text-embedding-3-large", // for production
-        // model: "text-embedding-3-small", // for testing
+        model: "text-embedding-3-large",
         input: inputText,
       });
 
